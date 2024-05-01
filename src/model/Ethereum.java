@@ -8,6 +8,10 @@ package model;
  *
  * @author unifmperes
  */
-public class Ethereum {
+public class Ethereum extends Moedas{
+
+    public Ethereum(double taxacompra, double taxavenda, double valor, String nomemoeda) {
+        super(0.01, 0.02, 0, "Ethereum");
+    }
     
 }

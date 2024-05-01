@@ -33,16 +33,16 @@
                       </Group>
                       <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="txtcpf" max="32767" attributes="0"/>
-                          <Component id="txtsenha" pref="251" max="32767" attributes="0"/>
+                          <Component id="txtCpf" max="32767" attributes="0"/>
+                          <Component id="txtSenha" pref="251" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="165" max="-2" attributes="0"/>
-                      <Component id="btlogin" min="-2" max="-2" attributes="0"/>
+                      <Component id="btLogin" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="33" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -52,15 +52,15 @@
               <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="cpflogin" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtcpf" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtCpf" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="senhalogin" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtsenha" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtSenha" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="38" max="32767" attributes="0"/>
-              <Component id="btlogin" min="-2" max="-2" attributes="0"/>
+              <Component id="btLogin" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -69,7 +69,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="cpflogin">
       <Properties>
-        <Property name="text" type="java.lang.String" value="CPF:"/>
+        <Property name="text" type="java.lang.String" value="CPF (sem pontos e tra&#xe7;os):"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="senhalogin">
@@ -77,16 +77,19 @@
         <Property name="text" type="java.lang.String" value="Senha:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtcpf">
+    <Component class="javax.swing.JTextField" name="txtCpf">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCpfActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtsenha">
+    <Component class="javax.swing.JTextField" name="txtSenha">
     </Component>
-    <Component class="javax.swing.JButton" name="btlogin">
+    <Component class="javax.swing.JButton" name="btLogin">
       <Properties>
         <Property name="text" type="java.lang.String" value="Logar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btloginActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btLoginActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

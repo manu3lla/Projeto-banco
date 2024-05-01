@@ -4,7 +4,9 @@
  */
 package projeto;
 
-import view.Opcoes;
+import view.Login;
+
+
 
 /**
  *
@@ -12,8 +14,8 @@ import view.Opcoes;
  */
 public class Projeto {
     public static void main(String[] args) {
-        Opcoes o = new Opcoes();
-        o.setVisible(true);
+       Login l = new Login();
+       l.setVisible(true);
     }
     
 }

@@ -38,7 +38,7 @@ public class Opcoes extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btsaldo.setText("Consultar Saldo");
+        btsaldo.setText("Consultar saldo");
         btsaldo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btsaldoActionPerformed(evt);
