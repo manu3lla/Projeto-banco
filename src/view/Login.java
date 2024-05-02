@@ -150,14 +150,10 @@ public class Login extends javax.swing.JFrame {
 
    
     private void btLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoginActionPerformed
-        controller.loginUsuario();
-        if (controller.loginUsuario()) { 
+        
         Opcoes opcoesFrame = new Opcoes();
         opcoesFrame.setVisible(true);
-        dispose();
-    } else {
-        JOptionPane.showMessageDialog(null, "Tente novamente");
-    }
+        
     }//GEN-LAST:event_btLoginActionPerformed
 
     private void txtCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCpfActionPerformed

@@ -7,6 +7,7 @@ package controller;
 import model.Carteira;
 import model.Reais;
 import view.DepositoReal;
+import view.Login;
 
 /**
  *
@@ -15,7 +16,8 @@ import view.DepositoReal;
 public class ControllerDeposito {
      private Reais reais;
      private DepositoReal view;
-
+     
+     
     public ControllerDeposito(DepositoReal view) {
         this.reais = new Reais(0, 0, 0, "Reais");
         this.view = view;

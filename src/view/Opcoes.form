@@ -88,6 +88,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Depositar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btdepositarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="btsacar">
       <Properties>

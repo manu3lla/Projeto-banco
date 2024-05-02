@@ -4,6 +4,11 @@
  */
 package view;
 
+import control.ControllerLogin;
+import controller.ControllerDeposito;
+import javax.swing.JLabel;
+import javax.swing.JRadioButton;
+
 /**
  *
  * @author unifmperes
@@ -15,6 +20,86 @@ public class Opcoes extends javax.swing.JFrame {
      */
     public Opcoes() {
         initComponents();
+    }
+
+    public ControllerDeposito getController() {
+        return controller;
+    }
+
+    public void setController(ControllerDeposito controller) {
+        this.controller = controller;
+    }
+
+    public JRadioButton getBtatualizar() {
+        return btatualizar;
+    }
+
+    public void setBtatualizar(JRadioButton btatualizar) {
+        this.btatualizar = btatualizar;
+    }
+
+    public JRadioButton getBtcomprar() {
+        return btcomprar;
+    }
+
+    public void setBtcomprar(JRadioButton btcomprar) {
+        this.btcomprar = btcomprar;
+    }
+
+    public JRadioButton getBtdepositar() {
+        return btdepositar;
+    }
+
+    public void setBtdepositar(JRadioButton btdepositar) {
+        this.btdepositar = btdepositar;
+    }
+
+    public JRadioButton getBtextrato() {
+        return btextrato;
+    }
+
+    public void setBtextrato(JRadioButton btextrato) {
+        this.btextrato = btextrato;
+    }
+
+    public JRadioButton getBtsacar() {
+        return btsacar;
+    }
+
+    public void setBtsacar(JRadioButton btsacar) {
+        this.btsacar = btsacar;
+    }
+
+    public JRadioButton getBtsair() {
+        return btsair;
+    }
+
+    public void setBtsair(JRadioButton btsair) {
+        this.btsair = btsair;
+    }
+
+    public JRadioButton getBtsaldo() {
+        return btsaldo;
+    }
+
+    public void setBtsaldo(JRadioButton btsaldo) {
+        this.btsaldo = btsaldo;
+    }
+
+    public JRadioButton getBtvender() {
+        return btvender;
+    }
+
+    public void setBtvender(JRadioButton btvender) {
+        this.btvender = btvender;
+    }
+
+    public JLabel getMenu() {
+        return menu;
+    }
+
+    public void setMenu(JLabel menu) {
+        this.menu = menu;
     }
 
     /**
@@ -48,6 +133,11 @@ public class Opcoes extends javax.swing.JFrame {
         btextrato.setText("Consultar extrato");
 
         btdepositar.setText("Depositar");
+        btdepositar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btdepositarActionPerformed(evt);
+            }
+        });
 
         btsacar.setText("Sacar");
 
@@ -122,6 +212,11 @@ public class Opcoes extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btvenderActionPerformed
 
+    private void btdepositarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btdepositarActionPerformed
+        DepositoReal c = new DepositoReal();
+        c.setVisible(true);
+    }//GEN-LAST:event_btdepositarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -156,7 +251,7 @@ public class Opcoes extends javax.swing.JFrame {
 //            }
 //        });
 //    }
-
+    private ControllerDeposito controller;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton btatualizar;
     private javax.swing.JRadioButton btcomprar;
