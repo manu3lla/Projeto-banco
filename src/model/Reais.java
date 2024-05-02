@@ -9,20 +9,35 @@ package model;
  * @author unifmperes
  */
 public class Reais extends Moedas {
-
+    private Carteira carteira;
     public Reais(double taxacompra, double taxavenda, double valor, String nomemoeda) {
         super(0, 0, 0, "Reais");
     }
     
-    public void DepositoReal(double valor, Carteira carteira){
+    public void DepositoReal(double valor){
         if (carteira == null) {
-            carteira = new Carteira("0", "0", "0", String.valueOf(valor));
+            carteira = new Carteira(0, 0, 0, 0);
         } else {
-            double saldoReal = Double.parseDouble(carteira.getValorreal());
-            saldoReal += valor;
-            carteira.setValorreal(String.valueOf(saldoReal));
+            double saldoReal = carteira.getValorreal();
+            double valorAtual = saldoReal + valor;
+            carteira.setValorreal(valorAtual);
+            System.out.println("Depósito realizado!");
+            System.out.println("Valor atual na carteira: " + " " + valorAtual);
         }
-        System.out.println("Depósito realizado!");
+        
+    }
+    
+    public void SaqueReal(double valor){
+        if (carteira == null) {
+            carteira = new Carteira(0, 0, 0, 0);
+        } else {
+            double saldoReal = carteira.getValorreal();
+            double valorAtual = saldoReal - valor;
+            carteira.setValorreal(saldoReal);
+            System.out.println("Saque realizado!");
+            System.out.println("Valor atual na carteira: " + " " + valorAtual);
+        }
+        
     }
     
 }

@@ -9,37 +9,37 @@ package model;
  * @author Manuella
  */
 public class Carteira {
-    private String valorbitcoin, valorripple, valorethereum, valorreal;
+    private double valorbitcoin, valorripple, valorethereum, valorreal;
 
-    public String getValorbitcoin() {
+    public double getValorbitcoin() {
         return valorbitcoin;
     }
 
-    public void setValorbitcoin(String valorbitcoin) {
+    public void setValorbitcoin(double valorbitcoin) {
         this.valorbitcoin = valorbitcoin;
     }
 
-    public String getValorripple() {
+    public double getValorripple() {
         return valorripple;
     }
 
-    public void setValorripple(String valorripple) {
+    public void setValorripple(double valorripple) {
         this.valorripple = valorripple;
     }
 
-    public String getValorethereum() {
+    public double getValorethereum() {
         return valorethereum;
     }
 
-    public void setValorethereum(String valorethereum) {
+    public void setValorethereum(double valorethereum) {
         this.valorethereum = valorethereum;
     }
 
-    public String getValorreal() {
+    public double getValorreal() {
         return valorreal;
     }
 
-    public void setValorreal(String valorreal) {
+    public void setValorreal(double valorreal) {
         this.valorreal = valorreal;
     }
 
@@ -48,10 +48,12 @@ public class Carteira {
         return "Carteira{" + "valorbitcoin=" + valorbitcoin + ", valorripple=" + valorripple + ", valorethereum=" + valorethereum + ", valorreal=" + valorreal + '}';
     }
 
+    
+
     public Carteira() {
     }
 
-    public Carteira(String valorbitcoin, String valorripple, String valorethereum, String valorreal) {
+    public Carteira(double valorbitcoin, double valorripple, double valorethereum, double valorreal) {
         this.valorbitcoin = valorbitcoin;
         this.valorripple = valorripple;
         this.valorethereum = valorethereum;

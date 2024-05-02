@@ -156,7 +156,7 @@ public class Login extends javax.swing.JFrame {
         opcoesFrame.setVisible(true);
         dispose();
     } else {
-        JOptionPane.showMessageDialog(null, "Credenciais inválidas");
+        JOptionPane.showMessageDialog(null, "Tente novamente");
     }
     }//GEN-LAST:event_btLoginActionPerformed
 

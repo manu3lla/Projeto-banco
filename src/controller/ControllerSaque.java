@@ -7,28 +7,29 @@ package controller;
 import model.Carteira;
 import model.Reais;
 import view.DepositoReal;
+import view.SaqueReal;
 
 /**
  *
  * @author Manuella
  */
-public class ControllerDeposito {
-     private Reais reais;
-     private DepositoReal view;
+public class ControllerSaque {
+    private Reais reais;
+     private SaqueReal view;
 
-    public ControllerDeposito(DepositoReal view) {
+    public ControllerSaque(SaqueReal view) {
         this.reais = new Reais(0, 0, 0, "Reais");
         this.view = view;
         
         
     }
 
-    public ControllerDeposito(Reais reais) {
+    public ControllerSaque(Reais reais) {
         this.reais = reais;
     }
     
     
-    public void depositarReais(double valor) {
-        reais.DepositoReal(valor);
+    public void sacarReais(double valor) {
+        reais.SaqueReal(valor);
     }
 }
