@@ -10,19 +10,21 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import model.Carteira;
+import model.Investidor;
 
 /**
  *
  * @author Manuella
  */
 public class DepositoReal extends javax.swing.JFrame {
-
+    private Investidor investidor;
     /**
      * Creates new form DepositoReal
      */
-    public DepositoReal() {
+    public DepositoReal(Investidor investidor) {
         initComponents();
         controller = new ControllerDeposito(this);
+        this.investidor = investidor;
     }
 
     public ControllerDeposito getController() {
@@ -116,7 +118,7 @@ public class DepositoReal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btDepositoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDepositoActionPerformed
-        controller.depositarReais(Double.parseDouble(getTxtDeposito().getText()));
+        controller.depositoReal(investidor);
     }//GEN-LAST:event_btDepositoActionPerformed
 //}
 //        } catch (ClassNotFoundException ex) {

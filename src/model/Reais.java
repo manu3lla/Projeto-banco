@@ -14,18 +14,7 @@ public class Reais extends Moedas {
         super(0, 0, 0, "Reais");
     }
     
-    public void DepositoReal(double valor){
-        if (carteira == null) {
-            carteira = new Carteira(0, 0, 0, 0);
-        } else {
-            double saldoReal = carteira.getValorreal();
-            double valorAtual = saldoReal + valor;
-            carteira.setValorreal(valorAtual);
-            System.out.println("Depósito realizado!");
-            System.out.println("Valor atual na carteira: " + " " + valorAtual);
-        }
-        
-    }
+    
     
     public void SaqueReal(double valor){
         if (carteira == null) {

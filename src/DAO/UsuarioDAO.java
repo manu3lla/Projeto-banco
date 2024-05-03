@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import model.Usuario;
 import java.sql.PreparedStatement;
+import model.Investidor;
 
 public class UsuarioDAO {
     private Connection conn;
@@ -30,5 +31,13 @@ public class UsuarioDAO {
         statement.execute();
         ResultSet resultado = statement.getResultSet();
         return resultado;
+    }
+    public void depositar(Investidor investidor, double valor) throws SQLException{
+        String sql = "update bancos set reais = ? where senha = ?";
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setString(1, String.valueOf(valor));
+        statement.setString(2, investidor.getSenha());
+        statement.execute();
+        conn.close();
     }
 }

@@ -8,18 +8,20 @@ import control.ControllerLogin;
 import controller.ControllerDeposito;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
+import model.Investidor;
 
 /**
  *
  * @author unifmperes
  */
 public class Opcoes extends javax.swing.JFrame {
-
+    private Investidor investidor;
     /**
      * Creates new form Opcoes
      */
-    public Opcoes() {
+    public Opcoes(Investidor investidor) {
         initComponents();
+        this.investidor = investidor;
     }
 
     public ControllerDeposito getController() {

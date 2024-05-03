@@ -8,6 +8,7 @@ import DAO.UsuarioDAO;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import java.sql.SQLException;
+import model.Investidor;
 import view.Login;
 import view.Opcoes;
 
@@ -28,7 +29,11 @@ public class ControllerLogin {
             ResultSet res = dao.consultar(usuario);
             if(res.next()){
             JOptionPane.showMessageDialog(view,"Login Feito!");
-            Opcoes opcoesFrame = new Opcoes();
+            String nome = res.getString("nome");
+            String cpf = res.getString("cpf");
+            String senha = res.getString("senha");
+            Investidor investidor = new Investidor(nome, cpf, senha);
+            Opcoes opcoesFrame = new Opcoes(investidor);
             opcoesFrame.setVisible(true);
             view.setVisible(false);
             return true;
