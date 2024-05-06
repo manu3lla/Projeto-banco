@@ -48,7 +48,7 @@ public class ControllerDeposito {
                 dao.depositar(investidor, valorFinal);
                 
             } catch(SQLException e){
-                JOptionPane.showMessageDialog(view, "Falha de conexão");
+                JOptionPane.showMessageDialog(view, e);
             }
 
         

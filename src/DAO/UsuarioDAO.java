@@ -23,7 +23,7 @@ public class UsuarioDAO {
         //String sql = "select * from aluno where usuario = '" +
         //        aluno.getUsuario() + "' AND senha = '" +
         //        aluno.getSenha() + "'";
-        String sql = "select * from bancos where cpf = ? and senha = ?";
+        String sql = "select * from aa where cpf = ? and senha = ?";
         
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setString(1, usuario.getCpf());
@@ -33,7 +33,7 @@ public class UsuarioDAO {
         return resultado;
     }
     public void depositar(Investidor investidor, double valor) throws SQLException{
-        String sql = "update bancos set reais = ? where senha = ?";
+        String sql = "update aa set reais = ? where senha = ?";
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setString(1, String.valueOf(valor));
         statement.setString(2, investidor.getSenha());
