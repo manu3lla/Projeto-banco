@@ -151,8 +151,7 @@ public class Login extends javax.swing.JFrame {
    
     private void btLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoginActionPerformed
         
-        Opcoes opcoesFrame = new Opcoes();
-        opcoesFrame.setVisible(true);
+        controller.loginUsuario();
         
     }//GEN-LAST:event_btLoginActionPerformed
 

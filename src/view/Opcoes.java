@@ -15,10 +15,10 @@ import model.Investidor;
  * @author unifmperes
  */
 public class Opcoes extends javax.swing.JFrame {
-    private Investidor investidor;
     /**
      * Creates new form Opcoes
      */
+    private Investidor investidor;
     public Opcoes(Investidor investidor) {
         initComponents();
         this.investidor = investidor;
@@ -215,7 +215,7 @@ public class Opcoes extends javax.swing.JFrame {
     }//GEN-LAST:event_btvenderActionPerformed
 
     private void btdepositarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btdepositarActionPerformed
-        DepositoReal c = new DepositoReal();
+        DepositoReal c = new DepositoReal(investidor);
         c.setVisible(true);
     }//GEN-LAST:event_btdepositarActionPerformed
 
