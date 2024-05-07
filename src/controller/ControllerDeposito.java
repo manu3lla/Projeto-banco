@@ -36,21 +36,25 @@ public class ControllerDeposito {
         this.reais = reais;
     }
 
-    public void depositoReal(Investidor investidor){
-        Conexao conexao = new Conexao();
-        try{
-                Connection conn = conexao.getConnection();
-                UsuarioDAO dao = new UsuarioDAO(conn);
-                ResultSet res = dao.consultar(investidor);
-                double real = res.getDouble("reais");
-                double deposito = Double.parseDouble(view.getTxtDeposito().getText());
-                double valorFinal = deposito+real;
-                dao.depositar(investidor, valorFinal);
-                
-            } catch(SQLException e){
-                JOptionPane.showMessageDialog(view, e);
-            }
-
-        
+    public void depositoReal(Investidor investidor) {
+    Conexao conexao = new Conexao();
+    try {
+        Connection conn = conexao.getConnection();
+        UsuarioDAO dao = new UsuarioDAO(conn);
+        ResultSet res = dao.consultar(investidor);
+        if (res.next()) {
+            double real = res.getDouble("reais");
+            double deposito = Double.parseDouble(view.getTxtDeposito().getText());
+            double valorFinal = deposito + real;
+            dao.depositar(investidor, valorFinal);
+            JOptionPane.showMessageDialog(view, "Depósito feito!");
+            System.out.println("Saldo atual: " + valorFinal);
+        } else {
+            JOptionPane.showMessageDialog(view, "Erro de conexão.");
+        }
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(view, "Erro: " + e.getMessage());
     }
+}
+
 }

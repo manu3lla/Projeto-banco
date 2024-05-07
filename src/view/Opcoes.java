@@ -6,6 +6,7 @@ package view;
 
 import control.ControllerLogin;
 import controller.ControllerDeposito;
+import controller.ControllerSaque;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import model.Investidor;
@@ -23,7 +24,13 @@ public class Opcoes extends javax.swing.JFrame {
         initComponents();
         this.investidor = investidor;
     }
+    public ControllerSaque getController2() {
+        return controller2;
+    }
 
+    public void setController(ControllerSaque controller) {
+        this.controller2 = controller2;
+    }
     public ControllerDeposito getController() {
         return controller;
     }
@@ -142,6 +149,11 @@ public class Opcoes extends javax.swing.JFrame {
         });
 
         btsacar.setText("Sacar");
+        btsacar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btsacarActionPerformed(evt);
+            }
+        });
 
         btcomprar.setText("Comprar criptomoedas");
 
@@ -219,6 +231,11 @@ public class Opcoes extends javax.swing.JFrame {
         c.setVisible(true);
     }//GEN-LAST:event_btdepositarActionPerformed
 
+    private void btsacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btsacarActionPerformed
+        SaqueReal s = new SaqueReal(investidor);
+        s.setVisible(true);
+    }//GEN-LAST:event_btsacarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -254,6 +271,7 @@ public class Opcoes extends javax.swing.JFrame {
 //        });
 //    }
     private ControllerDeposito controller;
+    private ControllerSaque controller2;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton btatualizar;
     private javax.swing.JRadioButton btcomprar;

@@ -8,19 +8,29 @@ import controller.ControllerSaque;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import model.Investidor;
 
 /**
  *
  * @author unifmperes
  */
 public class SaqueReal extends javax.swing.JFrame {
-
+    private Investidor investidor;
     /**
      * Creates new form SaqueReal
      */
-    public SaqueReal() {
+    public SaqueReal(Investidor investidor) {
         initComponents();
         controller = new ControllerSaque(this);
+        this.investidor = investidor;
+    }
+
+    public Investidor getInvestidor() {
+        return investidor;
+    }
+
+    public void setInvestidor(Investidor investidor) {
+        this.investidor = investidor;
     }
 
     public ControllerSaque getController() {
@@ -54,6 +64,9 @@ public class SaqueReal extends javax.swing.JFrame {
     public void setTxtSaque(JTextField txtSaque) {
         this.txtSaque = txtSaque;
     }
+
+   
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -121,7 +134,7 @@ public class SaqueReal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSaqueActionPerformed
 
     private void btSacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSacarActionPerformed
-        controller.sacarReais(Double.parseDouble(getTxtSaque().getText()));
+        controller.saqueReal(investidor);
     }//GEN-LAST:event_btSacarActionPerformed
 
     /**
