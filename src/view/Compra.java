@@ -4,6 +4,9 @@
  */
 package view;
 
+import javax.swing.JButton;
+import javax.swing.JLabel;
+
 /**
  *
  * @author Manuella
@@ -16,6 +19,39 @@ public class Compra extends javax.swing.JFrame {
     public Compra() {
         initComponents();
     }
+
+    public JButton getCompraBit() {
+        return compraBit;
+    }
+
+    public void setCompraBit(JButton compraBit) {
+        this.compraBit = compraBit;
+    }
+
+    public JButton getCompraEt() {
+        return compraEt;
+    }
+
+    public void setCompraEt(JButton compraEt) {
+        this.compraEt = compraEt;
+    }
+
+    public JButton getCompraR() {
+        return compraR;
+    }
+
+    public void setCompraR(JButton compraR) {
+        this.compraR = compraR;
+    }
+
+    public JLabel getjLabel1() {
+        return jLabel1;
+    }
+
+    public void setjLabel1(JLabel jLabel1) {
+        this.jLabel1 = jLabel1;
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,8 +79,18 @@ public class Compra extends javax.swing.JFrame {
         });
 
         compraEt.setText("Ethereum");
+        compraEt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                compraEtActionPerformed(evt);
+            }
+        });
 
         compraR.setText("Ripple");
+        compraR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                compraRActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -56,11 +102,12 @@ public class Compra extends javax.swing.JFrame {
                         .addGap(117, 117, 117)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(157, 157, 157)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(149, 149, 149)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(compraEt)
-                            .addComponent(compraBit)
-                            .addComponent(compraR))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(compraBit)
+                                .addComponent(compraR)))))
                 .addContainerGap(132, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -70,9 +117,9 @@ public class Compra extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(46, 46, 46)
                 .addComponent(compraBit)
-                .addGap(37, 37, 37)
+                .addGap(39, 39, 39)
                 .addComponent(compraEt)
-                .addGap(41, 41, 41)
+                .addGap(39, 39, 39)
                 .addComponent(compraR)
                 .addContainerGap(73, Short.MAX_VALUE))
         );
@@ -81,43 +128,54 @@ public class Compra extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void compraBitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_compraBitActionPerformed
-        // TODO add your handling code here:
+        CompraBit compraBit = new CompraBit();
+        compraBit.setVisible(true);
     }//GEN-LAST:event_compraBitActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Compra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Compra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Compra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Compra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void compraEtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_compraEtActionPerformed
+        CompraEthereum compraEthereum = new CompraEthereum();
+        compraEthereum.setVisible(true);
+    }//GEN-LAST:event_compraEtActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Compra().setVisible(true);
-            }
-        });
-    }
+    private void compraRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_compraRActionPerformed
+        CompraRipple compraRipple = new CompraRipple();
+        compraRipple.setVisible(true);
+    }//GEN-LAST:event_compraRActionPerformed
+
+    /**
+//     * @param args the command line arguments
+//     */
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(Compra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(Compra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(Compra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(Compra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Compra().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton compraBit;

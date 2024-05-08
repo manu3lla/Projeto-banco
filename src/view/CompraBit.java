@@ -4,18 +4,59 @@
  */
 package view;
 
+import controller.ControllerCompraBit;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import model.Investidor;
+
 /**
  *
  * @author Manuella
  */
 public class CompraBit extends javax.swing.JFrame {
-
+    private Investidor investidor;
     /**
      * Creates new form CompraBit
      */
     public CompraBit() {
         initComponents();
+        controller = new ControllerCompraBit(this);
+        this.investidor = investidor;
     }
+
+    public JButton getComprarBit() {
+        return comprarBit;
+    }
+
+    public void setComprarBit(JButton comprarBit) {
+        this.comprarBit = comprarBit;
+    }
+
+    public JLabel getjLabel1() {
+        return jLabel1;
+    }
+
+    public void setjLabel1(JLabel jLabel1) {
+        this.jLabel1 = jLabel1;
+    }
+
+    public JLabel getjLabel2() {
+        return jLabel2;
+    }
+
+    public void setjLabel2(JLabel jLabel2) {
+        this.jLabel2 = jLabel2;
+    }
+
+    public JTextField getQuantidadeB() {
+        return quantidadeB;
+    }
+
+    public void setQuantidadeB(JTextField quantidadeB) {
+        this.quantidadeB = quantidadeB;
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -45,6 +86,11 @@ public class CompraBit extends javax.swing.JFrame {
         });
 
         comprarBit.setText("Comprar");
+        comprarBit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comprarBitActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -84,44 +130,48 @@ public class CompraBit extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void quantidadeBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quantidadeBActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_quantidadeBActionPerformed
+
+    private void comprarBitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comprarBitActionPerformed
+        controller.compraBitcoin(investidor);
+    }//GEN-LAST:event_comprarBitActionPerformed
 
     /**
      * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CompraBit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CompraBit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CompraBit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CompraBit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CompraBit().setVisible(true);
-            }
-        });
-    }
-
+//     */
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(CompraBit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(CompraBit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(CompraBit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(CompraBit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new CompraBit().setVisible(true);
+//            }
+//        });
+//    }
+    private ControllerCompraBit controller;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton comprarBit;
     private javax.swing.JLabel jLabel1;

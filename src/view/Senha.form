@@ -34,7 +34,7 @@
                       <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="txtvcpf" pref="156" max="32767" attributes="0"/>
-                          <Component id="txtvsenha" max="32767" attributes="0"/>
+                          <Component id="txtSenha" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -59,9 +59,9 @@
               <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblsenha" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtvsenha" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtSenha" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="127" max="32767" attributes="0"/>
+              <EmptySpace pref="50" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -79,7 +79,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtvcpf">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtvsenha">
+    <Component class="javax.swing.JTextField" name="txtSenha">
     </Component>
     <Component class="javax.swing.JLabel" name="vsenha">
       <Properties>

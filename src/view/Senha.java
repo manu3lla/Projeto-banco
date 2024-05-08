@@ -4,17 +4,23 @@
  */
 package view;
 
+import controller.ControllerDeposito;
+import controller.ControllerSenha;
+import model.Investidor;
+
 /**
  *
  * @author unifmperes
  */
 public class Senha extends javax.swing.JFrame {
-
+    private Investidor investidor;
     /**
      * Creates new form Senha
      */
     public Senha() {
         initComponents();
+        controller = new ControllerSenha(this);
+        this.investidor = investidor;
     }
 
     /**
@@ -29,7 +35,7 @@ public class Senha extends javax.swing.JFrame {
         lblcpf = new javax.swing.JLabel();
         lblsenha = new javax.swing.JLabel();
         txtvcpf = new javax.swing.JTextField();
-        txtvsenha = new javax.swing.JTextField();
+        txtSenha = new javax.swing.JTextField();
         vsenha = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -54,7 +60,7 @@ public class Senha extends javax.swing.JFrame {
                         .addGap(78, 78, 78)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtvcpf, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
-                            .addComponent(txtvsenha)))
+                            .addComponent(txtSenha)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(142, 142, 142)
                         .addComponent(vsenha)))
@@ -72,8 +78,8 @@ public class Senha extends javax.swing.JFrame {
                 .addGap(62, 62, 62)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblsenha)
-                    .addComponent(txtvsenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(127, Short.MAX_VALUE))
+                    .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         pack();
@@ -113,12 +119,12 @@ public class Senha extends javax.swing.JFrame {
 //            }
 //        });
 //    }
-
+    private ControllerSenha controller;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lblcpf;
     private javax.swing.JLabel lblsenha;
+    private javax.swing.JTextField txtSenha;
     private javax.swing.JTextField txtvcpf;
-    private javax.swing.JTextField txtvsenha;
     private javax.swing.JLabel vsenha;
     // End of variables declaration//GEN-END:variables
 }

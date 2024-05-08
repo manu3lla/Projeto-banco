@@ -15,6 +15,7 @@ import model.Investidor;
 import model.Reais;
 import view.DepositoReal;
 import view.Login;
+import view.Opcoes;
 
 /**
  *
@@ -45,10 +46,16 @@ public class ControllerDeposito {
         if (res.next()) {
             double real = res.getDouble("reais");
             double deposito = Double.parseDouble(view.getTxtDeposito().getText());
+            if (deposito <= 0) {
+                JOptionPane.showMessageDialog(view, "Valor de deposito negativo, deposite um valor positivo");
+                return;
+            }
             double valorFinal = deposito + real;
             dao.depositar(investidor, valorFinal);
-            JOptionPane.showMessageDialog(view, "Depósito feito!");
-            System.out.println("Saldo atual: " + valorFinal);
+            JOptionPane.showMessageDialog(view, "Depósito feito!" + "Saldo atual: " + valorFinal);
+            view.dispose();
+            Opcoes opcoes = new Opcoes(investidor);
+            opcoes.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(view, "Erro de conexão.");
         }

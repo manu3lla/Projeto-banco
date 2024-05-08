@@ -30,11 +30,13 @@
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="157" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="149" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="compraEt" min="-2" max="-2" attributes="0"/>
-                          <Component id="compraBit" min="-2" max="-2" attributes="0"/>
-                          <Component id="compraR" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="compraBit" min="-2" max="-2" attributes="0"/>
+                              <Component id="compraR" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
@@ -49,9 +51,9 @@
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
               <Component id="compraBit" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
               <Component id="compraEt" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
               <Component id="compraR" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="73" max="32767" attributes="0"/>
           </Group>
@@ -76,11 +78,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Ethereum"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="compraEtActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="compraR">
       <Properties>
         <Property name="text" type="java.lang.String" value="Ripple"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="compraRActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

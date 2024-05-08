@@ -15,6 +15,7 @@ import model.Investidor;
 import model.Reais;
 import view.DepositoReal;
 import view.Login;
+import view.Opcoes;
 import view.SaqueReal;
 
 /**
@@ -46,10 +47,16 @@ public class ControllerSaque {
         if (res.next()) {
             double real = res.getDouble("reais");
             double saque = Double.parseDouble(view.getTxtSaque().getText());
+             if (saque > real) {
+                JOptionPane.showMessageDialog(view, "Saldo insuficiente, tente novamente!");
+                return;
+            }
             double valorFinal = real - saque;
             dao.depositar(investidor, valorFinal);
-            JOptionPane.showMessageDialog(view, "Depósito feito!");
-            System.out.println("Saldo atual: " + valorFinal);
+            JOptionPane.showMessageDialog(view, "Saque feito!" + "Saldo atual: " + valorFinal);
+            view.dispose();
+            Opcoes opcoes = new Opcoes(investidor);
+            opcoes.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(view, "Erro de conexão.");
         }
