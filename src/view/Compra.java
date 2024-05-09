@@ -135,12 +135,12 @@ public class Compra extends javax.swing.JFrame {
     }//GEN-LAST:event_compraBitActionPerformed
 
     private void compraEtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_compraEtActionPerformed
-        CompraEthereum compraEthereum = new CompraEthereum();
+        CompraEthereum compraEthereum = new CompraEthereum(investidor);
         compraEthereum.setVisible(true);
     }//GEN-LAST:event_compraEtActionPerformed
 
     private void compraRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_compraRActionPerformed
-        CompraRipple compraRipple = new CompraRipple();
+        CompraRipple compraRipple = new CompraRipple(investidor);
         compraRipple.setVisible(true);
     }//GEN-LAST:event_compraRActionPerformed
 

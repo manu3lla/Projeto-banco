@@ -10,6 +10,7 @@ import controller.ControllerDeposito;
 import controller.ControllerSaque;
 import controller.ControllerVenda;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import model.Investidor;
 
@@ -174,6 +175,11 @@ public class Opcoes extends javax.swing.JFrame {
         btatualizar.setText("Atualizar cotação");
 
         btsair.setText("Sair");
+        btsair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btsairActionPerformed(evt);
+            }
+        });
 
         menu.setText("MENU");
 
@@ -249,6 +255,10 @@ public class Opcoes extends javax.swing.JFrame {
         Compra compra = new Compra(investidor);
         compra.setVisible(true);
     }//GEN-LAST:event_btcomprarActionPerformed
+
+    private void btsairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btsairActionPerformed
+        JOptionPane.showMessageDialog(null, "Até mais");
+    }//GEN-LAST:event_btsairActionPerformed
 
     /**
      * @param args the command line arguments

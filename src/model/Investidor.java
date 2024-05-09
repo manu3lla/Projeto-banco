@@ -12,6 +12,7 @@ public class Investidor extends Usuario {
     private Carteira c1;
     public Investidor(String nome, String cpf, String senha) {
         super(nome, cpf, senha);
+        Carteira c1 = new Carteira();
     }
 
     public Carteira getC1() {

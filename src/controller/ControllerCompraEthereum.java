@@ -14,6 +14,7 @@ import model.Investidor;
 import model.Reais;
 import view.Compra;
 import view.CompraBit;
+import view.CompraEthereum;
 import view.DepositoReal;
 
 
@@ -21,13 +22,13 @@ import view.DepositoReal;
  *
  * @author Manuella
  */
-public class ControllerCompraBit {
+public class ControllerCompraEthereum {
      private Reais reais;
      private Investidor investidor;
-     private CompraBit view;
+     private CompraEthereum view;
      
      
-    public ControllerCompraBit(CompraBit view, Investidor investidor) {
+    public ControllerCompraEthereum(CompraEthereum view, Investidor investidor) {
         this.reais = new Reais(0, 0, 0, "Reais");
         this.view = view;
         this.investidor = investidor;
@@ -35,11 +36,11 @@ public class ControllerCompraBit {
         
     }
 
-    public ControllerCompraBit(Reais reais) {
+    public ControllerCompraEthereum(Reais reais) {
         this.reais = reais;
     }
 
-    public void compraBitcoin() {
+    public void compraEthereum() {
     Conexao conexao = new Conexao();
     try {
         Connection conn = conexao.getConnection();
@@ -47,27 +48,27 @@ public class ControllerCompraBit {
         ResultSet res = dao.consultar(investidor);
         if (res.next()) {
             double real = res.getDouble("reais");
-            double bitcoin = res.getDouble("bitcoin");
-            double qtdBit = Double.parseDouble(view.getQuantidadeB().getText());
-            double compraBit = qtdBit*317415.56;
-            double taxabit = compraBit * 0.02;
-            double valorTotal = compraBit + taxabit;
+            double ethereum = res.getDouble("ethereum");
+            double qtdEthereum = Double.parseDouble(view.getComprarE().getText());
+            double compraEthereum = qtdEthereum*15513.85;
+            double taxaEt = compraEthereum * 0.01;
+            double valorTotal = compraEthereum + taxaEt;
             
-            if (qtdBit <= 0) {
-                JOptionPane.showMessageDialog(view, "Número de bitcoins a serem compradas negativo, escreva novamente");
+            if (qtdEthereum <= 0) {
+                JOptionPane.showMessageDialog(view, "Número de Ethereums a serem compradas negativo, escreva novamente");
                 return;
             }
             if (real <= valorTotal) {
-                JOptionPane.showMessageDialog(view, "Saldo insuficiente em reais para a compra de Bitcoins");
+                JOptionPane.showMessageDialog(view, "Saldo insuficiente em reais para a compra de Ethereums");
                 return;
             }
-            double valorFinalBitcoin = bitcoin + qtdBit;
+            double valorFinalEthereum = ethereum + qtdEthereum;
             double valorFinalReais = real - valorTotal;
             dao.comprarReal(investidor, valorFinalReais);
-            dao.comprarBit(investidor, valorFinalBitcoin);
+            dao.comprarEthereum(investidor, valorFinalEthereum);
             JOptionPane.showMessageDialog(view, "Depósito feito!");
             JOptionPane.showMessageDialog(view, "Saldo atual em reais: " + valorFinalReais 
-                    + " " + "Saldo atual em bitcoins: " + valorFinalBitcoin);
+                    + " " + "Saldo atual em Ethereum: " + valorFinalEthereum);
         } else {
             JOptionPane.showMessageDialog(view, "Erro de conexão.");
         }
