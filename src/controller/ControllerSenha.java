@@ -25,8 +25,11 @@ import javax.swing.JOptionPane;
 
 public class ControllerSenha {
     public boolean verSenha(Investidor investidor) {
-        Conexao conexao = new Conexao();
+    Conexao conexao = new Conexao();
 
+    boolean senhaCorreta = false;
+
+    while (!senhaCorreta) {
         try {
             Connection conn = conexao.getConnection();
             UsuarioDAO dao = new UsuarioDAO(conn);
@@ -38,7 +41,7 @@ public class ControllerSenha {
                 String senhaBanco = res.getString("senha");
                 if (cpfJanela.equals(cpfBanco) && senhaJanela.equals(senhaBanco)) {
                     JOptionPane.showMessageDialog(null, "Bem vindo");
-                    return true;
+                    senhaCorreta = true; // Senha correta, saia do loop
                 } else {
                     JOptionPane.showMessageDialog(null, "CPF ou senha incorretos");
                 }
@@ -48,6 +51,9 @@ public class ControllerSenha {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
         }
-        return false;
     }
+
+    return true;
+}
+
 }
