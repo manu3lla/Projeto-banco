@@ -65,7 +65,7 @@ public class ControllerCompraEthereum {
             double valorFinalEthereum = ethereum + qtdEthereum;
             double valorFinalReais = real - valorTotal;
             dao.comprarReal(investidor, valorFinalReais);
-            dao.comprarEthereum(investidor, valorFinalEthereum);
+            dao.geralEthereum(investidor, valorFinalEthereum);
             JOptionPane.showMessageDialog(view, "Depósito feito!");
             JOptionPane.showMessageDialog(view, "Saldo atual em reais: " + valorFinalReais 
                     + " " + "Saldo atual em Ethereum: " + valorFinalEthereum);

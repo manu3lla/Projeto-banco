@@ -16,38 +16,38 @@ import model.Reais;
 import view.DepositoReal;
 import view.Login;
 import view.Opcoes;
-import view.Senha;
 
 /**
  *
  * @author Manuella
  */
-public class ControllerSenha {
-    private Senha senha;
-    public ControllerSenha(Senha senha) {
-        this.senha = senha;
-    }
-    
-    public void verSenha(Investidor investidor) {
-    Conexao conexao = new Conexao();
-    try {
-        
-        Connection conn = conexao.getConnection();
-        UsuarioDAO dao = new UsuarioDAO(conn);
-        ResultSet res = dao.consultar(investidor);
-        if (res.next()) {
-           String senhaDigitada = senha.getTxtSenha().getText();
-           String senhaBanco = res.getString("senha");
-                if (senhaDigitada.equals(senhaBanco)) {
-                    JOptionPane.showMessageDialog(null, "Bem vindo usuário!");
-                    Opcoes opcoes = new Opcoes(investidor);
-                    opcoes.setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(null, "Senha incorreta");
-        }
-        } } catch (SQLException e){
-        JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
-    }
-}
+import javax.swing.JOptionPane;
 
+public class ControllerSenha {
+    public boolean verSenha(Investidor investidor) {
+        Conexao conexao = new Conexao();
+
+        try {
+            Connection conn = conexao.getConnection();
+            UsuarioDAO dao = new UsuarioDAO(conn);
+            ResultSet res = dao.consultar(investidor);
+            if (res.next()) {
+                String cpfJanela = JOptionPane.showInputDialog("Digite seu CPF:");
+                String senhaJanela = JOptionPane.showInputDialog("Digite sua senha:");
+                String cpfBanco = res.getString("cpf");
+                String senhaBanco = res.getString("senha");
+                if (cpfJanela.equals(cpfBanco) && senhaJanela.equals(senhaBanco)) {
+                    JOptionPane.showMessageDialog(null, "Bem vindo");
+                    return true;
+                } else {
+                    JOptionPane.showMessageDialog(null, "CPF ou senha incorretos");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuário não encontrado");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+        }
+        return false;
+    }
 }

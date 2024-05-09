@@ -64,7 +64,7 @@ public class ControllerCompraBit {
             double valorFinalBitcoin = bitcoin + qtdBit;
             double valorFinalReais = real - valorTotal;
             dao.comprarReal(investidor, valorFinalReais);
-            dao.comprarBit(investidor, valorFinalBitcoin);
+            dao.geralBit(investidor, valorFinalBitcoin);
             JOptionPane.showMessageDialog(view, "Depósito feito!");
             JOptionPane.showMessageDialog(view, "Saldo atual em reais: " + valorFinalReais 
                     + " " + "Saldo atual em bitcoins: " + valorFinalBitcoin);

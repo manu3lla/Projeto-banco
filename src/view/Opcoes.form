@@ -83,6 +83,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Consultar extrato"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btextratoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="btdepositar">
       <Properties>

@@ -13,21 +13,22 @@ import javax.swing.JOptionPane;
 import model.Investidor;
 import model.Reais;
 import view.Compra;
-import view.CompraRipple;
+import view.CompraBit;
 import view.DepositoReal;
+import view.VendaBit;
 
 
 /**
  *
  * @author Manuella
  */
-public class ControllerCompraRipple {
+public class ControllerVendaBit {
      private Reais reais;
      private Investidor investidor;
-     private CompraRipple view;
+     private VendaBit view;
      
      
-    public ControllerCompraRipple(CompraRipple view, Investidor investidor) {
+    public ControllerVendaBit(VendaBit view, Investidor investidor) {
         this.reais = new Reais(0, 0, 0, "Reais");
         this.view = view;
         this.investidor = investidor;
@@ -35,11 +36,11 @@ public class ControllerCompraRipple {
         
     }
 
-    public ControllerCompraRipple(Reais reais) {
+    public ControllerVendaBit(Reais reais) {
         this.reais = reais;
     }
 
-    public void compraRipple() {
+    public void vendaBitcoin() {
     Conexao conexao = new Conexao();
     try {
         Connection conn = conexao.getConnection();
@@ -47,27 +48,31 @@ public class ControllerCompraRipple {
         ResultSet res = dao.consultar(investidor);
         if (res.next()) {
             double real = res.getDouble("reais");
-            double ripple = res.getDouble("ripple");
-            double qtdR = Double.parseDouble(view.getCompraRi().getText());
-            double compraRipple = qtdR*2.66;
-            double taxabit = compraRipple * 0.01;
-            double valorTotal = compraRipple + taxabit;
+            double bitcoin = res.getDouble("bitcoin");
+            double qtdBit = Double.parseDouble(view.getTxtBit().getText());
+            if (qtdBit > bitcoin ) {
+                JOptionPane.showMessageDialog(view, "Saldo insuficiente, tente novamente!");
+                return;
+            }
+            double compraBit = qtdBit*317415.56;
+            double taxabit = compraBit * 0.03;
+            double valorTotal = compraBit + taxabit;
             
-            if (qtdR <= 0) {
-                JOptionPane.showMessageDialog(view, "Número de Ripples a serem compradas negativo, escreva novamente");
+            if (qtdBit <= 0) {
+                JOptionPane.showMessageDialog(view, "Número de bitcoins a serem compradas negativo, escreva novamente");
                 return;
             }
             if (real <= valorTotal) {
-                JOptionPane.showMessageDialog(view, "Saldo insuficiente em reais para a compra de Ripples");
+                JOptionPane.showMessageDialog(view, "Saldo insuficiente em reais para a compra de Bitcoins");
                 return;
             }
-            double valorFinalRipple = ripple + qtdR;
-            double valorFinalReais = real - valorTotal;
+            double valorFinalBitcoin = bitcoin - qtdBit;
+            double valorFinalReais = real + valorTotal;
             dao.comprarReal(investidor, valorFinalReais);
-            dao.geralRipple(investidor, valorFinalRipple);
+            dao.geralBit(investidor, valorFinalBitcoin);
             JOptionPane.showMessageDialog(view, "Depósito feito!");
             JOptionPane.showMessageDialog(view, "Saldo atual em reais: " + valorFinalReais 
-                    + " " + "Saldo atual em Ripples: " + valorFinalRipple);
+                    + " " + "Saldo atual em bitcoins: " + valorFinalBitcoin);
         } else {
             JOptionPane.showMessageDialog(view, "Erro de conexão.");
         }

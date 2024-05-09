@@ -13,21 +13,22 @@ import javax.swing.JOptionPane;
 import model.Investidor;
 import model.Reais;
 import view.Compra;
-import view.CompraRipple;
+import view.CompraBit;
 import view.DepositoReal;
+import view.VendaRi;
 
 
 /**
  *
  * @author Manuella
  */
-public class ControllerCompraRipple {
+public class ControllerVendaRipple {
      private Reais reais;
      private Investidor investidor;
-     private CompraRipple view;
+     private VendaRi view;
      
      
-    public ControllerCompraRipple(CompraRipple view, Investidor investidor) {
+    public ControllerVendaRipple(VendaRi view, Investidor investidor) {
         this.reais = new Reais(0, 0, 0, "Reais");
         this.view = view;
         this.investidor = investidor;
@@ -35,11 +36,11 @@ public class ControllerCompraRipple {
         
     }
 
-    public ControllerCompraRipple(Reais reais) {
+    public ControllerVendaRipple(Reais reais) {
         this.reais = reais;
     }
 
-    public void compraRipple() {
+    public void vendaRipple() {
     Conexao conexao = new Conexao();
     try {
         Connection conn = conexao.getConnection();
@@ -48,26 +49,30 @@ public class ControllerCompraRipple {
         if (res.next()) {
             double real = res.getDouble("reais");
             double ripple = res.getDouble("ripple");
-            double qtdR = Double.parseDouble(view.getCompraRi().getText());
-            double compraRipple = qtdR*2.66;
-            double taxabit = compraRipple * 0.01;
-            double valorTotal = compraRipple + taxabit;
+            double qtdRi = Double.parseDouble(view.getTxtRi().getText());
+            if (qtdRi > ripple ) {
+                JOptionPane.showMessageDialog(view, "Saldo insuficiente, tente novamente!");
+                return;
+            }
+            double compraRi = qtdRi*2.66;
+            double taxabit = compraRi * 0.01;
+            double valorTotal = compraRi + taxabit;
             
-            if (qtdR <= 0) {
-                JOptionPane.showMessageDialog(view, "Número de Ripples a serem compradas negativo, escreva novamente");
+            if (qtdRi <= 0) {
+                JOptionPane.showMessageDialog(view, "Número de ripples a serem compradas negativo, escreva novamente");
                 return;
             }
             if (real <= valorTotal) {
                 JOptionPane.showMessageDialog(view, "Saldo insuficiente em reais para a compra de Ripples");
                 return;
             }
-            double valorFinalRipple = ripple + qtdR;
-            double valorFinalReais = real - valorTotal;
+            double valorFinalRipple = ripple - qtdRi;
+            double valorFinalReais = real + valorTotal;
             dao.comprarReal(investidor, valorFinalReais);
             dao.geralRipple(investidor, valorFinalRipple);
             JOptionPane.showMessageDialog(view, "Depósito feito!");
             JOptionPane.showMessageDialog(view, "Saldo atual em reais: " + valorFinalReais 
-                    + " " + "Saldo atual em Ripples: " + valorFinalRipple);
+                    + " " + "Saldo atual em ripple: " + valorFinalRipple);
         } else {
             JOptionPane.showMessageDialog(view, "Erro de conexão.");
         }

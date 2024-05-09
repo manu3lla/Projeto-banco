@@ -47,21 +47,21 @@ public class UsuarioDAO {
         statement.setString(2, investidor.getSenha());
         statement.execute();
     }
-    public void comprarBit(Investidor investidor, double valor) throws SQLException{
+    public void geralBit(Investidor investidor, double valor) throws SQLException{
         String sql = "update aa set bitcoin = ? where senha = ?";
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setString(1, String.valueOf(valor));
         statement.setString(2, investidor.getSenha());
         statement.execute();
     }
-    public void comprarRipple(Investidor investidor, double valor) throws SQLException{
+    public void geralRipple(Investidor investidor, double valor) throws SQLException{
         String sql = "update aa set ripple = ? where senha = ?";
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setString(1, String.valueOf(valor));
         statement.setString(2, investidor.getSenha());
         statement.execute();
     }
-    public void comprarEthereum(Investidor investidor, double valor) throws SQLException{
+    public void geralEthereum(Investidor investidor, double valor) throws SQLException{
         String sql = "update aa set ethereum = ? where senha = ?";
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setString(1, String.valueOf(valor));

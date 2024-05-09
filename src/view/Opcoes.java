@@ -8,6 +8,7 @@ import control.ControllerLogin;
 import controller.ControllerCompraBit;
 import controller.ControllerDeposito;
 import controller.ControllerSaque;
+import controller.ControllerSenha;
 import controller.ControllerVenda;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -27,6 +28,23 @@ public class Opcoes extends javax.swing.JFrame {
         initComponents();
         this.investidor = investidor;
     }
+
+    public Investidor getInvestidor() {
+        return investidor;
+    }
+
+    public void setInvestidor(Investidor investidor) {
+        this.investidor = investidor;
+    }
+
+    public ControllerSenha getController3() {
+        return controller3;
+    }
+
+    public void setController3(ControllerSenha controller3) {
+        this.controller3 = controller3;
+    }
+    
     public ControllerSaque getController2() {
         return controller2;
     }
@@ -143,6 +161,11 @@ public class Opcoes extends javax.swing.JFrame {
         });
 
         btextrato.setText("Consultar extrato");
+        btextrato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btextratoActionPerformed(evt);
+            }
+        });
 
         btdepositar.setText("Depositar");
         btdepositar.addActionListener(new java.awt.event.ActionListener() {
@@ -236,29 +259,48 @@ public class Opcoes extends javax.swing.JFrame {
     }//GEN-LAST:event_btsaldoActionPerformed
 
     private void btvenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btvenderActionPerformed
-        // TODO add your handling code here:
+
+        ControllerSenha controllerSenha = new ControllerSenha();
+        if(controllerSenha.verSenha(investidor)){
+            Venda venda = new Venda(investidor);
+            venda.setVisible(true);
+        }
     }//GEN-LAST:event_btvenderActionPerformed
 
     private void btdepositarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btdepositarActionPerformed
-        DepositoReal c = new DepositoReal(investidor);
-        c.setVisible(true);
-        //Senha s = new Senha(investidor);
-        //  s.setVisible(true);
+        
+        ControllerSenha controllerSenha = new ControllerSenha();
+        if(controllerSenha.verSenha(investidor)){
+            DepositoReal c = new DepositoReal(investidor);
+            c.setVisible(true);
+        }
     }//GEN-LAST:event_btdepositarActionPerformed
 
     private void btsacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btsacarActionPerformed
-        SaqueReal s = new SaqueReal(investidor);
-        s.setVisible(true);
+
+        ControllerSenha controllerSenha = new ControllerSenha();
+        if(controllerSenha.verSenha(investidor)){
+            SaqueReal s = new SaqueReal(investidor);
+            s.setVisible(true);
+        }
     }//GEN-LAST:event_btsacarActionPerformed
 
     private void btcomprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btcomprarActionPerformed
-        Compra compra = new Compra(investidor);
-        compra.setVisible(true);
+
+        ControllerSenha controllerSenha = new ControllerSenha();
+        if(controllerSenha.verSenha(investidor)){
+            Compra compra = new Compra(investidor);
+            compra.setVisible(true);
+        }
     }//GEN-LAST:event_btcomprarActionPerformed
 
     private void btsairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btsairActionPerformed
         JOptionPane.showMessageDialog(null, "Até mais");
     }//GEN-LAST:event_btsairActionPerformed
+
+    private void btextratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btextratoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btextratoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -296,6 +338,7 @@ public class Opcoes extends javax.swing.JFrame {
 //    }
     private ControllerDeposito controller;
     private ControllerSaque controller2;
+    private ControllerSenha controller3;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton btatualizar;
     private javax.swing.JRadioButton btcomprar;
