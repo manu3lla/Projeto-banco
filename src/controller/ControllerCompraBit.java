@@ -23,12 +23,14 @@ import view.DepositoReal;
  */
 public class ControllerCompraBit {
      private Reais reais;
+     private Investidor investidor;
      private CompraBit view;
      
      
-    public ControllerCompraBit(CompraBit view) {
+    public ControllerCompraBit(CompraBit view, Investidor investidor) {
         this.reais = new Reais(0, 0, 0, "Reais");
         this.view = view;
+        this.investidor = investidor;
         
         
     }
@@ -37,7 +39,7 @@ public class ControllerCompraBit {
         this.reais = reais;
     }
 
-    public void compraBitcoin(Investidor investidor) {
+    public void compraBitcoin() {
     Conexao conexao = new Conexao();
     try {
         Connection conn = conexao.getConnection();
@@ -47,21 +49,23 @@ public class ControllerCompraBit {
             double real = res.getDouble("reais");
             double bitcoin = res.getDouble("bitcoin");
             double qtdBit = Double.parseDouble(view.getQuantidadeB().getText());
-            double compraBit = (qtdBit*0.0000031);
-            if (bitcoin <= 0) {
+            double compraBit = qtdBit*317415.56;
+            double taxabit = compraBit * 0.02;
+            double valortotal = compraBit + taxabit;
+            
+            if (qtdBit <= 0) {
                 JOptionPane.showMessageDialog(view, "Número de bitcoins a serem compradas negativo, escreva novamente");
                 return;
             }
-            if (real <= compraBit) {
+            if (real <= valortotal) {
                 JOptionPane.showMessageDialog(view, "Saldo insuficiente em reais para a compra de Bitcoins");
                 return;
             }
-            double valorFinalReal = real - compraBit;
             double valorFinalBitcoin = bitcoin + qtdBit;
-            dao.depositar(investidor, valorFinalReal);
-            dao.depositar(investidor, valorFinalBitcoin);
+            dao.comprar(investidor, valortotal);
+            dao.comprar(investidor, valorFinalBitcoin);
             JOptionPane.showMessageDialog(view, "Depósito feito!");
-            JOptionPane.showMessageDialog(view, "Saldo atual em reais: " + valorFinalReal 
+            JOptionPane.showMessageDialog(view, "Saldo atual em reais: " + valortotal 
                     + " " + "Saldo atual em bitcoins: " + valorFinalBitcoin);
         } else {
             JOptionPane.showMessageDialog(view, "Erro de conexão.");

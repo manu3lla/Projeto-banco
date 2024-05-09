@@ -19,9 +19,9 @@ public class CompraBit extends javax.swing.JFrame {
     /**
      * Creates new form CompraBit
      */
-    public CompraBit() {
+    public CompraBit(Investidor investidor) {
         initComponents();
-        controller = new ControllerCompraBit(this);
+        controller = new ControllerCompraBit(this, investidor);
         this.investidor = investidor;
     }
 
@@ -134,7 +134,7 @@ public class CompraBit extends javax.swing.JFrame {
     }//GEN-LAST:event_quantidadeBActionPerformed
 
     private void comprarBitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comprarBitActionPerformed
-        controller.compraBitcoin(investidor);
+        controller.compraBitcoin();
     }//GEN-LAST:event_comprarBitActionPerformed
 
     /**

@@ -6,18 +6,20 @@ package view;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import model.Investidor;
 
 /**
  *
  * @author Manuella
  */
 public class Compra extends javax.swing.JFrame {
-
+    private Investidor investidor;
     /**
      * Creates new form Compra
      */
-    public Compra() {
+    public Compra(Investidor investidor) {
         initComponents();
+        this.investidor = investidor;
     }
 
     public JButton getCompraBit() {
@@ -128,7 +130,7 @@ public class Compra extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void compraBitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_compraBitActionPerformed
-        CompraBit compraBit = new CompraBit();
+        CompraBit compraBit = new CompraBit(investidor);
         compraBit.setVisible(true);
     }//GEN-LAST:event_compraBitActionPerformed
 

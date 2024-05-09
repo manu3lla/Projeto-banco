@@ -40,4 +40,11 @@ public class UsuarioDAO {
         statement.execute();
         conn.close();
     }
+    public void comprar(Investidor investidor, double valor) throws SQLException{
+        String sql = "update aa set reais = ? where senha = ?";
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setString(1, String.valueOf(valor));
+        statement.setString(2, investidor.getSenha());
+        statement.execute();
+    }
 }

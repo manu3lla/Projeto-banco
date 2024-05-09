@@ -16,13 +16,18 @@ import model.Reais;
 import view.DepositoReal;
 import view.Login;
 import view.Opcoes;
+import view.Senha;
 
 /**
  *
  * @author Manuella
  */
 public class ControllerSenha {
-
+    private Senha senha;
+    public ControllerSenha(Senha senha) {
+        this.senha = senha;
+    }
+    
     public void verSenha(Investidor investidor) {
     Conexao conexao = new Conexao();
     try {
@@ -31,7 +36,7 @@ public class ControllerSenha {
         UsuarioDAO dao = new UsuarioDAO(conn);
         ResultSet res = dao.consultar(investidor);
         if (res.next()) {
-           String senhaDigitada = senha.getTxtSenha();
+           String senhaDigitada = senha.getTxtSenha().getText();
            String senhaBanco = res.getString("senha");
                 if (senhaDigitada.equals(senhaBanco)) {
                     JOptionPane.showMessageDialog(null, "Bem vindo usuário!");

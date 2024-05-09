@@ -6,6 +6,8 @@ package view;
 
 import controller.ControllerDeposito;
 import controller.ControllerSenha;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 import model.Investidor;
 
 /**
@@ -17,11 +19,68 @@ public class Senha extends javax.swing.JFrame {
     /**
      * Creates new form Senha
      */
-    public Senha() {
+    public Senha(Investidor investidor) {
         initComponents();
         controller = new ControllerSenha(this);
         this.investidor = investidor;
     }
+
+    public Investidor getInvestidor() {
+        return investidor;
+    }
+
+    public void setInvestidor(Investidor investidor) {
+        this.investidor = investidor;
+    }
+
+    public ControllerSenha getController() {
+        return controller;
+    }
+
+    public void setController(ControllerSenha controller) {
+        this.controller = controller;
+    }
+
+    public JLabel getLblcpf() {
+        return lblcpf;
+    }
+
+    public void setLblcpf(JLabel lblcpf) {
+        this.lblcpf = lblcpf;
+    }
+
+    public JLabel getLblsenha() {
+        return lblsenha;
+    }
+
+    public void setLblsenha(JLabel lblsenha) {
+        this.lblsenha = lblsenha;
+    }
+
+    public JTextField getTxtSenha() {
+        return txtSenha;
+    }
+
+    public void setTxtSenha(JTextField txtSenha) {
+        this.txtSenha = txtSenha;
+    }
+
+    public JTextField getTxtvcpf() {
+        return txtvcpf;
+    }
+
+    public void setTxtvcpf(JTextField txtvcpf) {
+        this.txtvcpf = txtvcpf;
+    }
+
+    public JLabel getVsenha() {
+        return vsenha;
+    }
+
+    public void setVsenha(JLabel vsenha) {
+        this.vsenha = vsenha;
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -32,11 +91,15 @@ public class Senha extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
         lblcpf = new javax.swing.JLabel();
         lblsenha = new javax.swing.JLabel();
         txtvcpf = new javax.swing.JTextField();
         txtSenha = new javax.swing.JTextField();
         vsenha = new javax.swing.JLabel();
+        btSenha = new javax.swing.JButton();
+
+        jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,6 +108,13 @@ public class Senha extends javax.swing.JFrame {
         lblsenha.setText("Senha:");
 
         vsenha.setText("Verificador de senha");
+
+        btSenha.setText("Verificar");
+        btSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSenhaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -63,7 +133,10 @@ public class Senha extends javax.swing.JFrame {
                             .addComponent(txtSenha)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(142, 142, 142)
-                        .addComponent(vsenha)))
+                        .addComponent(vsenha))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(155, 155, 155)
+                        .addComponent(btSenha)))
                 .addContainerGap(78, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -79,11 +152,17 @@ public class Senha extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblsenha)
                     .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addComponent(btSenha)
+                .addGap(17, 17, 17))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSenhaActionPerformed
+        
+    }//GEN-LAST:event_btSenhaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -121,6 +200,8 @@ public class Senha extends javax.swing.JFrame {
 //    }
     private ControllerSenha controller;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btSenha;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel lblcpf;
     private javax.swing.JLabel lblsenha;
     private javax.swing.JTextField txtSenha;

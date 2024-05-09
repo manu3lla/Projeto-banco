@@ -234,10 +234,10 @@ public class Opcoes extends javax.swing.JFrame {
     }//GEN-LAST:event_btvenderActionPerformed
 
     private void btdepositarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btdepositarActionPerformed
-        //DepositoReal c = new DepositoReal(investidor);
-        //c.setVisible(true);
-        Senha s = new Senha(investidor);
-        s.setVisible(true);
+        DepositoReal c = new DepositoReal(investidor);
+        c.setVisible(true);
+        //Senha s = new Senha(investidor);
+        //  s.setVisible(true);
     }//GEN-LAST:event_btdepositarActionPerformed
 
     private void btsacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btsacarActionPerformed
@@ -246,7 +246,7 @@ public class Opcoes extends javax.swing.JFrame {
     }//GEN-LAST:event_btsacarActionPerformed
 
     private void btcomprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btcomprarActionPerformed
-        Compra compra = new Compra();
+        Compra compra = new Compra(investidor);
         compra.setVisible(true);
     }//GEN-LAST:event_btcomprarActionPerformed
 
@@ -284,7 +284,8 @@ public class Opcoes extends javax.swing.JFrame {
 //            }
 //        });
 //    }
-    private ControllerVenda controller;
+    private ControllerDeposito controller;
+    private ControllerSaque controller2;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton btatualizar;
     private javax.swing.JRadioButton btcomprar;
