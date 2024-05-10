@@ -255,7 +255,11 @@ public class Opcoes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btsaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btsaldoActionPerformed
-        
+        ControllerSenha controllerSenha = new ControllerSenha();
+        if(controllerSenha.verSenha(investidor)){
+            MostrarMoedas mostrarMoedas = new MostrarMoedas(investidor);
+            mostrarMoedas.setVisible(true);
+        }
     }//GEN-LAST:event_btsaldoActionPerformed
 
     private void btvenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btvenderActionPerformed
