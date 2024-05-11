@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import model.Investidor;
 import model.Reais;
+import model.Tarifacao;
 import view.Compra;
 import view.CompraBit;
 import view.DepositoReal;
@@ -22,14 +23,14 @@ import view.VendaRi;
  *
  * @author Manuella
  */
-public class ControllerVendaRipple {
+public class ControllerVendaRipple implements Tarifacao {
      private Reais reais;
      private Investidor investidor;
      private VendaRi view;
      
      
     public ControllerVendaRipple(VendaRi view, Investidor investidor) {
-        this.reais = new Reais(0, 0, 0, "Reais");
+        this.reais = new Reais(0, "Reais");
         this.view = view;
         this.investidor = investidor;
         
@@ -54,16 +55,17 @@ public class ControllerVendaRipple {
                 JOptionPane.showMessageDialog(view, "Saldo insuficiente, tente novamente!");
                 return;
             }
-            double compraRi = qtdRi*2.66;
-            double taxabit = compraRi * 0.01;
-            double valorTotal = compraRi + taxabit;
+            double precoAtualVendaRipple = 2.32;
+                double vendaRipple = qtdRi * cotacaoVenda(precoAtualVendaRipple);
+                double taxaRipple = vendaRipple * taxaVendaRipple();
+                double valorTotal = vendaRipple + taxaRipple;
             
             if (qtdRi <= 0) {
                 JOptionPane.showMessageDialog(view, "Número de ripples a serem compradas negativo, escreva novamente");
                 return;
             }
             if (real <= valorTotal) {
-                JOptionPane.showMessageDialog(view, "Saldo insuficiente em reais para a compra de Ripples");
+                JOptionPane.showMessageDialog(view, "Saldo insuficiente para a venda de Ripples");
                 return;
             }
             double valorFinalRipple = ripple - qtdRi;
@@ -80,5 +82,9 @@ public class ControllerVendaRipple {
         JOptionPane.showMessageDialog(view, "Erro: " + e.getMessage());
     }
 }
+    @Override
+    public double taxaVendaRipple() {
+        return 0.01;
+    }
 
 }

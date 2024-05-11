@@ -10,8 +10,8 @@ package model;
  */
 public class Ripple extends Moedas{
 
-    public Ripple(double taxacompra, double taxavenda, double valor, String nomemoeda) {
-        super(0.01, 0.01, 0, "Ripple");
+    public Ripple(double valor, String nomemoeda) {
+        super(0, "Ripple");
     }
     
 }

@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import model.Investidor;
 import model.Reais;
+import model.Tarifacao;
 import view.Compra;
 import view.CompraBit;
 import view.DepositoReal;
@@ -23,14 +24,14 @@ import view.VendaRi;
  *
  * @author Manuella
  */
-public class ControllerVendaEt {
+public class ControllerVendaEt implements Tarifacao {
      private Reais reais;
      private Investidor investidor;
      private VendaEt view;
      
      
     public ControllerVendaEt(VendaEt view, Investidor investidor) {
-        this.reais = new Reais(0, 0, 0, "Reais");
+        this.reais = new Reais(0, "Reais");
         this.view = view;
         this.investidor = investidor;
         
@@ -55,16 +56,17 @@ public class ControllerVendaEt {
                 JOptionPane.showMessageDialog(view, "Saldo insuficiente, tente novamente!");
                 return;
             }
-            double compraEt = qtdEt*15513.85;
-            double taxaEt = compraEt * 0.02;
+            double precoAtualVenda = 15513.85;
+            double compraEt = qtdEt * cotacaoVenda(precoAtualVenda);
+            double taxaEt = compraEt * taxaVendaEthereum();
             double valorTotal = compraEt + taxaEt;
-            
+
             if (qtdEt <= 0) {
                 JOptionPane.showMessageDialog(view, "Número de ethereum a serem compradas negativo, escreva novamente");
                 return;
             }
             if (real <= valorTotal) {
-                JOptionPane.showMessageDialog(view, "Saldo insuficiente em reais para a compra de Ethereums");
+                JOptionPane.showMessageDialog(view, "Saldo insuficiente para a venda de Ethereums");
                 return;
             }
             double valorFinalEt = ethereum - qtdEt;
@@ -80,6 +82,9 @@ public class ControllerVendaEt {
     } catch (SQLException e) {
         JOptionPane.showMessageDialog(view, "Erro: " + e.getMessage());
     }
-}
-
+    }
+@Override
+    public double taxaVendaEthereum() {
+        return 0.02;
+    }
 }

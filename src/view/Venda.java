@@ -4,6 +4,8 @@
  */
 package view;
 
+import controller.ControllerCompraRipple;
+import controller.ControllerMostrarMoedas;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import model.Investidor;
@@ -67,6 +69,7 @@ public class Venda extends javax.swing.JFrame {
         btBitcon = new javax.swing.JButton();
         btEthereum = new javax.swing.JButton();
         btRipple = new javax.swing.JButton();
+        btMostrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -93,22 +96,34 @@ public class Venda extends javax.swing.JFrame {
             }
         });
 
+        btMostrar.setText("Mostrar cotações");
+        btMostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btMostrarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(45, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(176, 176, 176))
             .addGroup(layout.createSequentialGroup()
+                .addGap(101, 101, 101)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(102, 102, 102)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(152, 152, 152)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btEthereum)
-                            .addComponent(btBitcon)
-                            .addComponent(btRipple))))
-                .addContainerGap(123, Short.MAX_VALUE))
+                            .addComponent(btRipple)
+                            .addComponent(btBitcon))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btEthereum)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btMostrar)
+                        .addGap(41, 41, 41))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,10 +133,12 @@ public class Venda extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btBitcon)
                 .addGap(18, 18, 18)
-                .addComponent(btEthereum)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btEthereum, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btMostrar))
                 .addGap(18, 18, 18)
                 .addComponent(btRipple)
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
@@ -141,6 +158,11 @@ public class Venda extends javax.swing.JFrame {
         VendaEt vendaEt = new VendaEt(investidor);
         vendaEt.setVisible(true);
     }//GEN-LAST:event_btEthereumActionPerformed
+
+    private void btMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMostrarActionPerformed
+        ControllerCompraRipple controller = new ControllerCompraRipple(null, this, investidor);
+        controller.exibirCotacaoAtual();
+    }//GEN-LAST:event_btMostrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -180,6 +202,7 @@ public class Venda extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btBitcon;
     private javax.swing.JButton btEthereum;
+    private javax.swing.JButton btMostrar;
     private javax.swing.JButton btRipple;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables

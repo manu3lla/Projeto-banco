@@ -10,8 +10,8 @@ package model;
  */
 public class Bitcoin extends Moedas {
 
-    public Bitcoin(double taxacompra, double taxavenda, double valor, String nomemoeda) {
-        super(0, 0, 0, "Bitcoin");
+    public Bitcoin(double valor, String nomemoeda) {
+        super(0, "Bitcoin");
     }
     
 }

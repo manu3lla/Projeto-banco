@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import model.Investidor;
 import model.Reais;
+import model.Tarifacao;
 import view.Compra;
 import view.CompraBit;
 import view.DepositoReal;
@@ -22,14 +23,14 @@ import view.VendaBit;
  *
  * @author Manuella
  */
-public class ControllerVendaBit {
+public class ControllerVendaBit implements Tarifacao{
      private Reais reais;
      private Investidor investidor;
      private VendaBit view;
      
      
     public ControllerVendaBit(VendaBit view, Investidor investidor) {
-        this.reais = new Reais(0, 0, 0, "Reais");
+        this.reais = new Reais(0, "Reais");
         this.view = view;
         this.investidor = investidor;
         
@@ -54,16 +55,17 @@ public class ControllerVendaBit {
                 JOptionPane.showMessageDialog(view, "Saldo insuficiente, tente novamente!");
                 return;
             }
-            double compraBit = qtdBit*317415.56;
-            double taxabit = compraBit * 0.03;
-            double valorTotal = compraBit + taxabit;
+            double precoAtualBitcoin = 317415.56;
+            double compraBitcoin = qtdBit * cotacaoVenda(precoAtualBitcoin);
+            double taxaBitcoin = compraBitcoin * taxaVendaBitcoin();
+            double valorTotal = compraBitcoin + taxaBitcoin;
             
             if (qtdBit <= 0) {
                 JOptionPane.showMessageDialog(view, "Número de bitcoins a serem compradas negativo, escreva novamente");
                 return;
             }
             if (real <= valorTotal) {
-                JOptionPane.showMessageDialog(view, "Saldo insuficiente em reais para a compra de Bitcoins");
+                JOptionPane.showMessageDialog(view, "Saldo insuficiente para a venda de Bitcoins");
                 return;
             }
             double valorFinalBitcoin = bitcoin - qtdBit;
@@ -80,5 +82,8 @@ public class ControllerVendaBit {
         JOptionPane.showMessageDialog(view, "Erro: " + e.getMessage());
     }
 }
-
+    @Override
+    public double taxaVendaBitcoin() {
+        return 0.03;
+    }
 }

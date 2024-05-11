@@ -12,7 +12,7 @@ public class Investidor extends Usuario {
     private Carteira c1;
     public Investidor(String nome, String cpf, String senha) {
         super(nome, cpf, senha);
-        Carteira c1 = new Carteira();
+        c1 = new Carteira();
     }
 
     public Carteira getC1() {
@@ -23,12 +23,8 @@ public class Investidor extends Usuario {
         this.c1 = c1;
     }
     
-    public void FazerCarteira(){
-        if (c1 != null) {
-            System.out.println("Carteira existente utilizada.");
-        } else {
-            c1 = new Carteira();
-            System.out.println("Nova carteira criada para o investidor.");
-        }
+    public void FazerCarteira() {
+        c1 = new Carteira();
+        System.out.println("Nova carteira criada para o investidor.");
     }
 }

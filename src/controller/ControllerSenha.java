@@ -40,8 +40,7 @@ public class ControllerSenha {
                 String cpfBanco = res.getString("cpf");
                 String senhaBanco = res.getString("senha");
                 if (cpfJanela.equals(cpfBanco) && senhaJanela.equals(senhaBanco)) {
-                    JOptionPane.showMessageDialog(null, "Bem vindo");
-                    senhaCorreta = true; // Senha correta, saia do loop
+                    senhaCorreta = true;
                 } else {
                     JOptionPane.showMessageDialog(null, "CPF ou senha incorretos");
                 }

@@ -4,28 +4,31 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Manuella
  */
 public class Moedas {
-   private double taxacompra, taxavenda, valor;
+   private double valor;
    private String nomemoeda;
+   private ArrayList<Moedas> novasMoedas;
 
-    public double getTaxacompra() {
-        return taxacompra;
+    public ArrayList<Moedas> getNovasMoedas() {
+        return novasMoedas;
     }
 
-    public void setTaxacompra(double taxacompra) {
-        this.taxacompra = taxacompra;
+    public void setNovasMoedas(ArrayList<Moedas> novasMoedas) {
+        this.novasMoedas = novasMoedas;
     }
 
-    public double getTaxavenda() {
-        return taxavenda;
-    }
 
-    public void setTaxavenda(double taxavenda) {
-        this.taxavenda = taxavenda;
+    public void adicionarNovaMoeda(Moedas moeda) {
+        if (novasMoedas == null) {
+            novasMoedas = new ArrayList<>();
+        }
+        novasMoedas.add(moeda);
     }
 
     public double getValor() {
@@ -46,12 +49,10 @@ public class Moedas {
 
     @Override
     public String toString() {
-        return "Moedas{" + "taxacompra=" + taxacompra + ", taxavenda=" + taxavenda + ", valor=" + valor + ", nomemoeda=" + nomemoeda + '}';
+        return "Moedas{" + "valor=" + valor + ", nomemoeda=" + nomemoeda + '}';
     }
 
-    public Moedas(double taxacompra, double taxavenda, double valor, String nomemoeda) {
-        this.taxacompra = taxacompra;
-        this.taxavenda = taxavenda;
+    public Moedas(double valor, String nomemoeda) {
         this.valor = valor;
         this.nomemoeda = nomemoeda;
     }

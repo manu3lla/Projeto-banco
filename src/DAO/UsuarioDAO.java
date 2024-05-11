@@ -32,6 +32,14 @@ public class UsuarioDAO {
         ResultSet resultado = statement.getResultSet();
         return resultado;
     }
+    public void atualizar(Usuario usuario) throws SQLException{
+        String sql = "update aa set cpf = ? where senha = ?";
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setString(1, usuario.getCpf());
+        statement.setString(2, usuario.getSenha());
+        statement.execute();
+        conn.close();
+    }
     public void depositar(Investidor investidor, double valor) throws SQLException{
         String sql = "update aa set reais = ? where senha = ?";
         PreparedStatement statement = conn.prepareStatement(sql);

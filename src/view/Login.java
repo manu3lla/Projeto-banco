@@ -6,25 +6,64 @@ package view;
 
 
 import control.ControllerLogin;
+import controller.ControllerAtualiza;
+import controller.ControllerSenha;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import model.Investidor;
 
 /**
  *
  * @author unifmperes
  */
 public class Login extends javax.swing.JFrame {
-
+    private Investidor investidor;
     /**
      * Creates new form Login
      */
     public Login() {
         initComponents();
         controller = new ControllerLogin(this);
+        this.investidor = investidor;
     }
 
+    public ControllerSenha getController3() {
+        return controller3;
+    }
+
+    public void setController3(ControllerSenha controller3) {
+        this.controller3 = controller3;
+    }
+
+    
+    
+
+    public JButton getBtAtu() {
+        return btAtu;
+    }
+
+    public void setBtAtu(JButton btAtu) {
+        this.btAtu = btAtu;
+    }
+
+    public JLabel getjLabel1() {
+        return jLabel1;
+    }
+
+    public void setjLabel1(JLabel jLabel1) {
+        this.jLabel1 = jLabel1;
+    }
+
+    public JLabel getjLabel2() {
+        return jLabel2;
+    }
+
+    public void setjLabel2(JLabel jLabel2) {
+        this.jLabel2 = jLabel2;
+    }
+    
     public ControllerLogin getController() {
         return controller;
     }
@@ -88,6 +127,9 @@ public class Login extends javax.swing.JFrame {
         txtCpf = new javax.swing.JTextField();
         txtSenha = new javax.swing.JTextField();
         btLogin = new javax.swing.JButton();
+        btAtu = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -108,10 +150,26 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        btAtu.setText("Atualizar senha");
+        btAtu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAtuActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Não se lembra da senha? Clique aqui para mudá-la");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel2.setText("Bem vindo!");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(20, 20, 20))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -124,14 +182,21 @@ public class Login extends javax.swing.JFrame {
                             .addComponent(txtCpf)
                             .addComponent(txtSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(165, 165, 165)
-                        .addComponent(btLogin)))
+                        .addGap(110, 110, 110)
+                        .addComponent(btLogin)
+                        .addGap(80, 80, 80)
+                        .addComponent(btAtu))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(141, 141, 141)
+                        .addComponent(jLabel2)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(85, 85, 85)
+                .addGap(27, 27, 27)
+                .addComponent(jLabel2)
+                .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cpflogin)
                     .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -139,9 +204,13 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(senhalogin)
                     .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addComponent(btLogin)
-                .addGap(34, 34, 34))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btLogin)
+                    .addComponent(btAtu))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addGap(10, 10, 10))
         );
 
         pack();
@@ -158,6 +227,14 @@ public class Login extends javax.swing.JFrame {
     private void txtCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCpfActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCpfActionPerformed
+
+    private void btAtuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAtuActionPerformed
+        ControllerSenha controllerSenha = new ControllerSenha();
+        if(controllerSenha.verSenha(investidor)){
+            AtualizaUs atualizaUs = new AtualizaUs();
+            atualizaUs.setVisible(true);
+        }
+    }//GEN-LAST:event_btAtuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -194,9 +271,13 @@ public class Login extends javax.swing.JFrame {
 //        });
 //    }
     private ControllerLogin controller;
+    private ControllerSenha controller3;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btAtu;
     private javax.swing.JButton btLogin;
     private javax.swing.JLabel cpflogin;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel senhalogin;
     private javax.swing.JTextField txtCpf;
     private javax.swing.JTextField txtSenha;

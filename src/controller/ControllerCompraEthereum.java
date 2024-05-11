@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import model.Investidor;
 import model.Reais;
+import model.Tarifacao;
 import view.Compra;
 import view.CompraBit;
 import view.CompraEthereum;
@@ -22,14 +23,14 @@ import view.DepositoReal;
  *
  * @author Manuella
  */
-public class ControllerCompraEthereum {
+public class ControllerCompraEthereum implements Tarifacao {
      private Reais reais;
      private Investidor investidor;
      private CompraEthereum view;
      
      
     public ControllerCompraEthereum(CompraEthereum view, Investidor investidor) {
-        this.reais = new Reais(0, 0, 0, "Reais");
+        this.reais = new Reais(0, "Reais");
         this.view = view;
         this.investidor = investidor;
         
@@ -50,9 +51,10 @@ public class ControllerCompraEthereum {
             double real = res.getDouble("reais");
             double ethereum = res.getDouble("ethereum");
             double qtdEthereum = Double.parseDouble(view.getComprarE().getText());
-            double compraEthereum = qtdEthereum*15513.85;
-            double taxaEt = compraEthereum * 0.01;
-            double valorTotal = compraEthereum + taxaEt;
+            double precoAtualCompraEthereum = 15513.85;
+            double compraEt = qtdEthereum * cotacaoCompra(precoAtualCompraEthereum);
+            double taxaEthereum = compraEt * taxaCompraEthereum();
+            double valorTotal = compraEt + taxaEthereum;
             
             if (qtdEthereum <= 0) {
                 JOptionPane.showMessageDialog(view, "Número de Ethereums a serem compradas negativo, escreva novamente");
@@ -76,5 +78,9 @@ public class ControllerCompraEthereum {
         JOptionPane.showMessageDialog(view, "Erro: " + e.getMessage());
     }
 }
+    @Override
+    public double taxaCompraEthereum() {
+        return 0.01;
+    }
 
 }

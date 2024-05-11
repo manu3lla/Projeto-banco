@@ -12,24 +12,28 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import model.Investidor;
 import model.Reais;
+import model.Tarifacao;
 import view.Compra;
 import view.CompraRipple;
 import view.DepositoReal;
+import view.Venda;
 
 
 /**
  *
  * @author Manuella
  */
-public class ControllerCompraRipple {
+public class ControllerCompraRipple implements Tarifacao {
      private Reais reais;
      private Investidor investidor;
      private CompraRipple view;
+     private Venda view2;
      
      
-    public ControllerCompraRipple(CompraRipple view, Investidor investidor) {
-        this.reais = new Reais(0, 0, 0, "Reais");
+    public ControllerCompraRipple(CompraRipple view, Venda view2, Investidor investidor) {
+        this.reais = new Reais(0, "Reais");
         this.view = view;
+        this.view2 = view2;
         this.investidor = investidor;
         
         
@@ -49,9 +53,10 @@ public class ControllerCompraRipple {
             double real = res.getDouble("reais");
             double ripple = res.getDouble("ripple");
             double qtdR = Double.parseDouble(view.getCompraRi().getText());
-            double compraRipple = qtdR*2.66;
-            double taxabit = compraRipple * 0.01;
-            double valorTotal = compraRipple + taxabit;
+            double precoRipple = 2.32;
+            double compraRipple = qtdR * cotacaoCompra(precoRipple);
+            double taxaCompraRi = compraRipple * taxaCompraRipple();
+            double valorTotal = compraRipple + taxaCompraRi;
             
             if (qtdR <= 0) {
                 JOptionPane.showMessageDialog(view, "Número de Ripples a serem compradas negativo, escreva novamente");
@@ -68,6 +73,7 @@ public class ControllerCompraRipple {
             JOptionPane.showMessageDialog(view, "Depósito feito!");
             JOptionPane.showMessageDialog(view, "Saldo atual em reais: " + valorFinalReais 
                     + " " + "Saldo atual em Ripples: " + valorFinalRipple);
+            
         } else {
             JOptionPane.showMessageDialog(view, "Erro de conexão.");
         }
@@ -75,5 +81,14 @@ public class ControllerCompraRipple {
         JOptionPane.showMessageDialog(view, "Erro: " + e.getMessage());
     }
 }
+    @Override
+    public double taxaCompraRipple() {
+        return 0.01;
+    }
+    public void exibirCotacaoAtual() {
+        double precoRipple = 2.32;
+        double cotacaoAtual = cotacaoCompra(precoRipple);
 
+        JOptionPane.showMessageDialog(view, "Cotação atual da Ripple: " + cotacaoAtual);
+    }
 }

@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import model.Investidor;
 import model.Reais;
+import model.Tarifacao;
 import view.Compra;
 import view.CompraBit;
 import view.DepositoReal;
@@ -21,14 +22,14 @@ import view.DepositoReal;
  *
  * @author Manuella
  */
-public class ControllerCompraBit {
+public class ControllerCompraBit implements Tarifacao {
      private Reais reais;
      private Investidor investidor;
      private CompraBit view;
      
      
     public ControllerCompraBit(CompraBit view, Investidor investidor) {
-        this.reais = new Reais(0, 0, 0, "Reais");
+        this.reais = new Reais(0, "Reais");
         this.view = view;
         this.investidor = investidor;
         
@@ -49,9 +50,10 @@ public class ControllerCompraBit {
             double real = res.getDouble("reais");
             double bitcoin = res.getDouble("bitcoin");
             double qtdBit = Double.parseDouble(view.getQuantidadeB().getText());
-            double compraBit = qtdBit*317415.56;
-            double taxabit = compraBit * 0.02;
-            double valorTotal = compraBit + taxabit;
+            double precoAtualCompraBitcoin = 317415.56;
+            double compraBitcoin = qtdBit * cotacaoCompra(precoAtualCompraBitcoin);
+            double taxaBitcoin = compraBitcoin * taxaCompraBitcoin();
+            double valorTotal = compraBitcoin + taxaBitcoin;
             
             if (qtdBit <= 0) {
                 JOptionPane.showMessageDialog(view, "Número de bitcoins a serem compradas negativo, escreva novamente");
@@ -75,5 +77,9 @@ public class ControllerCompraBit {
         JOptionPane.showMessageDialog(view, "Erro: " + e.getMessage());
     }
 }
+    @Override
+    public double taxaCompraBitcoin() {
+        return 0.02;
+    }
 
 }
