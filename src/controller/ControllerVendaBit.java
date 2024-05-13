@@ -56,7 +56,7 @@ public class ControllerVendaBit implements Tarifacao{
                 return;
             }
             double precoAtualBitcoin = 317415.56;
-            double compraBitcoin = qtdBit * cotacaoVenda(precoAtualBitcoin);
+            double compraBitcoin = qtdBit * cotacaoMoedas(precoAtualBitcoin);
             double taxaBitcoin = compraBitcoin * taxaVendaBitcoin();
             double valorTotal = compraBitcoin + taxaBitcoin;
             
@@ -65,7 +65,7 @@ public class ControllerVendaBit implements Tarifacao{
                 return;
             }
             if (real <= valorTotal) {
-                JOptionPane.showMessageDialog(view, "Saldo insuficiente para a venda de Bitcoins");
+                JOptionPane.showMessageDialog(view, "Saldo insuficiente para a venda ade Bitcoins");
                 return;
             }
             double valorFinalBitcoin = bitcoin - qtdBit;

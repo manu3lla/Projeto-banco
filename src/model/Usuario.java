@@ -36,6 +36,7 @@ public class Usuario {
     }
 
     public Usuario() {
+        
     }
 
     public Usuario(String nome, String cpf, String senha) {

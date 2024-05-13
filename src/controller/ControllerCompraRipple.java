@@ -27,13 +27,11 @@ public class ControllerCompraRipple implements Tarifacao {
      private Reais reais;
      private Investidor investidor;
      private CompraRipple view;
-     private Venda view2;
      
      
-    public ControllerCompraRipple(CompraRipple view, Venda view2, Investidor investidor) {
+    public ControllerCompraRipple(CompraRipple view, Investidor investidor) {
         this.reais = new Reais(0, "Reais");
         this.view = view;
-        this.view2 = view2;
         this.investidor = investidor;
         
         
@@ -54,7 +52,7 @@ public class ControllerCompraRipple implements Tarifacao {
             double ripple = res.getDouble("ripple");
             double qtdR = Double.parseDouble(view.getCompraRi().getText());
             double precoRipple = 2.32;
-            double compraRipple = qtdR * cotacaoCompra(precoRipple);
+            double compraRipple = qtdR * cotacaoMoedas(precoRipple);
             double taxaCompraRi = compraRipple * taxaCompraRipple();
             double valorTotal = compraRipple + taxaCompraRi;
             
@@ -85,10 +83,5 @@ public class ControllerCompraRipple implements Tarifacao {
     public double taxaCompraRipple() {
         return 0.01;
     }
-    public void exibirCotacaoAtual() {
-        double precoRipple = 2.32;
-        double cotacaoAtual = cotacaoCompra(precoRipple);
 
-        JOptionPane.showMessageDialog(view, "Cotação atual da Ripple: " + cotacaoAtual);
-    }
 }

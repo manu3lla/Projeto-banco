@@ -300,6 +300,7 @@ public class Opcoes extends javax.swing.JFrame {
 
     private void btsairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btsairActionPerformed
         JOptionPane.showMessageDialog(null, "Até mais");
+        this.dispose();
     }//GEN-LAST:event_btsairActionPerformed
 
     private void btextratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btextratoActionPerformed

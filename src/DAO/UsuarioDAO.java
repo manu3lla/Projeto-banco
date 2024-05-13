@@ -32,11 +32,22 @@ public class UsuarioDAO {
         ResultSet resultado = statement.getResultSet();
         return resultado;
     }
-    public void atualizar(Usuario usuario) throws SQLException{
-        String sql = "update aa set cpf = ? where senha = ?";
+    public ResultSet consultarPorCPF(Usuario usuario) throws SQLException{
+        String sql = "select * from aa where cpf = ? and nome = ?";
+        
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setString(1, usuario.getCpf());
-        statement.setString(2, usuario.getSenha());
+        statement.setString(2, usuario.getNome());
+        statement.execute();
+        ResultSet resultado = statement.getResultSet();
+        return resultado;
+    }
+    public void atualizar(Usuario usuario) throws SQLException{
+        String sql = "update aa set senha = ? where cpf = ? and nome = ?";
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setString(1, usuario.getSenha());
+        statement.setString(2, usuario.getCpf());
+        statement.setString(3, usuario.getNome());
         statement.execute();
         conn.close();
     }

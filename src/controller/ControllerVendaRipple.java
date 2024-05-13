@@ -56,7 +56,7 @@ public class ControllerVendaRipple implements Tarifacao {
                 return;
             }
             double precoAtualVendaRipple = 2.32;
-                double vendaRipple = qtdRi * cotacaoVenda(precoAtualVendaRipple);
+                double vendaRipple = qtdRi * cotacaoMoedas(precoAtualVendaRipple);
                 double taxaRipple = vendaRipple * taxaVendaRipple();
                 double valorTotal = vendaRipple + taxaRipple;
             

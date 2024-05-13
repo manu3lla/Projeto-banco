@@ -21,30 +21,25 @@ import view.Login;
  */
 public class ControllerAtualiza {
     private AtualizaUs view;
+    private Investidor investidor;
 
-    public ControllerAtualiza(AtualizaUs view) {
+    public ControllerAtualiza(AtualizaUs view, Investidor investidor) {
         this.view = view;
+        this.investidor = investidor;
     }
 
-    public boolean atualizarUsuario() {
-        String cpf = view.getTxtCpf().getText();
-        String senha = view.getTxtSenha().getText();
-        Conexao conexao = new Conexao();
-        Usuario usuario = new Usuario(null, view.getTxtCpf().getText(),
-                                      view.getTxtSenha().getText());
-
+    
+    
+    public boolean atualizarUsuario(Investidor investidor) {
         try {
+            Conexao conexao = new Conexao();
             Connection conn = conexao.getConnection();
             UsuarioDAO dao = new UsuarioDAO(conn);
-            ResultSet res = dao.consultar(usuario);
-
-            if (res.next()) {
-                JOptionPane.showMessageDialog(view, "Login Feito!");
-                String nome = res.getString("nome");
-                Investidor investidor = new Investidor(nome, cpf, senha);
-                String novaSenha = "";
-                dao.atualizar(usuario);
-
+            ResultSet res = dao.consultarPorCPF(investidor);
+            if (res.next() && investidor.getCpf().equals(res.getString("cpf"))
+                    && investidor.getNome().equals(res.getString("nome"))) {
+                dao.atualizar(investidor);
+                JOptionPane.showMessageDialog(view, "Atualização de senha foi efetuada.");
                 return true;
             } else {
                 JOptionPane.showMessageDialog(view, "Atualização de senha não foi efetuada.");

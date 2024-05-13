@@ -57,7 +57,7 @@ public class ControllerVendaEt implements Tarifacao {
                 return;
             }
             double precoAtualVenda = 15513.85;
-            double compraEt = qtdEt * cotacaoVenda(precoAtualVenda);
+            double compraEt = qtdEt * cotacaoMoedas(precoAtualVenda);
             double taxaEt = compraEt * taxaVendaEthereum();
             double valorTotal = compraEt + taxaEt;
 

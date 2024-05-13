@@ -9,57 +9,57 @@ package model;
  * @author Manuella
  */
 public class Carteira {
-    private double valorbitcoin, valorripple, valorethereum, valorreal;
+    private Reais qtdReais;
+    private Bitcoin qtdBit;
+    private Ethereum qtdEt;
+    private Ripple qtdRipple;
 
-    public double getValorbitcoin() {
-        return valorbitcoin;
+    public Reais getQtdReais() {
+        return qtdReais;
     }
 
-    public void setValorbitcoin(double valorbitcoin) {
-        this.valorbitcoin = valorbitcoin;
+    public void setQtdReais(Reais qtdReais) {
+        this.qtdReais = qtdReais;
     }
 
-    public double getValorripple() {
-        return valorripple;
+    public Bitcoin getQtdBit() {
+        return qtdBit;
     }
 
-    public void setValorripple(double valorripple) {
-        this.valorripple = valorripple;
+    public void setQtdBit(Bitcoin qtdBit) {
+        this.qtdBit = qtdBit;
     }
 
-    public double getValorethereum() {
-        return valorethereum;
+    public Ethereum getQtdEt() {
+        return qtdEt;
     }
 
-    public void setValorethereum(double valorethereum) {
-        this.valorethereum = valorethereum;
+    public void setQtdEt(Ethereum qtdEt) {
+        this.qtdEt = qtdEt;
     }
 
-    public double getValorreal() {
-        return valorreal;
+    public Ripple getQtdRipple() {
+        return qtdRipple;
     }
 
-    public void setValorreal(double valorreal) {
-        this.valorreal = valorreal;
+    public void setQtdRipple(Ripple qtdRipple) {
+        this.qtdRipple = qtdRipple;
     }
 
     @Override
     public String toString() {
-        return "Carteira{" + "valorbitcoin=" + valorbitcoin + ", valorripple=" + valorripple + ", valorethereum=" + valorethereum + ", valorreal=" + valorreal + '}';
+        return "Carteira{" + "qtdReais=" + qtdReais + ", qtdBit=" + qtdBit + ", qtdEt=" + qtdEt + ", qtdRipple=" + qtdRipple + '}';
     }
-
-    
 
     public Carteira() {
     }
 
-    public Carteira(double valorbitcoin, double valorripple, double valorethereum, double valorreal) {
-        this.valorbitcoin = valorbitcoin;
-        this.valorripple = valorripple;
-        this.valorethereum = valorethereum;
-        this.valorreal = valorreal;
+    public Carteira(Reais qtdReais, Bitcoin qtdBit, Ethereum qtdEt, Ripple qtdRipple) {
+        this.qtdReais = qtdReais;
+        this.qtdBit = qtdBit;
+        this.qtdEt = qtdEt;
+        this.qtdRipple = qtdRipple;
     }
-    
     
     
 }

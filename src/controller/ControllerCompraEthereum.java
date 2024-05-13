@@ -17,6 +17,8 @@ import view.Compra;
 import view.CompraBit;
 import view.CompraEthereum;
 import view.DepositoReal;
+import view.MostraCot;
+import view.MostrarMoedas;
 
 
 /**
@@ -27,6 +29,7 @@ public class ControllerCompraEthereum implements Tarifacao {
      private Reais reais;
      private Investidor investidor;
      private CompraEthereum view;
+     private MostraCot view2;
      
      
     public ControllerCompraEthereum(CompraEthereum view, Investidor investidor) {
@@ -35,7 +38,9 @@ public class ControllerCompraEthereum implements Tarifacao {
         this.investidor = investidor;
         
         
+        
     }
+    
 
     public ControllerCompraEthereum(Reais reais) {
         this.reais = reais;
@@ -52,7 +57,7 @@ public class ControllerCompraEthereum implements Tarifacao {
             double ethereum = res.getDouble("ethereum");
             double qtdEthereum = Double.parseDouble(view.getComprarE().getText());
             double precoAtualCompraEthereum = 15513.85;
-            double compraEt = qtdEthereum * cotacaoCompra(precoAtualCompraEthereum);
+            double compraEt = qtdEthereum * cotacaoMoedas(precoAtualCompraEthereum);
             double taxaEthereum = compraEt * taxaCompraEthereum();
             double valorTotal = compraEt + taxaEthereum;
             
@@ -82,5 +87,4 @@ public class ControllerCompraEthereum implements Tarifacao {
     public double taxaCompraEthereum() {
         return 0.01;
     }
-
 }

@@ -23,14 +23,6 @@ public class Moedas {
         this.novasMoedas = novasMoedas;
     }
 
-
-    public void adicionarNovaMoeda(Moedas moeda) {
-        if (novasMoedas == null) {
-            novasMoedas = new ArrayList<>();
-        }
-        novasMoedas.add(moeda);
-    }
-
     public double getValor() {
         return valor;
     }

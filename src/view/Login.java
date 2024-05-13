@@ -229,11 +229,8 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCpfActionPerformed
 
     private void btAtuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAtuActionPerformed
-        ControllerSenha controllerSenha = new ControllerSenha();
-        if(controllerSenha.verSenha(investidor)){
-            AtualizaUs atualizaUs = new AtualizaUs();
-            atualizaUs.setVisible(true);
-        }
+        AtualizaUs atualizaUs = new AtualizaUs();
+        atualizaUs.setVisible(true);
     }//GEN-LAST:event_btAtuActionPerformed
 
     /**

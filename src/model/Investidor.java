@@ -14,6 +14,10 @@ public class Investidor extends Usuario {
         super(nome, cpf, senha);
         c1 = new Carteira();
     }
+    
+    public Investidor(){
+        super();
+    }
 
     public Carteira getC1() {
         return c1;
