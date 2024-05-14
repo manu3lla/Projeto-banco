@@ -13,6 +13,7 @@ import controller.ControllerVenda;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
+import model.Carteira;
 import model.Investidor;
 
 /**
@@ -24,10 +25,12 @@ public class Opcoes extends javax.swing.JFrame {
      * Creates new form Opcoes
      */
     private Investidor investidor;
+    
     public Opcoes(Investidor investidor) {
         initComponents();
         this.investidor = investidor;
     }
+    
 
     public Investidor getInvestidor() {
         return investidor;
@@ -300,7 +303,6 @@ public class Opcoes extends javax.swing.JFrame {
 
     private void btsairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btsairActionPerformed
         JOptionPane.showMessageDialog(null, "Até mais");
-        this.dispose();
     }//GEN-LAST:event_btsairActionPerformed
 
     private void btextratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btextratoActionPerformed

@@ -8,10 +8,23 @@ package model;
  *
  * @author unifmperes
  */
-public class Ripple extends Moedas{
+public class Ripple extends Moedas implements Tarifacao {
 
-    public Ripple(double valor, String nomemoeda) {
-        super(0, "Ripple");
+    public Ripple(double valor, double taxavenda, double taxacompra, double cotacao, String nomemoeda) {
+        super(2.32, taxavenda, taxacompra, cotacao, "Ripple");
     }
-    
+
+    @Override
+    public double taxaCompraRipple() {
+        return Tarifacao.super.taxaCompraRipple();
+    }
+    @Override
+    public double taxaVendaRipple() {
+        return Tarifacao.super.taxaVendaRipple();
+    }
+
+    @Override
+    public double cotacaoMoedas(double precoAtual) {
+        return Tarifacao.super.cotacaoMoedas(precoAtual);
+    }
 }

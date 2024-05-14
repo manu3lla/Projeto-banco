@@ -9,6 +9,7 @@ import controller.ControllerVendaBit;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import model.Carteira;
 import model.Investidor;
 
 /**
@@ -25,7 +26,7 @@ public class VendaBit extends javax.swing.JFrame {
         this.investidor = investidor;
         controller = new ControllerVendaBit(this, investidor);
     }
-
+    
     public Investidor getInvestidor() {
         return investidor;
     }

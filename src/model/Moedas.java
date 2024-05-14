@@ -11,18 +11,33 @@ import java.util.ArrayList;
  * @author Manuella
  */
 public class Moedas {
-   private double valor;
+   private double valor, taxavenda, taxacompra, cotacao;
    private String nomemoeda;
-   private ArrayList<Moedas> novasMoedas;
 
-    public ArrayList<Moedas> getNovasMoedas() {
-        return novasMoedas;
+    public double getTaxavenda() {
+        return taxavenda;
     }
 
-    public void setNovasMoedas(ArrayList<Moedas> novasMoedas) {
-        this.novasMoedas = novasMoedas;
+    public void setTaxavenda(double taxavenda) {
+        this.taxavenda = taxavenda;
     }
 
+    public double getTaxacompra() {
+        return taxacompra;
+    }
+
+    public void setTaxacompra(double taxacompra) {
+        this.taxacompra = taxacompra;
+    }
+
+    public double getCotacao() {
+        return cotacao;
+    }
+
+    public void setCotacao(double cotacao) {
+        this.cotacao = cotacao;
+    }
+   
     public double getValor() {
         return valor;
     }
@@ -41,13 +56,18 @@ public class Moedas {
 
     @Override
     public String toString() {
-        return "Moedas{" + "valor=" + valor + ", nomemoeda=" + nomemoeda + '}';
+        return "Moedas{" + "valor=" + valor + ", taxavenda=" + taxavenda + ", taxacompra=" + taxacompra + ", cotacao=" + cotacao + ", nomemoeda=" + nomemoeda + '}';
     }
 
-    public Moedas(double valor, String nomemoeda) {
+    public Moedas(double valor, double taxavenda, double taxacompra, double cotacao, String nomemoeda) {
         this.valor = valor;
+        this.taxavenda = taxavenda;
+        this.taxacompra = taxacompra;
+        this.cotacao = cotacao;
         this.nomemoeda = nomemoeda;
     }
+
+    
 
     public Moedas() {
     }

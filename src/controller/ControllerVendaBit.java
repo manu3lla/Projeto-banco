@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import model.Carteira;
 import model.Investidor;
 import model.Reais;
 import model.Tarifacao;
@@ -27,10 +28,11 @@ public class ControllerVendaBit implements Tarifacao{
      private Reais reais;
      private Investidor investidor;
      private VendaBit view;
+     private Carteira c1;
      
      
     public ControllerVendaBit(VendaBit view, Investidor investidor) {
-        this.reais = new Reais(0, "Reais");
+        this.reais = new Reais(0, 0, 0, 0, "Reais");
         this.view = view;
         this.investidor = investidor;
         
@@ -55,8 +57,9 @@ public class ControllerVendaBit implements Tarifacao{
                 JOptionPane.showMessageDialog(view, "Saldo insuficiente, tente novamente!");
                 return;
             }
-            double precoAtualBitcoin = 317415.56;
-            double compraBitcoin = qtdBit * cotacaoMoedas(precoAtualBitcoin);
+            double precoAtualBit = c1.getQtdEt().getValor();
+            double compraBitcoin = qtdBit * cotacaoMoedas(precoAtualBit);
+            System.out.println(compraBitcoin);
             double taxaBitcoin = compraBitcoin * taxaVendaBitcoin();
             double valorTotal = compraBitcoin + taxaBitcoin;
             

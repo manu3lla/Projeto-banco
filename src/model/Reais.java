@@ -10,8 +10,9 @@ package model;
  */
 public class Reais extends Moedas {
     private Carteira carteira;
-    public Reais(double valor, String nomemoeda) {
-        super(0, "Reais");
+
+    public Reais(double valor, double taxavenda, double taxacompra, double cotacao, String nomemoeda) {
+        super(0, 0, 0, 0, "Real");
     }
     
 }

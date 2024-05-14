@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import model.Carteira;
 import model.Investidor;
 import model.Reais;
 import model.Tarifacao;
@@ -26,11 +27,12 @@ public class ControllerCompraBit implements Tarifacao {
      private Reais reais;
      private Investidor investidor;
      private CompraBit view;
+     private Carteira c1;
      
      
     public ControllerCompraBit(CompraBit view, Investidor investidor) {
-        this.reais = new Reais(0, "Reais");
-        this.view = view;
+        this.reais = new Reais(0, 0, 0, 0, "Reais");
+        this.view =view;
         this.investidor = investidor;
         
         
@@ -50,8 +52,8 @@ public class ControllerCompraBit implements Tarifacao {
             double real = res.getDouble("reais");
             double bitcoin = res.getDouble("bitcoin");
             double qtdBit = Double.parseDouble(view.getQuantidadeB().getText());
-            double precoAtualCompraBitcoin = 317415.56;
-            double compraBitcoin = qtdBit * cotacaoMoedas(precoAtualCompraBitcoin);
+            double precoAtualBit = c1.getQtdEt().getValor(); 
+            double compraBitcoin = qtdBit * cotacaoMoedas(precoAtualBit);
             double taxaBitcoin = compraBitcoin * taxaCompraBitcoin();
             double valorTotal = compraBitcoin + taxaBitcoin;
             

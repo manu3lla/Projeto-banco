@@ -5,16 +5,21 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import model.Bitcoin;
+import model.Carteira;
 import model.Investidor;
+import model.Tarifacao;
 import view.MostraCot;
 
-public class ControllerMostraCotacao {
+public class ControllerMostraCotacao implements Tarifacao {
     private MostraCot view;
     private Investidor investidor;
+    private Carteira c1;
 
-    public ControllerMostraCotacao(MostraCot view, Investidor investidor) {
+    public ControllerMostraCotacao(MostraCot view, Investidor investidor, Carteira c1) {
         this.view = view;
         this.investidor = investidor;
+        this.c1 = c1;
     }
 
     public boolean mostraCota() {
@@ -24,18 +29,8 @@ public class ControllerMostraCotacao {
             UsuarioDAO dao = new UsuarioDAO(conn);
             ResultSet res = dao.consultar(investidor);
             if (res.next()) {
-                String nome = res.getString("nome");
-                String cpf = res.getString("CPF");
-                double real = res.getDouble("reais");
-                double ripple = res.getDouble("ripple");
-                double ethereum = res.getDouble("ethereum");
-                double bitcoin = res.getDouble("bitcoin");
-                view.getTxtNome().setText(nome);
-                view.getTxtCpf().setText(cpf);
-                view.getTxtReal().setText(String.valueOf(real));
-                view.getTxtBit().setText(String.valueOf(bitcoin));
-                view.getTxtEt().setText(String.valueOf(ethereum));
-                view.getTxtRipple().setText(String.valueOf(ripple));
+                Bitcoin bitcoin = Double.parseDouble(investidor.getC1().getQtdBit().getCotacao());
+                view.getBtVendaBit().setText(String.valueOf(bitcoin));
                 
                 return true;
             } else {

@@ -9,6 +9,7 @@ import controller.ControllerMostrarMoedas;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import model.Carteira;
 
 import model.Investidor;
 
@@ -25,9 +26,18 @@ public class MostraCot extends javax.swing.JFrame {
     public MostraCot(Investidor investidor) {
         initComponents();
         this.investidor = investidor;
-        controller = new ControllerMostraCotacao(this, investidor);
+        controller = new ControllerMostraCotacao(this, investidor, c1);
         
     }
+
+    public JButton getBtMostrar() {
+        return btMostrar;
+    }
+
+    public void setBtMostrar(JButton btMostrar) {
+        this.btMostrar = btMostrar;
+    }
+    
 
     public Investidor getInvestidor() {
         return investidor;
@@ -45,13 +55,6 @@ public class MostraCot extends javax.swing.JFrame {
         this.controller = controller;
     }
 
-    public JTextField getBtCompraBit() {
-        return btCompraBit;
-    }
-
-    public void setBtCompraBit(JTextField btCompraBit) {
-        this.btCompraBit = btCompraBit;
-    }
 
     public JTextField getBtCompraEt() {
         return btCompraEt;
@@ -59,14 +62,6 @@ public class MostraCot extends javax.swing.JFrame {
 
     public void setBtCompraEt(JTextField btCompraEt) {
         this.btCompraEt = btCompraEt;
-    }
-
-    public JTextField getBtCompraRi() {
-        return btCompraRi;
-    }
-
-    public void setBtCompraRi(JTextField btCompraRi) {
-        this.btCompraRi = btCompraRi;
     }
 
     public JButton getBtComprar() {
@@ -78,19 +73,11 @@ public class MostraCot extends javax.swing.JFrame {
     }
 
     public JTextField getBtVendaBit() {
-        return btVendaBit;
+        return b;
     }
 
     public void setBtVendaBit(JTextField btVendaBit) {
-        this.btVendaBit = btVendaBit;
-    }
-
-    public JTextField getBtVendaEt() {
-        return btVendaEt;
-    }
-
-    public void setBtVendaEt(JTextField btVendaEt) {
-        this.btVendaEt = btVendaEt;
+        this.b = btVendaBit;
     }
 
     public JTextField getBtVendaRi() {
@@ -140,22 +127,8 @@ public class MostraCot extends javax.swing.JFrame {
     public void setjLabel4(JLabel jLabel4) {
         this.jLabel4 = jLabel4;
     }
-
-    public JLabel getjLabel5() {
-        return jLabel5;
-    }
-
-    public void setjLabel5(JLabel jLabel5) {
-        this.jLabel5 = jLabel5;
-    }
-
-    public JLabel getjLabel6() {
-        return jLabel6;
-    }
-
-    public void setjLabel6(JLabel jLabel6) {
-        this.jLabel6 = jLabel6;
-    }
+    
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -170,16 +143,12 @@ public class MostraCot extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        btCompraBit = new javax.swing.JTextField();
-        btVendaBit = new javax.swing.JTextField();
-        btVendaEt = new javax.swing.JTextField();
+        b = new javax.swing.JTextField();
         btCompraEt = new javax.swing.JTextField();
-        btCompraRi = new javax.swing.JTextField();
         btVendaRi = new javax.swing.JTextField();
         btComprar = new javax.swing.JButton();
         btVender = new javax.swing.JButton();
+        btMostrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -191,21 +160,18 @@ public class MostraCot extends javax.swing.JFrame {
 
         jLabel4.setText("Ripple");
 
-        jLabel5.setText("Compra");
-
-        jLabel6.setText("Venda");
-
-        btVendaBit.setToolTipText("");
-
-        btVendaEt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btVendaEtActionPerformed(evt);
-            }
-        });
+        b.setToolTipText("");
 
         btComprar.setText("Comprar");
 
         btVender.setText("Vender");
+
+        btMostrar.setText("Mostrar");
+        btMostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btMostrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -214,42 +180,32 @@ public class MostraCot extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
-                        .addComponent(jLabel2)
-                        .addGap(55, 55, 55)
-                        .addComponent(jLabel3)
-                        .addGap(60, 60, 60)
-                        .addComponent(jLabel4))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(142, 142, 142)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btVendaBit, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btCompraBit, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btVendaEt, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btCompraEt, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(30, 30, 30)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btVendaRi, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btCompraRi, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(84, 84, 84)
                                 .addComponent(btComprar)
                                 .addGap(47, 47, 47)
-                                .addComponent(btVender)))))
-                .addContainerGap(72, Short.MAX_VALUE))
+                                .addComponent(btVender))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(149, 149, 149)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btMostrar)
+                                    .addComponent(btCompraEt, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btVendaRi, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(b, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addGap(55, 55, 55)
+                        .addComponent(jLabel3)
+                        .addGap(60, 60, 60)
+                        .addComponent(jLabel4)))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -261,19 +217,14 @@ public class MostraCot extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
                     .addComponent(jLabel2))
-                .addGap(18, 18, 18)
+                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(btCompraBit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btVendaEt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btCompraRi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(btVendaBit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btCompraEt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btVendaRi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(58, 58, 58)
+                    .addComponent(btVendaRi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(b, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46)
+                .addComponent(btMostrar)
+                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btComprar)
                     .addComponent(btVender))
@@ -283,9 +234,9 @@ public class MostraCot extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btVendaEtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVendaEtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btVendaEtActionPerformed
+    private void btMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMostrarActionPerformed
+        controller.mostraCota();
+    }//GEN-LAST:event_btMostrarActionPerformed
 
 //    /**
 //     * @param args the command line arguments
@@ -321,21 +272,16 @@ public class MostraCot extends javax.swing.JFrame {
 //            }
 //        });
 //    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField btCompraBit;
+    private javax.swing.JTextField b;
     private javax.swing.JTextField btCompraEt;
-    private javax.swing.JTextField btCompraRi;
     private javax.swing.JButton btComprar;
-    private javax.swing.JTextField btVendaBit;
-    private javax.swing.JTextField btVendaEt;
+    private javax.swing.JButton btMostrar;
     private javax.swing.JTextField btVendaRi;
     private javax.swing.JButton btVender;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     // End of variables declaration//GEN-END:variables
 }

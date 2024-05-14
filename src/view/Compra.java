@@ -6,6 +6,7 @@ package view;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import model.Carteira;
 import model.Investidor;
 
 /**

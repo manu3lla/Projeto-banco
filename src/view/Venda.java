@@ -8,6 +8,7 @@ import controller.ControllerCompraRipple;
 import controller.ControllerMostrarMoedas;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import model.Carteira;
 import model.Investidor;
 
 /**

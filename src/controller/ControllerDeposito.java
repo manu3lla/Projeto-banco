@@ -24,10 +24,11 @@ import view.Opcoes;
 public class ControllerDeposito {
      private Reais reais;
      private DepositoReal view;
+     private Carteira c1;
      
      
     public ControllerDeposito(DepositoReal view) {
-        this.reais = new Reais(0, "Reais");
+        this.reais = new Reais(0, 0, 0, 0, "Reais");
         this.view = view;
         
         

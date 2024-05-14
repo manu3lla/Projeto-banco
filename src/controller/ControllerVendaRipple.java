@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import model.Carteira;
 import model.Investidor;
 import model.Reais;
 import model.Tarifacao;
@@ -27,10 +28,11 @@ public class ControllerVendaRipple implements Tarifacao {
      private Reais reais;
      private Investidor investidor;
      private VendaRi view;
+     private Carteira c1;
      
      
     public ControllerVendaRipple(VendaRi view, Investidor investidor) {
-        this.reais = new Reais(0, "Reais");
+        this.reais = new Reais(0, 0, 0, 0, "Reais");
         this.view = view;
         this.investidor = investidor;
         
@@ -55,10 +57,10 @@ public class ControllerVendaRipple implements Tarifacao {
                 JOptionPane.showMessageDialog(view, "Saldo insuficiente, tente novamente!");
                 return;
             }
-            double precoAtualVendaRipple = 2.32;
-                double vendaRipple = qtdRi * cotacaoMoedas(precoAtualVendaRipple);
-                double taxaRipple = vendaRipple * taxaVendaRipple();
-                double valorTotal = vendaRipple + taxaRipple;
+            double precoRipple = c1.getQtdRipple().getValor();
+            double vendaRipple = qtdRi * cotacaoMoedas(precoRipple);
+            double taxaRipple = vendaRipple * taxaVendaRipple();
+            double valorTotal = vendaRipple + taxaRipple;
             
             if (qtdRi <= 0) {
                 JOptionPane.showMessageDialog(view, "Número de ripples a serem compradas negativo, escreva novamente");

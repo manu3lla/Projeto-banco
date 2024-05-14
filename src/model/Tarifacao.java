@@ -11,6 +11,7 @@ import java.util.Random;
  * @author Manuella
  */
 public interface Tarifacao {
+    
     default double taxaCompraBitcoin() {
         return 0.02;
     }
@@ -29,16 +30,10 @@ public interface Tarifacao {
     default double taxaVendaRipple() {
         return 0.01;
     }
-    default double cotacaoCompra(double precoAtual) {
+    default double cotacaoMoedas(double precoAtual) {
         double variacao = precoAtual * 0.05;
         double variacaoMoedas = variacao * new Random().nextDouble();
-        return precoAtual + variacaoMoedas;
-    }
-
-    default double cotacaoVenda(double precoAtual) {
-        double variacao = precoAtual * 0.05;
-        double variacaoMoedas = variacao * new Random().nextDouble();
-        return precoAtual - variacaoMoedas;
+        return variacaoMoedas;
     }
     
 }

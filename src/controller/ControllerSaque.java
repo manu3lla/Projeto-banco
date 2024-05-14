@@ -28,7 +28,7 @@ public class ControllerSaque {
      
      
     public ControllerSaque(SaqueReal view) {
-        this.reais = new Reais(0, "Reais");
+        this.reais = new Reais(0,0,0, 0, "Reais");
         this.view = view;
         
         

@@ -60,6 +60,8 @@ public class Carteira {
         this.qtdEt = qtdEt;
         this.qtdRipple = qtdRipple;
     }
+
+    
     
     
 }

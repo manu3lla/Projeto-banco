@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import model.Carteira;
 import model.Investidor;
 import model.Reais;
 import model.Tarifacao;
@@ -28,10 +29,11 @@ public class ControllerVendaEt implements Tarifacao {
      private Reais reais;
      private Investidor investidor;
      private VendaEt view;
+     private Carteira c1;
      
      
     public ControllerVendaEt(VendaEt view, Investidor investidor) {
-        this.reais = new Reais(0, "Reais");
+        this.reais = new Reais(0, 0, 0, 0, "Reais");
         this.view = view;
         this.investidor = investidor;
         
@@ -56,8 +58,8 @@ public class ControllerVendaEt implements Tarifacao {
                 JOptionPane.showMessageDialog(view, "Saldo insuficiente, tente novamente!");
                 return;
             }
-            double precoAtualVenda = 15513.85;
-            double compraEt = qtdEt * cotacaoMoedas(precoAtualVenda);
+            double precoAtualEthereum = c1.getQtdEt().getValor(); 
+            double compraEt = qtdEt * cotacaoMoedas(precoAtualEthereum);
             double taxaEt = compraEt * taxaVendaEthereum();
             double valorTotal = compraEt + taxaEt;
 

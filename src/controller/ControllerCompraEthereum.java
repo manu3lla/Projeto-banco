@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import model.Carteira;
 import model.Investidor;
 import model.Reais;
 import model.Tarifacao;
@@ -29,15 +30,13 @@ public class ControllerCompraEthereum implements Tarifacao {
      private Reais reais;
      private Investidor investidor;
      private CompraEthereum view;
-     private MostraCot view2;
+     private Carteira c1;
      
      
     public ControllerCompraEthereum(CompraEthereum view, Investidor investidor) {
-        this.reais = new Reais(0, "Reais");
+        this.reais = new Reais(0, 0, 0, 0, "Reais");
         this.view = view;
         this.investidor = investidor;
-        
-        
         
     }
     
@@ -56,8 +55,9 @@ public class ControllerCompraEthereum implements Tarifacao {
             double real = res.getDouble("reais");
             double ethereum = res.getDouble("ethereum");
             double qtdEthereum = Double.parseDouble(view.getComprarE().getText());
-            double precoAtualCompraEthereum = 15513.85;
-            double compraEt = qtdEthereum * cotacaoMoedas(precoAtualCompraEthereum);
+            double precoAtualEthereum = c1.getQtdEt().getValor(); 
+            System.out.println(precoAtualEthereum);
+            double compraEt = qtdEthereum * cotacaoMoedas(precoAtualEthereum);
             double taxaEthereum = compraEt * taxaCompraEthereum();
             double valorTotal = compraEt + taxaEthereum;
             

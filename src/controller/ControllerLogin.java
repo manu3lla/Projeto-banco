@@ -8,6 +8,7 @@ import DAO.UsuarioDAO;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import java.sql.SQLException;
+import model.Carteira;
 import model.Investidor;
 import view.Login;
 import view.Opcoes;

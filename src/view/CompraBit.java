@@ -8,6 +8,7 @@ import controller.ControllerCompraBit;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import model.Carteira;
 import model.Investidor;
 
 /**
@@ -134,6 +135,7 @@ public class CompraBit extends javax.swing.JFrame {
     }//GEN-LAST:event_quantidadeBActionPerformed
 
     private void comprarBitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comprarBitActionPerformed
+        
         controller.compraBitcoin();
     }//GEN-LAST:event_comprarBitActionPerformed
 

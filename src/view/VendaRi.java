@@ -9,6 +9,7 @@ import controller.ControllerVendaRipple;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import model.Carteira;
 import model.Investidor;
 
 /**

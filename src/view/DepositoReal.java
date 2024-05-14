@@ -118,6 +118,7 @@ public class DepositoReal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btDepositoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDepositoActionPerformed
+
         controller.depositoReal(investidor);
     }//GEN-LAST:event_btDepositoActionPerformed
 //}

@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import model.Carteira;
 import model.Investidor;
 import model.Reais;
 import model.Tarifacao;
@@ -27,10 +28,11 @@ public class ControllerCompraRipple implements Tarifacao {
      private Reais reais;
      private Investidor investidor;
      private CompraRipple view;
+     private Carteira c1;
      
      
     public ControllerCompraRipple(CompraRipple view, Investidor investidor) {
-        this.reais = new Reais(0, "Reais");
+        this.reais = new Reais(0, 0, 0, 0, "Reais");
         this.view = view;
         this.investidor = investidor;
         
@@ -51,7 +53,7 @@ public class ControllerCompraRipple implements Tarifacao {
             double real = res.getDouble("reais");
             double ripple = res.getDouble("ripple");
             double qtdR = Double.parseDouble(view.getCompraRi().getText());
-            double precoRipple = 2.32;
+            double precoRipple = c1.getQtdRipple().getValor(); 
             double compraRipple = qtdR * cotacaoMoedas(precoRipple);
             double taxaCompraRi = compraRipple * taxaCompraRipple();
             double valorTotal = compraRipple + taxaCompraRi;
