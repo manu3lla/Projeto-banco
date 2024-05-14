@@ -13,6 +13,16 @@ public class Carteira {
     private Bitcoin qtdBit;
     private Ethereum qtdEt;
     private Ripple qtdRipple;
+    public Bitcoin getQtdBit() {
+        if (qtdBit == null) {
+            qtdBit = new Bitcoin(0, 0, 0, 0, "Bitcoin");
+        }
+        return qtdBit;
+    }
+
+    public void setQtdBit(Bitcoin qtdBit) {
+        this.qtdBit = qtdBit;
+    }
 
     public Reais getQtdReais() {
         return qtdReais;
@@ -22,13 +32,6 @@ public class Carteira {
         this.qtdReais = qtdReais;
     }
 
-    public Bitcoin getQtdBit() {
-        return qtdBit;
-    }
-
-    public void setQtdBit(Bitcoin qtdBit) {
-        this.qtdBit = qtdBit;
-    }
 
     public Ethereum getQtdEt() {
         return qtdEt;

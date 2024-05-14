@@ -58,7 +58,7 @@ public class ControllerVendaEt implements Tarifacao {
                 JOptionPane.showMessageDialog(view, "Saldo insuficiente, tente novamente!");
                 return;
             }
-            double precoAtualEthereum = c1.getQtdEt().getValor(); 
+            double precoAtualEthereum = 15513.85; 
             double compraEt = qtdEt * cotacaoMoedas(precoAtualEthereum);
             double taxaEt = compraEt * taxaVendaEthereum();
             double valorTotal = compraEt + taxaEt;

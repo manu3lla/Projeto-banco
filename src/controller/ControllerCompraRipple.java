@@ -53,7 +53,7 @@ public class ControllerCompraRipple implements Tarifacao {
             double real = res.getDouble("reais");
             double ripple = res.getDouble("ripple");
             double qtdR = Double.parseDouble(view.getCompraRi().getText());
-            double precoRipple = c1.getQtdRipple().getValor(); 
+            double precoRipple = 2.32; 
             double compraRipple = qtdR * cotacaoMoedas(precoRipple);
             double taxaCompraRi = compraRipple * taxaCompraRipple();
             double valorTotal = compraRipple + taxaCompraRi;

@@ -69,6 +69,7 @@ public class Compra extends javax.swing.JFrame {
         compraBit = new javax.swing.JButton();
         compraEt = new javax.swing.JButton();
         compraR = new javax.swing.JButton();
+        mostraCot = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,6 +96,13 @@ public class Compra extends javax.swing.JFrame {
             }
         });
 
+        mostraCot.setText("Mostrar Cotação");
+        mostraCot.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mostraCotActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -105,12 +113,15 @@ public class Compra extends javax.swing.JFrame {
                         .addGap(117, 117, 117)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(149, 149, 149)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(compraEt)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(compraBit)
-                                .addComponent(compraR)))))
+                        .addGap(187, 187, 187)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(compraBit)
+                            .addComponent(compraR)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(mostraCot)
+                        .addGap(30, 30, 30)
+                        .addComponent(compraEt)))
                 .addContainerGap(132, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -121,7 +132,9 @@ public class Compra extends javax.swing.JFrame {
                 .addGap(46, 46, 46)
                 .addComponent(compraBit)
                 .addGap(39, 39, 39)
-                .addComponent(compraEt)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(compraEt)
+                    .addComponent(mostraCot))
                 .addGap(39, 39, 39)
                 .addComponent(compraR)
                 .addContainerGap(73, Short.MAX_VALUE))
@@ -144,6 +157,11 @@ public class Compra extends javax.swing.JFrame {
         CompraRipple compraRipple = new CompraRipple(investidor);
         compraRipple.setVisible(true);
     }//GEN-LAST:event_compraRActionPerformed
+
+    private void mostraCotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostraCotActionPerformed
+        MostraCot mostraCot = new MostraCot(investidor);
+        mostraCot.setVisible(true);
+    }//GEN-LAST:event_mostraCotActionPerformed
 
     /**
 //     * @param args the command line arguments
@@ -185,5 +203,6 @@ public class Compra extends javax.swing.JFrame {
     private javax.swing.JButton compraEt;
     private javax.swing.JButton compraR;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton mostraCot;
     // End of variables declaration//GEN-END:variables
 }

@@ -20,6 +20,7 @@ import model.Investidor;
 public class MostraCot extends javax.swing.JFrame {
     private Investidor investidor;
     private ControllerMostraCotacao controller;
+    private Carteira c1;
     /**
      * Creates new form MostraCot
      */
@@ -162,9 +163,25 @@ public class MostraCot extends javax.swing.JFrame {
 
         b.setToolTipText("");
 
+        btCompraEt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCompraEtActionPerformed(evt);
+            }
+        });
+
         btComprar.setText("Comprar");
+        btComprar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btComprarActionPerformed(evt);
+            }
+        });
 
         btVender.setText("Vender");
+        btVender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btVenderActionPerformed(evt);
+            }
+        });
 
         btMostrar.setText("Mostrar");
         btMostrar.addActionListener(new java.awt.event.ActionListener() {
@@ -180,32 +197,31 @@ public class MostraCot extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(b, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btCompraEt, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8)
+                        .addComponent(btVendaRi, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(84, 84, 84)
+                        .addComponent(btComprar)
+                        .addGap(47, 47, 47)
+                        .addComponent(btVender))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(149, 149, 149)
+                        .addComponent(btMostrar))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(142, 142, 142)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(84, 84, 84)
-                                .addComponent(btComprar)
-                                .addGap(47, 47, 47)
-                                .addComponent(btVender))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(149, 149, 149)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btMostrar)
-                                    .addComponent(btCompraEt, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btVendaRi, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(b, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
+                        .addGap(76, 76, 76)
+                        .addComponent(jLabel2)
                         .addGap(55, 55, 55)
                         .addComponent(jLabel3)
                         .addGap(60, 60, 60)
                         .addComponent(jLabel4)))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -237,6 +253,20 @@ public class MostraCot extends javax.swing.JFrame {
     private void btMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMostrarActionPerformed
         controller.mostraCota();
     }//GEN-LAST:event_btMostrarActionPerformed
+
+    private void btComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btComprarActionPerformed
+        Compra compra = new Compra(investidor);
+        compra.setVisible(true);
+    }//GEN-LAST:event_btComprarActionPerformed
+
+    private void btCompraEtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCompraEtActionPerformed
+        Venda venda = new Venda(investidor);
+        venda.setVisible(true);
+    }//GEN-LAST:event_btCompraEtActionPerformed
+
+    private void btVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVenderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btVenderActionPerformed
 
 //    /**
 //     * @param args the command line arguments

@@ -57,7 +57,7 @@ public class ControllerVendaRipple implements Tarifacao {
                 JOptionPane.showMessageDialog(view, "Saldo insuficiente, tente novamente!");
                 return;
             }
-            double precoRipple = c1.getQtdRipple().getValor();
+            double precoRipple = 2.32;
             double vendaRipple = qtdRi * cotacaoMoedas(precoRipple);
             double taxaRipple = vendaRipple * taxaVendaRipple();
             double valorTotal = vendaRipple + taxaRipple;

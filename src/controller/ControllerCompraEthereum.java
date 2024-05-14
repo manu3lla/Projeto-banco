@@ -37,6 +37,7 @@ public class ControllerCompraEthereum implements Tarifacao {
         this.reais = new Reais(0, 0, 0, 0, "Reais");
         this.view = view;
         this.investidor = investidor;
+        this.c1 =c1;
         
     }
     
@@ -55,7 +56,7 @@ public class ControllerCompraEthereum implements Tarifacao {
             double real = res.getDouble("reais");
             double ethereum = res.getDouble("ethereum");
             double qtdEthereum = Double.parseDouble(view.getComprarE().getText());
-            double precoAtualEthereum = c1.getQtdEt().getValor(); 
+            double precoAtualEthereum = 15513.85; 
             System.out.println(precoAtualEthereum);
             double compraEt = qtdEthereum * cotacaoMoedas(precoAtualEthereum);
             double taxaEthereum = compraEt * taxaCompraEthereum();

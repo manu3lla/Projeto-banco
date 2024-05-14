@@ -161,7 +161,8 @@ public class Venda extends javax.swing.JFrame {
     }//GEN-LAST:event_btEthereumActionPerformed
 
     private void btMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMostrarActionPerformed
-
+        MostraCot mostraCot = new MostraCot(investidor);
+        mostraCot.setVisible(true);
     }//GEN-LAST:event_btMostrarActionPerformed
 
     /**

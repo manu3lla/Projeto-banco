@@ -29,8 +29,15 @@ public class ControllerMostraCotacao implements Tarifacao {
             UsuarioDAO dao = new UsuarioDAO(conn);
             ResultSet res = dao.consultar(investidor);
             if (res.next()) {
-                Bitcoin bitcoin = Double.parseDouble(investidor.getC1().getQtdBit().getCotacao());
-                view.getBtVendaBit().setText(String.valueOf(bitcoin));
+                double cotacaobit = investidor.getC1().getQtdBit().cotacaoMoedas(317415.56);
+                view.getBtVendaBit().setText(String.valueOf(cotacaobit));
+                double cotacaoet = investidor.getC1().getQtdBit().cotacaoMoedas(15513.85);
+                view.getBtCompraEt().setText(String.valueOf(cotacaoet));
+                double cotacaor = investidor.getC1().getQtdBit().cotacaoMoedas(2.32);
+                view.getBtVendaRi().setText(String.valueOf(cotacaor));
+                System.out.println(cotacaobit);
+                System.out.println(cotacaoet);
+                System.out.println(cotacaor);
                 
                 return true;
             } else {

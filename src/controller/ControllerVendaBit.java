@@ -57,7 +57,7 @@ public class ControllerVendaBit implements Tarifacao{
                 JOptionPane.showMessageDialog(view, "Saldo insuficiente, tente novamente!");
                 return;
             }
-            double precoAtualBit = c1.getQtdEt().getValor();
+            double precoAtualBit = 317415.56;
             double compraBitcoin = qtdBit * cotacaoMoedas(precoAtualBit);
             System.out.println(compraBitcoin);
             double taxaBitcoin = compraBitcoin * taxaVendaBitcoin();
