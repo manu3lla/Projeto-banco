@@ -4,10 +4,29 @@
  */
 package controller;
 
+import model.Carteira;
+import model.Investidor;
+import model.Reais;
+import view.CompraEthereum;
+import view.Extrato;
+
 /**
  *
  * @author Manuella
  */
 public class ControllerExtrato {
+    private Reais reais;
+     private Investidor investidor;
+     private Extrato view;
+     private Carteira c1;
+     
+     
+    public ControllerExtrato(Extrato view, Investidor investidor) {
+        this.reais = new Reais(0, 0, 0, 0, "Reais");
+        this.view = view;
+        this.investidor = investidor;
+        this.c1 =c1;
+        
+    }
     
 }

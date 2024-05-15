@@ -35,6 +35,7 @@ public class ControllerVendaBit implements Tarifacao{
         this.reais = new Reais(0, 0, 0, 0, "Reais");
         this.view = view;
         this.investidor = investidor;
+        this.c1 =investidor.getC1();
         
         
     }
@@ -57,7 +58,7 @@ public class ControllerVendaBit implements Tarifacao{
                 JOptionPane.showMessageDialog(view, "Saldo insuficiente, tente novamente!");
                 return;
             }
-            double precoAtualBit = 317415.56;
+            double precoAtualBit = c1.getQtdBit().getValor();
             double compraBitcoin = qtdBit * cotacaoMoedas(precoAtualBit);
             System.out.println(compraBitcoin);
             double taxaBitcoin = compraBitcoin * taxaVendaBitcoin();

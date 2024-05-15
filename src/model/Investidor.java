@@ -1,22 +1,20 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model;
 
 /**
- *
+ * 
  * @author Manuella
  */
 public class Investidor extends Usuario {
     private Carteira c1;
+
     public Investidor(String nome, String cpf, String senha) {
         super(nome, cpf, senha);
-        c1 = new Carteira();
+        this.c1 = new Carteira();
     }
-    
-    public Investidor(){
+
+    public Investidor() {
         super();
+        this.c1 = new Carteira();
     }
 
     public Carteira getC1() {

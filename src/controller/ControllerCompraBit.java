@@ -31,12 +31,11 @@ public class ControllerCompraBit implements Tarifacao {
      
      
     public ControllerCompraBit(CompraBit view, Investidor investidor) {
-        this.reais = new Reais(0, 0, 0, 0, "Reais");
-        this.view =view;
-        this.investidor = investidor;
-        
-        
-    }
+    this.reais = new Reais(0, 0, 0, 0, "Reais");
+    this.view =view;
+    this.investidor = investidor;
+    this.c1 = investidor.getC1();
+}
 
     public ControllerCompraBit(Reais reais) {
         this.reais = reais;
@@ -52,8 +51,9 @@ public class ControllerCompraBit implements Tarifacao {
             double real = res.getDouble("reais");
             double bitcoin = res.getDouble("bitcoin");
             double qtdBit = Double.parseDouble(view.getQuantidadeB().getText());
-            double precoAtualBit = 317415.56; 
+            double precoAtualBit = c1.getQtdBit().getValor();
             double compraBitcoin = qtdBit * cotacaoMoedas(precoAtualBit);
+            System.out.println(compraBitcoin);
             double taxaBitcoin = compraBitcoin * taxaCompraBitcoin();
             double valorTotal = compraBitcoin + taxaBitcoin;
             

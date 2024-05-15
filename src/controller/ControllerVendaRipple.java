@@ -35,8 +35,7 @@ public class ControllerVendaRipple implements Tarifacao {
         this.reais = new Reais(0, 0, 0, 0, "Reais");
         this.view = view;
         this.investidor = investidor;
-        
-        
+        this.c1 =investidor.getC1();
     }
 
     public ControllerVendaRipple(Reais reais) {
@@ -57,7 +56,7 @@ public class ControllerVendaRipple implements Tarifacao {
                 JOptionPane.showMessageDialog(view, "Saldo insuficiente, tente novamente!");
                 return;
             }
-            double precoRipple = 2.32;
+            double precoRipple = c1.getQtdRipple().getValor();
             double vendaRipple = qtdRi * cotacaoMoedas(precoRipple);
             double taxaRipple = vendaRipple * taxaVendaRipple();
             double valorTotal = vendaRipple + taxaRipple;

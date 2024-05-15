@@ -38,13 +38,17 @@ public interface Tarifacao {
         return precoAtual * (1 + variacao);
     }
     default void setCotacao(int index, double cotacao) {
-        cotacoes[index] = cotacao;
+        if (index >= 0 && index < cotacoes.length) {
+            cotacoes[index] = cotacao;
+        }
     }
     default double getCotacao(int index) {
-        return cotacoes[index];
-    }
+        if (index >= 0 && index < cotacoes.length) {
+            return cotacoes[index];
+        }
+        return 0.0;
     
-    
+    } 
 }
 
 

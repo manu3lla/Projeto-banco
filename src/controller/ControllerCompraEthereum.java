@@ -37,8 +37,7 @@ public class ControllerCompraEthereum implements Tarifacao {
         this.reais = new Reais(0, 0, 0, 0, "Reais");
         this.view = view;
         this.investidor = investidor;
-        this.c1 =c1;
-        
+        this.c1 =investidor.getC1();        
     }
     
 
@@ -56,11 +55,11 @@ public class ControllerCompraEthereum implements Tarifacao {
             double real = res.getDouble("reais");
             double ethereum = res.getDouble("ethereum");
             double qtdEthereum = Double.parseDouble(view.getComprarE().getText());
-            double precoAtualEthereum = 15513.85; 
-            System.out.println(precoAtualEthereum);
+            double precoAtualEthereum = c1.getQtdEt().getValor();
             double compraEt = qtdEthereum * cotacaoMoedas(precoAtualEthereum);
             double taxaEthereum = compraEt * taxaCompraEthereum();
             double valorTotal = compraEt + taxaEthereum;
+            System.out.println(valorTotal);
             
             if (qtdEthereum <= 0) {
                 JOptionPane.showMessageDialog(view, "Número de Ethereums a serem compradas negativo, escreva novamente");
