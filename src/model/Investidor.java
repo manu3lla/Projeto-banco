@@ -26,9 +26,4 @@ public class Investidor extends Usuario {
     public void setC1(Carteira c1) {
         this.c1 = c1;
     }
-    
-    public void FazerCarteira() {
-        c1 = new Carteira();
-        System.out.println("Nova carteira criada para o investidor.");
-    }
 }

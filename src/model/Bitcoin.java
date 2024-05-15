@@ -14,7 +14,7 @@ public class Bitcoin extends Moedas implements Tarifacao {
     public Bitcoin(double valor, double taxavenda, double taxacompra, double cotacao, String nomemoeda) {
         super(317415.56, taxavenda, taxacompra, cotacao, "Bitcoin");
     }
-
+    
     @Override
     public double taxaCompraBitcoin() {
         return Tarifacao.super.taxaCompraBitcoin();

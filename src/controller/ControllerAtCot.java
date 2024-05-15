@@ -36,20 +36,21 @@ public class ControllerAtCot implements Tarifacao {
             UsuarioDAO dao = new UsuarioDAO(conn);
             ResultSet res = dao.consultar(investidor);
             if (res.next()) {
-                // Calcular as cotações uma vez
                 double cotacaobit = cotacaoMoedas(317415.56);
                 double cotacaoet = cotacaoMoedas(15513.85);
                 double cotacaor = cotacaoMoedas(2.32);
+                setCotacao(0, cotacaobit);
+                setCotacao(1, cotacaoet);
+                setCotacao(2, cotacaor);
                 if (view instanceof AtualizaCot) {
-                    ((AtualizaCot) view).getTxtBit().setText(String.valueOf(cotacaobit));
-                    ((AtualizaCot) view).getTxtEt().setText(String.valueOf(cotacaoet));
-                    ((AtualizaCot) view).getTxtRi().setText(String.valueOf(cotacaor));
+                    ((AtualizaCot) view).getTxtBit().setText(String.format("%.2f", cotacaobit));
+                    ((AtualizaCot) view).getTxtEt().setText(String.format("%.2f", cotacaoet));
+                    ((AtualizaCot) view).getTxtRi().setText(String.format("%.2f", cotacaor));
                 } else if (view instanceof MostraCot) {
-                    ((MostraCot) view).getBtVendaBit().setText(String.valueOf(cotacaobit));
-                    ((MostraCot) view).getBtCompraEt().setText(String.valueOf(cotacaoet));
-                    ((MostraCot) view).getBtVendaRi().setText(String.valueOf(cotacaor));
+                    ((MostraCot) view).getBtVendaBit().setText(String.format("%.2f", cotacaobit));
+                    ((MostraCot) view).getBtCompraEt().setText(String.format("%.2f", cotacaoet));
+                    ((MostraCot) view).getBtVendaRi().setText(String.format("%.2f", cotacaor));
                 }
-
                 return true;
             } else {
                 JOptionPane.showMessageDialog(null, "Usuário não encontrado.");

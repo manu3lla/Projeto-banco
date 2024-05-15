@@ -19,6 +19,9 @@ public class ControllerMostraCotacao implements Tarifacao {
     }
 
     public boolean mostraCota() {
-        return controllerAtCot.atualizarCotacao(view);
+        view.getBtVendaBit().setText(String.format("%.2f", getCotacao(0)));
+        view.getBtCompraEt().setText(String.format("%.2f", getCotacao(1)));
+        view.getBtVendaRi().setText(String.format("%.2f", getCotacao(2)));
+        return true;
     }
 }

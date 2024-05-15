@@ -52,38 +52,38 @@ public class UsuarioDAO {
         conn.close();
     }
     public void depositar(Investidor investidor, double valor) throws SQLException{
-        String sql = "update aa set reais = ? where senha = ?";
+        String sql = "UPDATE aa SET reais = ? WHERE senha = ?";
         PreparedStatement statement = conn.prepareStatement(sql);
-        statement.setString(1, String.valueOf(valor));
+        statement.setDouble(1, valor);
         statement.setString(2, investidor.getSenha());
         statement.execute();
         conn.close();
     }
     public void comprarReal(Investidor investidor, double valor) throws SQLException{
-        String sql = "update aa set reais = ? where senha = ?";
+        String sql = "UPDATE aa SET reais = ? WHERE senha = ?";
         PreparedStatement statement = conn.prepareStatement(sql);
-        statement.setString(1, String.valueOf(valor));
+        statement.setDouble(1, valor);
         statement.setString(2, investidor.getSenha());
         statement.execute();
     }
     public void geralBit(Investidor investidor, double valor) throws SQLException{
-        String sql = "update aa set bitcoin = ? where senha = ?";
+        String sql = "UPDATE aa SET bitcoin = ? WHERE senha = ?";
         PreparedStatement statement = conn.prepareStatement(sql);
-        statement.setString(1, String.valueOf(valor));
+        statement.setDouble(1, valor);
         statement.setString(2, investidor.getSenha());
         statement.execute();
     }
     public void geralRipple(Investidor investidor, double valor) throws SQLException{
-        String sql = "update aa set ripple = ? where senha = ?";
+        String sql = "UPDATE aa SET ripple = ? WHERE senha = ?";
         PreparedStatement statement = conn.prepareStatement(sql);
-        statement.setString(1, String.valueOf(valor));
+        statement.setDouble(1, valor);
         statement.setString(2, investidor.getSenha());
         statement.execute();
     }
     public void geralEthereum(Investidor investidor, double valor) throws SQLException{
-        String sql = "update aa set ethereum = ? where senha = ?";
+        String sql = "UPDATE aa SET ethereum = ? WHERE senha = ?";
         PreparedStatement statement = conn.prepareStatement(sql);
-        statement.setString(1, String.valueOf(valor));
+        statement.setDouble(1, valor);
         statement.setString(2, investidor.getSenha());
         statement.execute();
     }
