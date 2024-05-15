@@ -199,6 +199,11 @@ public class Opcoes extends javax.swing.JFrame {
         });
 
         btatualizar.setText("Atualizar cotação");
+        btatualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btatualizarActionPerformed(evt);
+            }
+        });
 
         btsair.setText("Sair");
         btsair.addActionListener(new java.awt.event.ActionListener() {
@@ -308,6 +313,14 @@ public class Opcoes extends javax.swing.JFrame {
     private void btextratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btextratoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btextratoActionPerformed
+
+    private void btatualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btatualizarActionPerformed
+        ControllerSenha controllerSenha = new ControllerSenha();
+        if(controllerSenha.verSenha(investidor)){
+            AtualizaCot a = new AtualizaCot(investidor);
+            a.setVisible(true);
+        }
+    }//GEN-LAST:event_btatualizarActionPerformed
 
     /**
      * @param args the command line arguments

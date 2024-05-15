@@ -31,9 +31,9 @@ public interface Tarifacao {
         return 0.01;
     }
     default double cotacaoMoedas(double precoAtual) {
-        double variacao = precoAtual * 0.05;
-        double variacaoMoedas = variacao * new Random().nextDouble();
-        return variacaoMoedas;
+        Random random = new Random();
+        double variacao = (random.nextDouble() - 0.5) * 0.01;
+        return precoAtual * (1 + variacao);
     }
     
     
