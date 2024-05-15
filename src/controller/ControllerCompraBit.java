@@ -53,7 +53,6 @@ public class ControllerCompraBit implements Tarifacao {
             double qtdBit = Double.parseDouble(view.getQuantidadeB().getText());
             double precoAtualBit = c1.getQtdBit().getValor();
             double compraBitcoin = qtdBit * cotacaoMoedas(precoAtualBit);
-            System.out.println(compraBitcoin);
             double taxaBitcoin = compraBitcoin * taxaCompraBitcoin();
             double valorTotal = compraBitcoin + taxaBitcoin;
             

@@ -87,4 +87,23 @@ public class UsuarioDAO {
         statement.setString(2, investidor.getSenha());
         statement.execute();
     }
+    public void atualizarCotacaoBitcoin(double cotacaoBitcoin) throws SQLException {
+    String sql = "UPDATE cotacoes SET cotacaobit = ?";
+    PreparedStatement statement = conn.prepareStatement(sql);
+    statement.setDouble(1, cotacaoBitcoin);
+    statement.execute();
+}
+    public void atualizarCotacaoEth(double cotacaoEt) throws SQLException {
+    String sql = "UPDATE cotacoes SET cotacaoethereum = ?";
+    PreparedStatement statement = conn.prepareStatement(sql);
+    statement.setDouble(1, cotacaoEt);
+    statement.execute();
+}
+    public void atualizarCotacaoRi(double cotacaoRi) throws SQLException {
+    String sql = "UPDATE cotacoes SET cotacaoripple = ?";
+    PreparedStatement statement = conn.prepareStatement(sql);
+    statement.setDouble(1, cotacaoRi);
+    statement.execute();
+}
+
 }
