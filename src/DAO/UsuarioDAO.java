@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import model.Usuario;
 import java.sql.PreparedStatement;
+import java.sql.Timestamp;
 import model.Investidor;
 
 public class UsuarioDAO {
@@ -105,5 +106,23 @@ public class UsuarioDAO {
     statement.setDouble(1, cotacaoRi);
     statement.execute();
 }
+    public void extratoGeral(Timestamp data, boolean tipo, double valor, double cotacao, String nomeMoeda, double saldoReais, double saldoBitcoin, double saldoEthereum, double saldoRipple, int investidorId) throws SQLException {
+    String sql = "INSERT INTO extrato (data, tipo, valor, cotacao, nome_moeda, real, bitcoin, ethereum, ripple, id_pessoa) "
+               + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    try (PreparedStatement statement = conn.prepareStatement(sql)) {
+        statement.setTimestamp(1, data);
+        statement.setBoolean(2, tipo);
+        statement.setDouble(3, valor);
+        statement.setDouble(4, cotacao);
+        statement.setString(5, nomeMoeda);
+        statement.setDouble(6, saldoReais);
+        statement.setDouble(7, saldoBitcoin);
+        statement.setDouble(8, saldoEthereum);
+        statement.setDouble(9, saldoRipple);
+        statement.setInt(10, investidorId);
+        
+        statement.executeUpdate();
+    }
 
+    }
 }

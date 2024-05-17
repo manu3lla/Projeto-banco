@@ -1,77 +1,69 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model;
 
-import java.util.ArrayList;
-
 /**
- *
- * @author Manuella
+ * Classe base para todas as moedas.
  */
-public class Moedas {
-   private double valor, taxavenda, taxacompra, cotacao;
-   private String nomemoeda;
+public abstract class Moedas {
+    private double valor;
+    private double taxaVenda;
+    private double taxaCompra;
+    private double cotacao;
+    private String nomeMoeda;
 
-    public double getTaxavenda() {
-        return taxavenda;
+    public Moedas(double valor, double taxaVenda, double taxaCompra, double cotacao, String nomeMoeda) {
+        this.valor = valor;
+        this.taxaVenda = taxaVenda;
+        this.taxaCompra = taxaCompra;
+        this.cotacao = cotacao;
+        this.nomeMoeda = nomeMoeda;
     }
 
-    public void setTaxavenda(double taxavenda) {
-        this.taxavenda = taxavenda;
+    public double getValor() {
+        return valor;
     }
 
-    public double getTaxacompra() {
-        return taxacompra;
+    public double getTaxaVenda() {
+        return taxaVenda;
     }
 
-    public void setTaxacompra(double taxacompra) {
-        this.taxacompra = taxacompra;
+    public double getTaxaCompra() {
+        return taxaCompra;
     }
 
     public double getCotacao() {
         return cotacao;
     }
 
-    public void setCotacao(double cotacao) {
-        this.cotacao = cotacao;
+    public String getNomeMoeda() {
+        return nomeMoeda;
     }
-   
-    public double getValor() {
-        return valor;
+
+    public double getQuantidade() {
+        return valor / cotacao;
     }
 
     public void setValor(double valor) {
         this.valor = valor;
     }
 
-    public String getNomemoeda() {
-        return nomemoeda;
+    public void setTaxaVenda(double taxaVenda) {
+        this.taxaVenda = taxaVenda;
     }
 
-    public void setNomemoeda(String nomemoeda) {
-        this.nomemoeda = nomemoeda;
+    public void setTaxaCompra(double taxaCompra) {
+        this.taxaCompra = taxaCompra;
+    }
+
+    public void setCotacao(double cotacao) {
+        this.cotacao = cotacao;
+    }
+
+    public void setNomeMoeda(String nomeMoeda) {
+        this.nomeMoeda = nomeMoeda;
     }
 
     @Override
     public String toString() {
-        return "Moedas{" + "valor=" + valor + ", taxavenda=" + taxavenda + ", taxacompra=" + taxacompra + ", cotacao=" + cotacao + ", nomemoeda=" + nomemoeda + '}';
+        return "Moedas{" + "valor=" + valor + ", taxaVenda=" + taxaVenda + ", taxaCompra=" + taxaCompra + ", cotacao=" + cotacao + ", nomeMoeda=" + nomeMoeda + '}';
     }
-
-    public Moedas(double valor, double taxavenda, double taxacompra, double cotacao, String nomemoeda) {
-        this.valor = valor;
-        this.taxavenda = taxavenda;
-        this.taxacompra = taxacompra;
-        this.cotacao = cotacao;
-        this.nomemoeda = nomemoeda;
-    }
-
-    
-
-    public Moedas() {
-    }
-   
-   
-   
 }

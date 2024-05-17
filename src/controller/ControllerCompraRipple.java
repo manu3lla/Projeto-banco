@@ -5,17 +5,17 @@ import DAO.UsuarioDAO;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import javax.swing.JOptionPane;
 import model.Carteira;
 import model.Investidor;
 import model.Reais;
-import model.Ripple;
 import model.Tarifacao;
 import view.CompraRipple;
 
 /**
- * 
- * @autor Manuella
+ * Controlador para a compra de Ripple
+ * Autor: Manuella
  */
 public class ControllerCompraRipple implements Tarifacao {
     private Reais reais;
@@ -45,7 +45,7 @@ public class ControllerCompraRipple implements Tarifacao {
                 double ripple = res.getDouble("ripple");
                 double qtdR = Double.parseDouble(view.getCompraRi().getText());
                 double precoRipple = c1.getQtdRipple().getValor();
-                double compraRipple = qtdR * cotacaoMoedas(precoRipple);
+                double compraRipple = qtdR * precoRipple;
                 double taxaCompraRi = compraRipple * taxaCompraRipple();
                 double valorTotal = compraRipple + taxaCompraRi;
 
@@ -59,10 +59,15 @@ public class ControllerCompraRipple implements Tarifacao {
                 }
                 double valorFinalRipple = ripple + qtdR;
                 double valorFinalReais = real - valorTotal;
+
+                Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+                boolean tipo = true;
+                dao.extratoGeral(timestamp, tipo, valorTotal, precoRipple, "Ripple", valorFinalReais, valorFinalRipple, c1.getQtdBit().getValor(), c1.getQtdEt().getValor(), 0);
+
                 dao.comprarReal(investidor, valorFinalReais);
                 dao.geralRipple(investidor, valorFinalRipple);
-                JOptionPane.showMessageDialog(view, "Depósito feito!");
-                JOptionPane.showMessageDialog(view, "Saldo atual em reais: " + valorFinalReais + " " + "Saldo atual em Ripples: " + valorFinalRipple);
+                JOptionPane.showMessageDialog(view, "Compra realizada com sucesso!");
+                JOptionPane.showMessageDialog(view, "Saldo atual em reais: " + valorFinalReais + " Saldo atual em Ripples: " + valorFinalRipple);
 
             } else {
                 JOptionPane.showMessageDialog(view, "Erro de conexão.");
