@@ -311,7 +311,11 @@ public class Opcoes extends javax.swing.JFrame {
     }//GEN-LAST:event_btsairActionPerformed
 
     private void btextratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btextratoActionPerformed
-        // TODO add your handling code here:
+        ControllerSenha controllerSenha = new ControllerSenha();
+        if(controllerSenha.verSenha(investidor)){
+            Extrato e = new Extrato(investidor);
+            e.setVisible(true);
+        }
     }//GEN-LAST:event_btextratoActionPerformed
 
     private void btatualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btatualizarActionPerformed

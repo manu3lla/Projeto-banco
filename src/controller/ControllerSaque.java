@@ -14,6 +14,7 @@ import model.Carteira;
 import model.Investidor;
 import model.Reais;
 import view.DepositoReal;
+import java.sql.Timestamp;
 import view.Login;
 import view.Opcoes;
 import view.SaqueReal;
@@ -46,6 +47,9 @@ public class ControllerSaque {
         ResultSet res = dao.consultar(investidor);
         if (res.next()) {
             double real = res.getDouble("reais");
+            double bitcoin = res.getDouble("bitcoin");
+            double ethereum = res.getDouble("ethereum");
+            double ripple = res.getDouble("ripple");
             double saque = Double.parseDouble(view.getTxtSaque().getText());
              if (saque > real) {
                 JOptionPane.showMessageDialog(view, "Saldo insuficiente, tente novamente!");
@@ -53,6 +57,9 @@ public class ControllerSaque {
             }
             double valorFinal = real - saque;
             dao.depositar(investidor, valorFinal);
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            boolean tipo = true;
+            dao.extratoGeral(investidor, timestamp, tipo, saque, 1.0, "Real", valorFinal, bitcoin, ethereum, ripple, 0);
             JOptionPane.showMessageDialog(view, "Saque feito!" + "Saldo atual: " + valorFinal);
             view.dispose();
             Opcoes opcoes = new Opcoes(investidor);

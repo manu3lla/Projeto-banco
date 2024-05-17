@@ -42,10 +42,12 @@ public class ControllerCompraRipple implements Tarifacao {
             ResultSet res = dao.consultar(investidor);
             if (res.next()) {
                 double real = res.getDouble("reais");
+                double bitcoin = res.getDouble("bitcoin");
+                double ethereum = res.getDouble("ethereum");
                 double ripple = res.getDouble("ripple");
                 double qtdR = Double.parseDouble(view.getCompraRi().getText());
                 double precoRipple = c1.getQtdRipple().getValor();
-                double compraRipple = qtdR * precoRipple;
+                double compraRipple = (qtdR*precoRipple) * cotacaoMoedas(precoRipple);
                 double taxaCompraRi = compraRipple * taxaCompraRipple();
                 double valorTotal = compraRipple + taxaCompraRi;
 
@@ -62,7 +64,7 @@ public class ControllerCompraRipple implements Tarifacao {
 
                 Timestamp timestamp = new Timestamp(System.currentTimeMillis());
                 boolean tipo = true;
-                dao.extratoGeral(timestamp, tipo, valorTotal, precoRipple, "Ripple", valorFinalReais, valorFinalRipple, c1.getQtdBit().getValor(), c1.getQtdEt().getValor(), 0);
+                dao.extratoGeral(investidor, timestamp, tipo, valorTotal, cotacaoMoedas(precoRipple), "Ripple    taxa: 0.01", valorFinalReais, bitcoin, ethereum, valorFinalRipple, 0);
 
                 dao.comprarReal(investidor, valorFinalReais);
                 dao.geralRipple(investidor, valorFinalRipple);

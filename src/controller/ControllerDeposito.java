@@ -39,6 +39,9 @@ public class ControllerDeposito {
             ResultSet res = dao.consultar(investidor);
             if (res.next()) {
                 double real = res.getDouble("reais");
+                double bitcoin = res.getDouble("bitcoin");
+                double ethereum = res.getDouble("ethereum");
+                double ripple = res.getDouble("ripple");
                 double deposito = Double.parseDouble(view.getTxtDeposito().getText());
                 if (deposito <= 0) {
                     JOptionPane.showMessageDialog(view, "Valor de depósito negativo, deposite um valor positivo");
@@ -47,7 +50,7 @@ public class ControllerDeposito {
                 double valorFinal = deposito + real;
                 Timestamp timestamp = new Timestamp(System.currentTimeMillis());
                 boolean tipo = true;
-                dao.extratoGeral(timestamp, tipo, deposito, 1.0, "Real", valorFinal, 0.0, 0.0, 0.0, 0);
+                dao.extratoGeral(investidor, timestamp, tipo, deposito, 1.0, "Real", valorFinal, bitcoin, ethereum, ripple, 0);
                 dao.depositar(investidor, valorFinal);
                 JOptionPane.showMessageDialog(view, "Depósito realizado com sucesso! Saldo atual: " + valorFinal);
                 view.dispose();

@@ -9,6 +9,7 @@ import DAO.UsuarioDAO;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import javax.swing.JOptionPane;
 import model.Carteira;
 import model.Investidor;
@@ -53,13 +54,15 @@ public class ControllerVendaBit implements Tarifacao{
         if (res.next()) {
             double real = res.getDouble("reais");
             double bitcoin = res.getDouble("bitcoin");
+            double ethereum = res.getDouble("ethereum");
+            double ripple = res.getDouble("ripple");
             double qtdBit = Double.parseDouble(view.getTxtBit().getText());
             if (qtdBit > bitcoin ) {
                 JOptionPane.showMessageDialog(view, "Saldo insuficiente, tente novamente!");
                 return;
             }
             double precoAtualBit = c1.getQtdBit().getValor();
-            double compraBitcoin = qtdBit * cotacaoMoedas(precoAtualBit);
+            double compraBitcoin = (qtdBit*precoAtualBit) * cotacaoMoedas(precoAtualBit);
             System.out.println(compraBitcoin);
             double taxaBitcoin = compraBitcoin * taxaVendaBitcoin();
             double valorTotal = compraBitcoin + taxaBitcoin;
@@ -76,6 +79,9 @@ public class ControllerVendaBit implements Tarifacao{
             double valorFinalReais = real + valorTotal;
             dao.comprarReal(investidor, valorFinalReais);
             dao.geralBit(investidor, valorFinalBitcoin);
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            boolean tipo = true;
+            dao.extratoGeral(investidor, timestamp, tipo, valorTotal, cotacaoMoedas(precoAtualBit), "Bitcoin    taxa: 0.03", valorFinalReais, valorFinalBitcoin, ethereum, ripple, 0);
             JOptionPane.showMessageDialog(view, "Depósito feito!");
             JOptionPane.showMessageDialog(view, "Saldo atual em reais: " + valorFinalReais 
                     + " " + "Saldo atual em bitcoins: " + valorFinalBitcoin);

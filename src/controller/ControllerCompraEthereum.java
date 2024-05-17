@@ -41,10 +41,12 @@ public class ControllerCompraEthereum implements Tarifacao {
             ResultSet res = dao.consultar(investidor);
             if (res.next()) {
                 double real = res.getDouble("reais");
+                double bitcoin = res.getDouble("bitcoin");
                 double ethereum = res.getDouble("ethereum");
+                double ripple = res.getDouble("ripple");
                 double qtdEthereum = Double.parseDouble(view.getComprarE().getText());
-                double precoAtualEthereum = c1.getQtdEt().getCotacao();
-                double compraEt = qtdEthereum * cotacaoMoedas(precoAtualEthereum);
+                double precoAtualEthereum = c1.getQtdEt().getValor();
+                double compraEt = (qtdEthereum*precoAtualEthereum) * cotacaoMoedas(precoAtualEthereum);
                 double taxaEthereum = compraEt * taxaCompraEthereum();
                 double valorTotal = compraEt + taxaEthereum;
                 System.out.println(valorTotal);
@@ -61,7 +63,7 @@ public class ControllerCompraEthereum implements Tarifacao {
                 double valorFinalReais = real - valorTotal;
                 Timestamp timestamp = new Timestamp(System.currentTimeMillis());
                 boolean tipo = true;
-                dao.extratoGeral(timestamp, tipo, valorTotal, precoAtualEthereum, "Ethereum", valorFinalReais, c1.getQtdBit().getQuantidade(), c1.getQtdEt().getQuantidade(), c1.getQtdRipple().getQuantidade(), 0);
+                dao.extratoGeral(investidor, timestamp, tipo, valorTotal, cotacaoMoedas(precoAtualEthereum), "Ethereum    taxa: 0.01", valorFinalReais, bitcoin, valorFinalEthereum, ripple, 0);
                 dao.comprarReal(investidor, valorFinalReais);
                 dao.geralEthereum(investidor, valorFinalEthereum);
                 JOptionPane.showMessageDialog(view, "Compra realizada com sucesso!");

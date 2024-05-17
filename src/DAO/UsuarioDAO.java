@@ -106,23 +106,40 @@ public class UsuarioDAO {
     statement.setDouble(1, cotacaoRi);
     statement.execute();
 }
-    public void extratoGeral(Timestamp data, boolean tipo, double valor, double cotacao, String nomeMoeda, double saldoReais, double saldoBitcoin, double saldoEthereum, double saldoRipple, int investidorId) throws SQLException {
-    String sql = "INSERT INTO extrato (data, tipo, valor, cotacao, nome_moeda, real, bitcoin, ethereum, ripple, id_pessoa) "
-               + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    try (PreparedStatement statement = conn.prepareStatement(sql)) {
-        statement.setTimestamp(1, data);
-        statement.setBoolean(2, tipo);
-        statement.setDouble(3, valor);
-        statement.setDouble(4, cotacao);
-        statement.setString(5, nomeMoeda);
-        statement.setDouble(6, saldoReais);
-        statement.setDouble(7, saldoBitcoin);
-        statement.setDouble(8, saldoEthereum);
-        statement.setDouble(9, saldoRipple);
-        statement.setInt(10, investidorId);
-        
-        statement.executeUpdate();
+    public void extratoGeral(Investidor investidor, Timestamp data, boolean tipo, double valor, double cotacao, String nomeMoeda, double saldoReais, double saldoBitcoin, double saldoEthereum, double saldoRipple, int investidorId) throws SQLException {
+    String checkSql = "SELECT id FROM investidor WHERE id = ?";
+    try (PreparedStatement checkStatement = conn.prepareStatement(checkSql)) {
+        checkStatement.setInt(1, investidorId);
+        ResultSet resultado = checkStatement.executeQuery();
+        if (!resultado.next()) {
+            return;
+        }
     }
 
+    String insertSql = "INSERT INTO extrato (data, tipo, valor, cotacao, nome_moeda, real, bitcoin, ethereum, ripple, id_pessoa) "
+               + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    try (PreparedStatement insertStatement = conn.prepareStatement(insertSql)) {
+        insertStatement.setTimestamp(1, data);
+        insertStatement.setBoolean(2, tipo);
+        insertStatement.setDouble(3, valor);
+        insertStatement.setDouble(4, cotacao);
+        insertStatement.setString(5, nomeMoeda);
+        insertStatement.setDouble(6, saldoReais);
+        insertStatement.setDouble(7, saldoBitcoin);
+        insertStatement.setDouble(8, saldoEthereum);
+        insertStatement.setDouble(9, saldoRipple);
+        insertStatement.setInt(10, investidorId);
+
+        insertStatement.executeUpdate();
     }
+}
+    public ResultSet obterExtrato(Investidor investidor, int Id) throws SQLException {
+        String sql = "SELECT * FROM extrato WHERE id_pessoa = ?";
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setInt(1, Id);
+        statement.execute();
+        ResultSet res = statement.getResultSet();
+        return res;
+    }
+
 }

@@ -9,6 +9,7 @@ import DAO.UsuarioDAO;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import javax.swing.JOptionPane;
 import model.Carteira;
 import model.Investidor;
@@ -50,6 +51,8 @@ public class ControllerVendaRipple implements Tarifacao {
         ResultSet res = dao.consultar(investidor);
         if (res.next()) {
             double real = res.getDouble("reais");
+            double bitcoin = res.getDouble("bitcoin");
+            double ethereum = res.getDouble("ethereum");
             double ripple = res.getDouble("ripple");
             double qtdRi = Double.parseDouble(view.getTxtRi().getText());
             if (qtdRi > ripple ) {
@@ -57,7 +60,7 @@ public class ControllerVendaRipple implements Tarifacao {
                 return;
             }
             double precoRipple = c1.getQtdRipple().getValor();
-            double vendaRipple = qtdRi * cotacaoMoedas(precoRipple);
+            double vendaRipple = (qtdRi*precoRipple) * cotacaoMoedas(precoRipple);
             double taxaRipple = vendaRipple * taxaVendaRipple();
             double valorTotal = vendaRipple + taxaRipple;
             
@@ -73,6 +76,10 @@ public class ControllerVendaRipple implements Tarifacao {
             double valorFinalReais = real + valorTotal;
             dao.comprarReal(investidor, valorFinalReais);
             dao.geralRipple(investidor, valorFinalRipple);
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            boolean tipo = true;
+            dao.extratoGeral(investidor, timestamp, tipo, valorTotal, cotacaoMoedas(precoRipple), "Ripple    taxa: 0.01", valorFinalReais, bitcoin, ethereum, valorFinalRipple, 0);
+
             JOptionPane.showMessageDialog(view, "Depósito feito!");
             JOptionPane.showMessageDialog(view, "Saldo atual em reais: " + valorFinalReais 
                     + " " + "Saldo atual em ripple: " + valorFinalRipple);
