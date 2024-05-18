@@ -46,6 +46,7 @@ public class ControllerSaque {
         UsuarioDAO dao = new UsuarioDAO(conn);
         ResultSet res = dao.consultar(investidor);
         if (res.next()) {
+            int investidorId = res.getInt("id");
             double real = res.getDouble("reais");
             double bitcoin = res.getDouble("bitcoin");
             double ethereum = res.getDouble("ethereum");
@@ -59,7 +60,7 @@ public class ControllerSaque {
             dao.depositar(investidor, valorFinal);
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
             boolean tipo = true;
-            dao.extratoGeral(investidor, timestamp, tipo, saque, 1.0, "Real", valorFinal, bitcoin, ethereum, ripple, 0);
+            dao.extratoGeral(investidor, timestamp, tipo, saque, 1.0, "Real  TX: 1", valorFinal, bitcoin, ethereum, ripple, investidorId);
             JOptionPane.showMessageDialog(view, "Saque feito!" + "Saldo atual: " + valorFinal);
             view.dispose();
             Opcoes opcoes = new Opcoes(investidor);

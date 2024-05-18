@@ -58,7 +58,6 @@ public class UsuarioDAO {
         statement.setDouble(1, valor);
         statement.setString(2, investidor.getSenha());
         statement.execute();
-        conn.close();
     }
     public void comprarReal(Investidor investidor, double valor) throws SQLException{
         String sql = "UPDATE aa SET reais = ? WHERE senha = ?";
@@ -88,26 +87,9 @@ public class UsuarioDAO {
         statement.setString(2, investidor.getSenha());
         statement.execute();
     }
-    public void atualizarCotacaoBitcoin(double cotacaoBitcoin) throws SQLException {
-    String sql = "UPDATE cotacoes SET cotacaobit = ?";
-    PreparedStatement statement = conn.prepareStatement(sql);
-    statement.setDouble(1, cotacaoBitcoin);
-    statement.execute();
-}
-    public void atualizarCotacaoEth(double cotacaoEt) throws SQLException {
-    String sql = "UPDATE cotacoes SET cotacaoethereum = ?";
-    PreparedStatement statement = conn.prepareStatement(sql);
-    statement.setDouble(1, cotacaoEt);
-    statement.execute();
-}
-    public void atualizarCotacaoRi(double cotacaoRi) throws SQLException {
-    String sql = "UPDATE cotacoes SET cotacaoripple = ?";
-    PreparedStatement statement = conn.prepareStatement(sql);
-    statement.setDouble(1, cotacaoRi);
-    statement.execute();
-}
+  
     public void extratoGeral(Investidor investidor, Timestamp data, boolean tipo, double valor, double cotacao, String nomeMoeda, double saldoReais, double saldoBitcoin, double saldoEthereum, double saldoRipple, int investidorId) throws SQLException {
-    String checkSql = "SELECT id FROM investidor WHERE id = ?";
+    String checkSql = "SELECT id FROM extrato WHERE id = ?";
     try (PreparedStatement checkStatement = conn.prepareStatement(checkSql)) {
         checkStatement.setInt(1, investidorId);
         ResultSet resultado = checkStatement.executeQuery();
@@ -141,5 +123,25 @@ public class UsuarioDAO {
         ResultSet res = statement.getResultSet();
         return res;
     }
+    
+    public Usuario consultarNomeCpf(Usuario usuario) throws SQLException {
+    String sql = "SELECT nome, cpf FROM aa WHERE cpf = ? AND senha = ?";
+    PreparedStatement statement = conn.prepareStatement(sql);
+    statement.setString(1, usuario.getCpf());
+    statement.setString(2, usuario.getSenha());
+    ResultSet resultado = statement.executeQuery();
+    if (resultado.next()) {
+        String nome = resultado.getString("nome");
+        String cpf = resultado.getString("cpf");
+        Usuario usuarioConsultado = new Usuario();
+        usuarioConsultado.setNome(nome);
+        usuarioConsultado.setCpf(cpf);
+        
+        return usuarioConsultado;
+    } else {
+        return null;
+    }
+}
 
 }
+

@@ -52,6 +52,7 @@ public class ControllerVendaBit implements Tarifacao{
         UsuarioDAO dao = new UsuarioDAO(conn);
         ResultSet res = dao.consultar(investidor);
         if (res.next()) {
+            int investidorId = res.getInt("id");
             double real = res.getDouble("reais");
             double bitcoin = res.getDouble("bitcoin");
             double ethereum = res.getDouble("ethereum");
@@ -62,17 +63,17 @@ public class ControllerVendaBit implements Tarifacao{
                 return;
             }
             double precoAtualBit = c1.getQtdBit().getValor();
-            double compraBitcoin = (qtdBit*precoAtualBit) * cotacaoMoedas(precoAtualBit);
-            System.out.println(compraBitcoin);
+            double compraBitcoin = qtdBit * cotacaoMoedas(precoAtualBit);
             double taxaBitcoin = compraBitcoin * taxaVendaBitcoin();
+            System.out.println(taxaVendaBitcoin());
             double valorTotal = compraBitcoin + taxaBitcoin;
             
             if (qtdBit <= 0) {
                 JOptionPane.showMessageDialog(view, "Número de bitcoins a serem compradas negativo, escreva novamente");
                 return;
             }
-            if (real <= valorTotal) {
-                JOptionPane.showMessageDialog(view, "Saldo insuficiente para a venda ade Bitcoins");
+            if (bitcoin < qtdBit) {
+                JOptionPane.showMessageDialog(view, "Saldo insuficiente para a venda de Bitcoins");
                 return;
             }
             double valorFinalBitcoin = bitcoin - qtdBit;
@@ -81,8 +82,8 @@ public class ControllerVendaBit implements Tarifacao{
             dao.geralBit(investidor, valorFinalBitcoin);
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
             boolean tipo = true;
-            dao.extratoGeral(investidor, timestamp, tipo, valorTotal, cotacaoMoedas(precoAtualBit), "Bitcoin    taxa: 0.03", valorFinalReais, valorFinalBitcoin, ethereum, ripple, 0);
-            JOptionPane.showMessageDialog(view, "Depósito feito!");
+            dao.extratoGeral(investidor, timestamp, tipo, valorTotal, cotacaoMoedas(precoAtualBit), "Bitcoin  TX: 0.03", valorFinalReais, valorFinalBitcoin, ethereum, ripple, investidorId);
+            JOptionPane.showMessageDialog(view, "Venda de bitcoins feita!");
             JOptionPane.showMessageDialog(view, "Saldo atual em reais: " + valorFinalReais 
                     + " " + "Saldo atual em bitcoins: " + valorFinalBitcoin);
         } else {

@@ -40,13 +40,14 @@ public class ControllerCompraEthereum implements Tarifacao {
             UsuarioDAO dao = new UsuarioDAO(conn);
             ResultSet res = dao.consultar(investidor);
             if (res.next()) {
+                int investidorId = res.getInt("id");
                 double real = res.getDouble("reais");
                 double bitcoin = res.getDouble("bitcoin");
                 double ethereum = res.getDouble("ethereum");
                 double ripple = res.getDouble("ripple");
                 double qtdEthereum = Double.parseDouble(view.getComprarE().getText());
                 double precoAtualEthereum = c1.getQtdEt().getValor();
-                double compraEt = (qtdEthereum*precoAtualEthereum) * cotacaoMoedas(precoAtualEthereum);
+                double compraEt = qtdEthereum * cotacaoMoedas(precoAtualEthereum);
                 double taxaEthereum = compraEt * taxaCompraEthereum();
                 double valorTotal = compraEt + taxaEthereum;
                 System.out.println(valorTotal);
@@ -63,7 +64,7 @@ public class ControllerCompraEthereum implements Tarifacao {
                 double valorFinalReais = real - valorTotal;
                 Timestamp timestamp = new Timestamp(System.currentTimeMillis());
                 boolean tipo = true;
-                dao.extratoGeral(investidor, timestamp, tipo, valorTotal, cotacaoMoedas(precoAtualEthereum), "Ethereum    taxa: 0.01", valorFinalReais, bitcoin, valorFinalEthereum, ripple, 0);
+                dao.extratoGeral(investidor, timestamp, tipo, valorTotal, cotacaoMoedas(precoAtualEthereum), "Ethereum  TX: 0.01", valorFinalReais, bitcoin, valorFinalEthereum, ripple, investidorId);
                 dao.comprarReal(investidor, valorFinalReais);
                 dao.geralEthereum(investidor, valorFinalEthereum);
                 JOptionPane.showMessageDialog(view, "Compra realizada com sucesso!");
@@ -82,7 +83,4 @@ public class ControllerCompraEthereum implements Tarifacao {
         return 0.01;
     }
 
-    public double cotacaoMoedas(double precoAtualEthereum) {
-        return precoAtualEthereum;
-    }
 }

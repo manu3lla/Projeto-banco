@@ -41,13 +41,14 @@ public class ControllerCompraRipple implements Tarifacao {
             UsuarioDAO dao = new UsuarioDAO(conn);
             ResultSet res = dao.consultar(investidor);
             if (res.next()) {
+                int investidorId = res.getInt("id");
                 double real = res.getDouble("reais");
                 double bitcoin = res.getDouble("bitcoin");
                 double ethereum = res.getDouble("ethereum");
                 double ripple = res.getDouble("ripple");
                 double qtdR = Double.parseDouble(view.getCompraRi().getText());
                 double precoRipple = c1.getQtdRipple().getValor();
-                double compraRipple = (qtdR*precoRipple) * cotacaoMoedas(precoRipple);
+                double compraRipple = qtdR* cotacaoMoedas(precoRipple);
                 double taxaCompraRi = compraRipple * taxaCompraRipple();
                 double valorTotal = compraRipple + taxaCompraRi;
 
@@ -64,8 +65,7 @@ public class ControllerCompraRipple implements Tarifacao {
 
                 Timestamp timestamp = new Timestamp(System.currentTimeMillis());
                 boolean tipo = true;
-                dao.extratoGeral(investidor, timestamp, tipo, valorTotal, cotacaoMoedas(precoRipple), "Ripple    taxa: 0.01", valorFinalReais, bitcoin, ethereum, valorFinalRipple, 0);
-
+                dao.extratoGeral(investidor, timestamp, tipo, valorTotal, cotacaoMoedas(precoRipple), "Ripple    taxa: 0.01", valorFinalReais, bitcoin, ethereum, valorFinalRipple, investidorId);
                 dao.comprarReal(investidor, valorFinalReais);
                 dao.geralRipple(investidor, valorFinalRipple);
                 JOptionPane.showMessageDialog(view, "Compra realizada com sucesso!");

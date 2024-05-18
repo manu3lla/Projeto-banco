@@ -50,6 +50,7 @@ public class ControllerVendaRipple implements Tarifacao {
         UsuarioDAO dao = new UsuarioDAO(conn);
         ResultSet res = dao.consultar(investidor);
         if (res.next()) {
+            int investidorId = res.getInt("id");
             double real = res.getDouble("reais");
             double bitcoin = res.getDouble("bitcoin");
             double ethereum = res.getDouble("ethereum");
@@ -60,7 +61,7 @@ public class ControllerVendaRipple implements Tarifacao {
                 return;
             }
             double precoRipple = c1.getQtdRipple().getValor();
-            double vendaRipple = (qtdRi*precoRipple) * cotacaoMoedas(precoRipple);
+            double vendaRipple = qtdRi * cotacaoMoedas(precoRipple);
             double taxaRipple = vendaRipple * taxaVendaRipple();
             double valorTotal = vendaRipple + taxaRipple;
             
@@ -68,7 +69,7 @@ public class ControllerVendaRipple implements Tarifacao {
                 JOptionPane.showMessageDialog(view, "Número de ripples a serem compradas negativo, escreva novamente");
                 return;
             }
-            if (real <= valorTotal) {
+            if (ripple < qtdRi) {
                 JOptionPane.showMessageDialog(view, "Saldo insuficiente para a venda de Ripples");
                 return;
             }
@@ -78,9 +79,8 @@ public class ControllerVendaRipple implements Tarifacao {
             dao.geralRipple(investidor, valorFinalRipple);
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
             boolean tipo = true;
-            dao.extratoGeral(investidor, timestamp, tipo, valorTotal, cotacaoMoedas(precoRipple), "Ripple    taxa: 0.01", valorFinalReais, bitcoin, ethereum, valorFinalRipple, 0);
-
-            JOptionPane.showMessageDialog(view, "Depósito feito!");
+            dao.extratoGeral(investidor, timestamp, tipo, valorTotal, cotacaoMoedas(precoRipple), "Ripple  TX: 0.01", valorFinalReais, bitcoin, ethereum, valorFinalRipple, investidorId);
+            JOptionPane.showMessageDialog(view, "Venda de ripples feita!");
             JOptionPane.showMessageDialog(view, "Saldo atual em reais: " + valorFinalReais 
                     + " " + "Saldo atual em ripple: " + valorFinalRipple);
         } else {

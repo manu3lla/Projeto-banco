@@ -38,6 +38,7 @@ public class ControllerDeposito {
             UsuarioDAO dao = new UsuarioDAO(conn);
             ResultSet res = dao.consultar(investidor);
             if (res.next()) {
+                int investidorId = res.getInt("id");
                 double real = res.getDouble("reais");
                 double bitcoin = res.getDouble("bitcoin");
                 double ethereum = res.getDouble("ethereum");
@@ -50,7 +51,7 @@ public class ControllerDeposito {
                 double valorFinal = deposito + real;
                 Timestamp timestamp = new Timestamp(System.currentTimeMillis());
                 boolean tipo = true;
-                dao.extratoGeral(investidor, timestamp, tipo, deposito, 1.0, "Real", valorFinal, bitcoin, ethereum, ripple, 0);
+                dao.extratoGeral(investidor, timestamp, tipo, deposito, 1.0, "Real  TX: 1", valorFinal, bitcoin, ethereum, ripple, investidorId);
                 dao.depositar(investidor, valorFinal);
                 JOptionPane.showMessageDialog(view, "Depósito realizado com sucesso! Saldo atual: " + valorFinal);
                 view.dispose();

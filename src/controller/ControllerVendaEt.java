@@ -53,6 +53,7 @@ public class ControllerVendaEt implements Tarifacao {
         UsuarioDAO dao = new UsuarioDAO(conn);
         ResultSet res = dao.consultar(investidor);
         if (res.next()) {
+            int investidorId = res.getInt("id");
             double real = res.getDouble("reais");
             double bitcoin = res.getDouble("bitcoin");
             double ethereum = res.getDouble("ethereum");
@@ -63,7 +64,7 @@ public class ControllerVendaEt implements Tarifacao {
                 return;
             }
             double precoAtualEthereum = c1.getQtdEt().getValor();
-            double compraEt = (qtdEt*precoAtualEthereum) * cotacaoMoedas(precoAtualEthereum);
+            double compraEt = qtdEt * cotacaoMoedas(precoAtualEthereum);
             double taxaEt = compraEt * taxaVendaEthereum();
             double valorTotal = compraEt + taxaEt;
 
@@ -71,7 +72,7 @@ public class ControllerVendaEt implements Tarifacao {
                 JOptionPane.showMessageDialog(view, "Número de ethereum a serem compradas negativo, escreva novamente");
                 return;
             }
-            if (real <= valorTotal) {
+            if (ethereum < qtdEt) {
                 JOptionPane.showMessageDialog(view, "Saldo insuficiente para a venda de Ethereums");
                 return;
             }
@@ -81,8 +82,8 @@ public class ControllerVendaEt implements Tarifacao {
             dao.geralEthereum(investidor, valorFinalEt);
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
             boolean tipo = true;
-            dao.extratoGeral(investidor, timestamp, tipo, valorTotal, cotacaoMoedas(precoAtualEthereum), "Ethereum   taxa: 0.02", valorFinalReais, bitcoin, valorFinalEt, ripple, 0);
-            JOptionPane.showMessageDialog(view, "Depósito feito!");
+            dao.extratoGeral(investidor, timestamp, tipo, valorTotal, cotacaoMoedas(precoAtualEthereum), "Ethereum  TX: 0.02", valorFinalReais, bitcoin, valorFinalEt, ripple, investidorId);
+            JOptionPane.showMessageDialog(view, "Venda de ethereums feita!");
             JOptionPane.showMessageDialog(view, "Saldo atual em reais: " + valorFinalReais 
                     + " " + "Saldo atual em ethereum: " + valorFinalEt);
         } else {
