@@ -64,7 +64,7 @@ public class ControllerExtrato {
                 double saldoRipple = res.getDouble("ripple");
                 extratoTexto.append("Data: ").append(data).append(" ");
                 extratoTexto.append("Moeda: ").append(nomeMoeda).append(" ");
-                extratoTexto.append("CT: ").append(df.format(cotacao)).append(" ");
+                extratoTexto.append("CT: ").append(df.format(cotacao)).append(", ");
                 extratoTexto.append(tipo ? "- " : "+ ");
                 extratoTexto.append(df.format(valor)).append(" ");
                 extratoTexto.append("REAL: ").append(df.format(saldoReais)).append(" ");

@@ -194,14 +194,17 @@ public class MostraCot extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 84, Short.MAX_VALUE)
+                .addComponent(btComprar)
+                .addGap(18, 18, 18)
+                .addComponent(btVender)
+                .addGap(149, 149, 149))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(142, 142, 142)
                         .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(122, 122, 122)
-                        .addComponent(btMostrar))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,14 +219,11 @@ public class MostraCot extends javax.swing.JFrame {
                                 .addGap(27, 27, 27)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(btVendaRi, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
-                                    .addComponent(b))))))
+                                    .addComponent(b)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(136, 136, 136)
+                        .addComponent(btMostrar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 84, Short.MAX_VALUE)
-                .addComponent(btComprar)
-                .addGap(50, 50, 50)
-                .addComponent(btVender)
-                .addGap(117, 117, 117))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -268,8 +268,8 @@ public class MostraCot extends javax.swing.JFrame {
     }//GEN-LAST:event_btCompraEtActionPerformed
 
     private void btVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVenderActionPerformed
-        Compra compra = new Compra(investidor);
-        compra.setVisible(true);
+        Venda venda = new Venda(investidor);
+        venda.setVisible(true);
     }//GEN-LAST:event_btVenderActionPerformed
 
 //    /**
