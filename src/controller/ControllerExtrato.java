@@ -62,14 +62,14 @@ public class ControllerExtrato {
                 double saldoBitcoin = res.getDouble("bitcoin");
                 double saldoEthereum = res.getDouble("ethereum");
                 double saldoRipple = res.getDouble("ripple");
-                extratoTexto.append("Data: ").append(data).append(", ");
-                extratoTexto.append("Moeda: ").append(nomeMoeda).append(", ");
-                extratoTexto.append("CT: ").append(df.format(cotacao)).append(", ");
-                extratoTexto.append(tipo ? "Compra: " : "Venda: ");
-                extratoTexto.append(df.format(valor)).append(", ");
-                extratoTexto.append("REAL: ").append(df.format(saldoReais)).append(", ");
-                extratoTexto.append("BTC: ").append(df.format(saldoBitcoin)).append(", ");
-                extratoTexto.append("ETH: ").append(df.format(saldoEthereum)).append(", ");
+                extratoTexto.append("Data: ").append(data).append(" ");
+                extratoTexto.append("Moeda: ").append(nomeMoeda).append(" ");
+                extratoTexto.append("CT: ").append(df.format(cotacao)).append(" ");
+                extratoTexto.append(tipo ? "- " : "+ ");
+                extratoTexto.append(df.format(valor)).append(" ");
+                extratoTexto.append("REAL: ").append(df.format(saldoReais)).append(" ");
+                extratoTexto.append("BTC: ").append(df.format(saldoBitcoin)).append(" ");
+                extratoTexto.append("ETH: ").append(df.format(saldoEthereum)).append(" ");
                 extratoTexto.append("XRP: ").append(df.format(saldoRipple)).append("\n\n");
             }
 

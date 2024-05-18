@@ -160,7 +160,7 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setText("Não se lembra da senha? Clique aqui para mudá-la");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel2.setText("Bem vindo!");
+        jLabel2.setText("Bem vindo/a!");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -187,7 +187,7 @@ public class Login extends javax.swing.JFrame {
                         .addGap(80, 80, 80)
                         .addComponent(btAtu))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(141, 141, 141)
+                        .addGap(113, 113, 113)
                         .addComponent(jLabel2)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );

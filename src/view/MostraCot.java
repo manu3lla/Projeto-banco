@@ -264,12 +264,12 @@ public class MostraCot extends javax.swing.JFrame {
     }//GEN-LAST:event_btComprarActionPerformed
 
     private void btCompraEtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCompraEtActionPerformed
-        Venda venda = new Venda(investidor);
-        venda.setVisible(true);
+        
     }//GEN-LAST:event_btCompraEtActionPerformed
 
     private void btVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVenderActionPerformed
-        // TODO add your handling code here:
+        Compra compra = new Compra(investidor);
+        compra.setVisible(true);
     }//GEN-LAST:event_btVenderActionPerformed
 
 //    /**
