@@ -54,6 +54,7 @@ public class ControllerVendaRipple implements Tarifacao {
             double real = res.getDouble("reais");
             double bitcoin = res.getDouble("bitcoin");
             double ethereum = res.getDouble("ethereum");
+            double cotacao = getCotacao(2);
             double ripple = res.getDouble("ripple");
             double qtdRi = Double.parseDouble(view.getTxtRi().getText());
             if (qtdRi > ripple ) {
@@ -78,8 +79,8 @@ public class ControllerVendaRipple implements Tarifacao {
             dao.comprarReal(investidor, valorFinalReais);
             dao.geralRipple(investidor, valorFinalRipple);
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-            boolean tipo = true;
-            dao.extratoGeral(investidor, timestamp, tipo, valorTotal, cotacaoMoedas(precoRipple), "Ripple  TX: 0.01", valorFinalReais, bitcoin, ethereum, valorFinalRipple, investidorId);
+            boolean tipo = false;
+            dao.extratoGeral(investidor, timestamp, tipo, valorTotal, cotacao, "Ripple  TX: 0.01", valorFinalReais, bitcoin, ethereum, valorFinalRipple, investidorId);
             JOptionPane.showMessageDialog(view, "Venda de ripples feita!");
             JOptionPane.showMessageDialog(view, "Saldo atual em reais: " + valorFinalReais 
                     + " " + "Saldo atual em ripple: " + valorFinalRipple);

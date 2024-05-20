@@ -56,6 +56,7 @@ public class ControllerVendaBit implements Tarifacao{
             double real = res.getDouble("reais");
             double bitcoin = res.getDouble("bitcoin");
             double ethereum = res.getDouble("ethereum");
+            double cotacao = getCotacao(0);
             double ripple = res.getDouble("ripple");
             double qtdBit = Double.parseDouble(view.getTxtBit().getText());
             if (qtdBit > bitcoin ) {
@@ -81,8 +82,8 @@ public class ControllerVendaBit implements Tarifacao{
             dao.comprarReal(investidor, valorFinalReais);
             dao.geralBit(investidor, valorFinalBitcoin);
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-            boolean tipo = true;
-            dao.extratoGeral(investidor, timestamp, tipo, valorTotal, cotacaoMoedas(precoAtualBit), "Bitcoin  TX: 0.03", valorFinalReais, valorFinalBitcoin, ethereum, ripple, investidorId);
+            boolean tipo = false;
+            dao.extratoGeral(investidor, timestamp, tipo, valorTotal, cotacao, "Bitcoin  TX: 0.03", valorFinalReais, valorFinalBitcoin, ethereum, ripple, investidorId);
             JOptionPane.showMessageDialog(view, "Venda de bitcoins feita!");
             JOptionPane.showMessageDialog(view, "Saldo atual em reais: " + valorFinalReais 
                     + " " + "Saldo atual em bitcoins: " + valorFinalBitcoin);

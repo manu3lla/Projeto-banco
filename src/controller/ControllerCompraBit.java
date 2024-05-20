@@ -43,6 +43,7 @@ public class ControllerCompraBit implements Tarifacao {
                 int investidorId = res.getInt("id");
                 double real = res.getDouble("reais");
                 double bitcoin = res.getDouble("bitcoin");
+                double cotacao = getCotacao(0);
                 double ethereum = res.getDouble("ethereum");
                 double ripple = res.getDouble("ripple");
                 double qtdBit = Double.parseDouble(view.getQuantidadeB().getText());
@@ -63,7 +64,7 @@ public class ControllerCompraBit implements Tarifacao {
                 double valorFinalReais = real - valorTotal;
                 Timestamp timestamp = new Timestamp(System.currentTimeMillis());
                 boolean tipo = true;
-                dao.extratoGeral(investidor, timestamp, tipo, valorTotal, cotacaoMoedas(precoAtualBit), "Bitcoin TX: 0.02", valorFinalReais, valorFinalBitcoin, ethereum, ripple, investidorId);
+                dao.extratoGeral(investidor, timestamp, tipo, valorTotal, cotacao, "Bitcoin TX: 0.02", valorFinalReais, valorFinalBitcoin, ethereum, ripple, investidorId);
                 dao.comprarReal(investidor, valorFinalReais);
                 dao.geralBit(investidor, valorFinalBitcoin);
                 JOptionPane.showMessageDialog(view, "Depósito feito!");

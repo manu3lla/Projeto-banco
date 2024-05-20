@@ -44,6 +44,7 @@ public class ControllerCompraEthereum implements Tarifacao {
                 double real = res.getDouble("reais");
                 double bitcoin = res.getDouble("bitcoin");
                 double ethereum = res.getDouble("ethereum");
+                double cotacao = getCotacao(1);
                 double ripple = res.getDouble("ripple");
                 double qtdEthereum = Double.parseDouble(view.getComprarE().getText());
                 double precoAtualEthereum = c1.getQtdEt().getValor();
@@ -64,7 +65,7 @@ public class ControllerCompraEthereum implements Tarifacao {
                 double valorFinalReais = real - valorTotal;
                 Timestamp timestamp = new Timestamp(System.currentTimeMillis());
                 boolean tipo = true;
-                dao.extratoGeral(investidor, timestamp, tipo, valorTotal, cotacaoMoedas(precoAtualEthereum), "Ethereum  TX: 0.01", valorFinalReais, bitcoin, valorFinalEthereum, ripple, investidorId);
+                dao.extratoGeral(investidor, timestamp, tipo, valorTotal, cotacao, "Ethereum  TX: 0.01", valorFinalReais, bitcoin, valorFinalEthereum, ripple, investidorId);
                 dao.comprarReal(investidor, valorFinalReais);
                 dao.geralEthereum(investidor, valorFinalEthereum);
                 JOptionPane.showMessageDialog(view, "Compra realizada com sucesso!");
