@@ -40,14 +40,18 @@ public class ControllerCompraEthereum implements Tarifacao {
             UsuarioDAO dao = new UsuarioDAO(conn);
             ResultSet res = dao.consultar(investidor);
             if (res.next()) {
+                 //pega informações no banco, principalmente para serem utilizadas no extrato
                 int investidorId = res.getInt("id");
                 double real = res.getDouble("reais");
                 double bitcoin = res.getDouble("bitcoin");
                 double ethereum = res.getDouble("ethereum");
                 double cotacao = getCotacao(1);
-                double ripple = res.getDouble("ripple");
+                double ripple = res.getDouble("ripple");   
+                //pega quantidade de ethereums que o usuario quer comprar na view
                 double qtdEthereum = Double.parseDouble(view.getComprarE().getText());
+                //pega preço fixo da moeda na carteira
                 double precoAtualEthereum = c1.getQtdEt().getValor();
+                //contas para realizar a compra de ethereum, aplicando cotação e taxa respectivas
                 double compraEt = qtdEthereum * cotacaoMoedas(precoAtualEthereum);
                 double taxaEthereum = compraEt * taxaCompraEthereum();
                 double valorTotal = compraEt + taxaEthereum;
@@ -61,10 +65,12 @@ public class ControllerCompraEthereum implements Tarifacao {
                     JOptionPane.showMessageDialog(view, "Saldo insuficiente em reais para a compra de Ethereums");
                     return;
                 }
+                //declara valor de reais e ethereums a serem colocadas no banco
                 double valorFinalEthereum = ethereum + qtdEthereum;
                 double valorFinalReais = real - valorTotal;
                 Timestamp timestamp = new Timestamp(System.currentTimeMillis());
                 boolean tipo = true;
+                // manda informações para o banco (extrato, reais e ethereums após a transação)
                 dao.extratoGeral(investidor, timestamp, tipo, valorTotal, cotacao, "Ethereum  TX: 0.01", valorFinalReais, bitcoin, valorFinalEthereum, ripple, investidorId);
                 dao.comprarReal(investidor, valorFinalReais);
                 dao.geralEthereum(investidor, valorFinalEthereum);
@@ -78,7 +84,7 @@ public class ControllerCompraEthereum implements Tarifacao {
             JOptionPane.showMessageDialog(view, "Erro: " + e.getMessage());
         }
     }
-
+    //pega a taxa de compra da ethereum pela implementação da interface Tarifação
     @Override
     public double taxaCompraEthereum() {
         return 0.01;

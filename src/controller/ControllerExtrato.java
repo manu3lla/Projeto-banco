@@ -39,11 +39,13 @@ public class ControllerExtrato {
         UsuarioDAO usuarioDAO = new UsuarioDAO(conn);
         ResultSet resultado = usuarioDAO.consultar(investidor);
         if (resultado.next()) {
+            //pega id do usuario
             int id = resultado.getInt("id");
             ResultSet res = usuarioDAO.obterExtrato(investidor, id);
             StringBuilder extratoTexto = new StringBuilder();
             DecimalFormat df = new DecimalFormat("#.##");
             while (res.next()) {
+                //pega o usuario especifico dentro da conexão e ve seu nome e cpf
                 Usuario usuarioConsultado = usuarioDAO.consultarNomeCpf(investidor);
                 if (usuarioConsultado != null) {
                     String nome = usuarioConsultado.getNome();
@@ -53,6 +55,7 @@ public class ControllerExtrato {
                 }
                 else{
                     System.out.println("Usuário não encontrado");}
+                //pega informações no banco
                 Timestamp data = res.getTimestamp("data");
                 boolean tipo = res.getBoolean("tipo");
                 double valor = res.getDouble("valor");
@@ -62,6 +65,7 @@ public class ControllerExtrato {
                 double saldoBitcoin = res.getDouble("bitcoin");
                 double saldoEthereum = res.getDouble("ethereum");
                 double saldoRipple = res.getDouble("ripple");
+                //printando informações no extrato
                 extratoTexto.append("Data: ").append(data).append(" ");
                 extratoTexto.append("Moeda: ").append(nomeMoeda).append(" ");
                 extratoTexto.append("CT: ").append(df.format(cotacao)).append(", ");
@@ -72,7 +76,7 @@ public class ControllerExtrato {
                 extratoTexto.append("ETH: ").append(df.format(saldoEthereum)).append(" ");
                 extratoTexto.append("XRP: ").append(df.format(saldoRipple)).append("\n\n");
             }
-
+            //manda para a view do extrato para printar as informações acima
             JTextArea textArea = (JTextArea) ((JViewport) view.getTxtExtrato().getComponent(0)).getView();
             textArea.setText(extratoTexto.toString());
         } else {

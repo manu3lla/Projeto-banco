@@ -21,6 +21,7 @@ public class ControllerLogin {
     }
     
     public boolean loginUsuario(){
+        //pega o usuario no banco, seu nome, cpf e senha
         Usuario usuario = new Usuario(null, view.getTxtCpf().getText(),
                                       view.getTxtSenha().getText());
         Conexao conexao = new Conexao();
@@ -29,6 +30,7 @@ public class ControllerLogin {
             UsuarioDAO dao = new UsuarioDAO(conn);
             ResultSet res = dao.consultar(usuario);
             if(res.next()){
+                //se usuário existir no banco ele deixa entrar no programa
             JOptionPane.showMessageDialog(view,"Login Feito!");
             String nome = res.getString("nome");
             String cpf = res.getString("cpf");

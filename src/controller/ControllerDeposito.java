@@ -34,10 +34,12 @@ public class ControllerDeposito {
     public void depositoReal(Investidor investidor) {
         Conexao conexao = new Conexao();
         try {
+            //estabelece a conexão com o banco
             Connection conn = conexao.getConnection();
             UsuarioDAO dao = new UsuarioDAO(conn);
             ResultSet res = dao.consultar(investidor);
             if (res.next()) {
+                //pega informações no banco, principalmente para serem utilizadas no extrato
                 int investidorId = res.getInt("id");
                 double real = res.getDouble("reais");
                 double bitcoin = res.getDouble("bitcoin");
@@ -48,13 +50,16 @@ public class ControllerDeposito {
                     JOptionPane.showMessageDialog(view, "Valor de depósito negativo, deposite um valor positivo");
                     return;
                 }
+                //conta para realizar deposito
                 double valorFinal = deposito + real;
                 Timestamp timestamp = new Timestamp(System.currentTimeMillis());
                 boolean tipo = true;
+                //manda informações para o banco
                 dao.extratoGeral(investidor, timestamp, tipo, deposito, 1.0, "Real  TX: 1", valorFinal, bitcoin, ethereum, ripple, investidorId);
-                dao.depositar(investidor, valorFinal);
+                dao.depositarSacar(investidor, valorFinal);
                 JOptionPane.showMessageDialog(view, "Depósito realizado com sucesso! Saldo atual: " + valorFinal);
                 view.dispose();
+                //abre o menu novamente
                 Opcoes opcoes = new Opcoes(investidor);
                 opcoes.setVisible(true);
             } else {

@@ -37,17 +37,22 @@ public class ControllerCompraRipple implements Tarifacao {
     public void compraRipple() {
         Conexao conexao = new Conexao();
         try {
+            //estabelecendo a conexão
             Connection conn = conexao.getConnection();
             UsuarioDAO dao = new UsuarioDAO(conn);
             ResultSet res = dao.consultar(investidor);
             if (res.next()) {
+                //pega informações no banco, principalmente para serem utilizadas no extrato
                 int investidorId = res.getInt("id");
                 double real = res.getDouble("reais");
                 double bitcoin = res.getDouble("bitcoin");
                 double ethereum = res.getDouble("ethereum");
                 double ripple = res.getDouble("ripple");
+                //pega quantidade de ripples que o usuario quer comprar na view
                 double qtdR = Double.parseDouble(view.getCompraRi().getText());
+                //pega preço fixo da moeda na carteira
                 double precoRipple = c1.getQtdRipple().getValor();
+                //contas para realizar a compra de ethereum, aplicando cotação e taxa respectivas
                 double cotacao = getCotacao(2);
                 double compraRipple = qtdR* cotacaoMoedas(precoRipple);
                 double taxaCompraRi = compraRipple * taxaCompraRipple();
@@ -61,11 +66,13 @@ public class ControllerCompraRipple implements Tarifacao {
                     JOptionPane.showMessageDialog(view, "Saldo insuficiente em reais para a compra de Ripples");
                     return;
                 }
+                 //declara valor de reais e ripples a serem colocadas no banco
                 double valorFinalRipple = ripple + qtdR;
                 double valorFinalReais = real - valorTotal;
 
                 Timestamp timestamp = new Timestamp(System.currentTimeMillis());
                 boolean tipo = true;
+                // manda informações para o banco (extrato, reais e ripples após a transação)
                 dao.extratoGeral(investidor, timestamp, tipo, valorTotal, cotacao, "Ripple    TX: 0.01", valorFinalReais, bitcoin, ethereum, valorFinalRipple, investidorId);
                 dao.comprarReal(investidor, valorFinalReais);
                 dao.geralRipple(investidor, valorFinalRipple);
@@ -79,7 +86,7 @@ public class ControllerCompraRipple implements Tarifacao {
             JOptionPane.showMessageDialog(view, "Erro: " + e.getMessage());
         }
     }
-
+     //pega a taxa de compra da ripple pela implementação da interface Tarifação
     @Override
     public double taxaCompraRipple() {
         return 0.01;

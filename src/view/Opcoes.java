@@ -9,7 +9,6 @@ import controller.ControllerCompraBit;
 import controller.ControllerDeposito;
 import controller.ControllerSaque;
 import controller.ControllerSenha;
-import controller.ControllerVenda;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;

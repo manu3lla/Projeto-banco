@@ -31,15 +31,19 @@ public class ControllerSenha {
 
     while (!senhaCorreta) {
         try {
+            //controller para verificar se senha e cpf estão corretos antes de entrar em cada
+            //opção do menu
             Connection conn = conexao.getConnection();
             UsuarioDAO dao = new UsuarioDAO(conn);
             ResultSet res = dao.consultar(investidor);
             if (res.next()) {
+                //pega do banco informações (cpf e senha)
                 String cpfJanela = JOptionPane.showInputDialog("Digite seu CPF:");
                 String senhaJanela = JOptionPane.showInputDialog("Digite sua senha:");
                 String cpfBanco = res.getString("cpf");
                 String senhaBanco = res.getString("senha");
                 if (cpfJanela.equals(cpfBanco) && senhaJanela.equals(senhaBanco)) {
+                    //se estiver correta deixa usuário entrar na opção que escolheu
                     senhaCorreta = true;
                 } else {
                     JOptionPane.showMessageDialog(null, "CPF ou senha incorretos");

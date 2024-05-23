@@ -57,7 +57,7 @@ public class ControllerSaque {
                 return;
             }
             double valorFinal = real - saque;
-            dao.depositar(investidor, valorFinal);
+            dao.depositarSacar(investidor, valorFinal);
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
             boolean tipo = true;
             dao.extratoGeral(investidor, timestamp, tipo, saque, 1.0, "Real  TX: 1", valorFinal, bitcoin, ethereum, ripple, investidorId);

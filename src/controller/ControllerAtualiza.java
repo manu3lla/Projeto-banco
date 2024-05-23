@@ -27,15 +27,14 @@ public class ControllerAtualiza {
         this.view = view;
         this.investidor = investidor;
     }
-
-    
-    
     public boolean atualizarUsuario(Investidor investidor) {
         try {
+            //conectando com o banco
             Conexao conexao = new Conexao();
             Connection conn = conexao.getConnection();
             UsuarioDAO dao = new UsuarioDAO(conn);
             ResultSet res = dao.consultarPorCPF(investidor);
+            //ve se o nome e cpf correspondem com o banco, caso sim, deixa usuário atualizar senha
             if (res.next() && investidor.getCpf().equals(res.getString("cpf"))
                     && investidor.getNome().equals(res.getString("nome"))) {
                 dao.atualizar(investidor);
@@ -45,6 +44,7 @@ public class ControllerAtualiza {
                 JOptionPane.showMessageDialog(view, "Atualização de senha não foi efetuada.");
                 return false;
             }
+            //erro de conexão
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(view, "Erro de conexão");
             return false;

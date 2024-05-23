@@ -52,21 +52,24 @@ public class ControllerVendaBit implements Tarifacao{
         UsuarioDAO dao = new UsuarioDAO(conn);
         ResultSet res = dao.consultar(investidor);
         if (res.next()) {
+            //pega informações no banco, principalmente para serem utilizadas no extrato
             int investidorId = res.getInt("id");
             double real = res.getDouble("reais");
             double bitcoin = res.getDouble("bitcoin");
             double ethereum = res.getDouble("ethereum");
             double cotacao = getCotacao(0);
             double ripple = res.getDouble("ripple");
+            //pega quantidade de bitcoins que o usuario quer comprar na view
             double qtdBit = Double.parseDouble(view.getTxtBit().getText());
             if (qtdBit > bitcoin ) {
                 JOptionPane.showMessageDialog(view, "Saldo insuficiente, tente novamente!");
                 return;
             }
+             //pega preço fixo da moeda na carteira
             double precoAtualBit = c1.getQtdBit().getValor();
+            //contas para realizar a compra de bitcoin, aplicando cotação e taxa respectivas
             double compraBitcoin = qtdBit * cotacaoMoedas(precoAtualBit);
             double taxaBitcoin = compraBitcoin * taxaVendaBitcoin();
-            System.out.println(taxaVendaBitcoin());
             double valorTotal = compraBitcoin + taxaBitcoin;
             
             if (qtdBit <= 0) {
@@ -77,12 +80,15 @@ public class ControllerVendaBit implements Tarifacao{
                 JOptionPane.showMessageDialog(view, "Saldo insuficiente para a venda de Bitcoins");
                 return;
             }
+            //declara valor de reais e bitcoins a serem colocadas no banco
             double valorFinalBitcoin = bitcoin - qtdBit;
             double valorFinalReais = real + valorTotal;
             dao.comprarReal(investidor, valorFinalReais);
             dao.geralBit(investidor, valorFinalBitcoin);
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            //se tipo for "false" é uma falsa
             boolean tipo = false;
+            // manda informações para o banco (extrato, reais e bitcoins após a transação)
             dao.extratoGeral(investidor, timestamp, tipo, valorTotal, cotacao, "Bitcoin  TX: 0.03", valorFinalReais, valorFinalBitcoin, ethereum, ripple, investidorId);
             JOptionPane.showMessageDialog(view, "Venda de bitcoins feita!");
             JOptionPane.showMessageDialog(view, "Saldo atual em reais: " + valorFinalReais 
@@ -94,6 +100,7 @@ public class ControllerVendaBit implements Tarifacao{
         JOptionPane.showMessageDialog(view, "Erro: " + e.getMessage());
     }
 }
+    //pega a taxa de compra da bitcoin pela implementação da interface Tarifação
     @Override
     public double taxaVendaBitcoin() {
         return 0.03;

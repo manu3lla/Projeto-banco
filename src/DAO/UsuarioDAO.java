@@ -20,6 +20,7 @@ public class UsuarioDAO {
         this.conn = conn;
     }
     
+    //dao para consultar o usuario, utilizado principalmente no login
     public ResultSet consultar(Usuario usuario) throws SQLException{
         //String sql = "select * from aluno where usuario = '" +
         //        aluno.getUsuario() + "' AND senha = '" +
@@ -33,6 +34,7 @@ public class UsuarioDAO {
         ResultSet resultado = statement.getResultSet();
         return resultado;
     }
+    //dao para consultar usuario por cpf
     public ResultSet consultarPorCPF(Usuario usuario) throws SQLException{
         String sql = "select * from aa where cpf = ? and nome = ?";
         
@@ -43,6 +45,7 @@ public class UsuarioDAO {
         ResultSet resultado = statement.getResultSet();
         return resultado;
     }
+    //dao para atualizar senha do usuario, diferencial do meu programa
     public void atualizar(Usuario usuario) throws SQLException{
         String sql = "update aa set senha = ? where cpf = ? and nome = ?";
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -52,13 +55,16 @@ public class UsuarioDAO {
         statement.execute();
         conn.close();
     }
-    public void depositar(Investidor investidor, double valor) throws SQLException{
+    //dao utilizado para deposito e saque, salva os dados do investidor e valor final
+    // após efetuação da operação básica
+    public void depositarSacar(Investidor investidor, double valor) throws SQLException{
         String sql = "UPDATE aa SET reais = ? WHERE senha = ?";
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setDouble(1, valor);
         statement.setString(2, investidor.getSenha());
         statement.execute();
     }
+    //dao utilizado para passar os reais para o banco nos controllers de compra e venda de criptomoedas
     public void comprarReal(Investidor investidor, double valor) throws SQLException{
         String sql = "UPDATE aa SET reais = ? WHERE senha = ?";
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -66,6 +72,7 @@ public class UsuarioDAO {
         statement.setString(2, investidor.getSenha());
         statement.execute();
     }
+    //dao utilizado para comprar e vender bitcoin
     public void geralBit(Investidor investidor, double valor) throws SQLException{
         String sql = "UPDATE aa SET bitcoin = ? WHERE senha = ?";
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -73,6 +80,7 @@ public class UsuarioDAO {
         statement.setString(2, investidor.getSenha());
         statement.execute();
     }
+    //dao utilizado para comprar e vender ripple
     public void geralRipple(Investidor investidor, double valor) throws SQLException{
         String sql = "UPDATE aa SET ripple = ? WHERE senha = ?";
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -80,6 +88,7 @@ public class UsuarioDAO {
         statement.setString(2, investidor.getSenha());
         statement.execute();
     }
+    //dao utilizado para comprar e vender ethereum
     public void geralEthereum(Investidor investidor, double valor) throws SQLException{
         String sql = "UPDATE aa SET ethereum = ? WHERE senha = ?";
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -87,7 +96,8 @@ public class UsuarioDAO {
         statement.setString(2, investidor.getSenha());
         statement.execute();
     }
-  
+  //dao utilizado para pegar informações da tabela extrato no postgreSQL e mandar para o controller
+    //extrato
     public void extratoGeral(Investidor investidor, Timestamp data, boolean tipo, double valor, double cotacao, String nomeMoeda, double saldoReais, double saldoBitcoin, double saldoEthereum, double saldoRipple, int investidorId) throws SQLException {
     String checkSql = "SELECT id FROM extrato WHERE id = ?";
     try (PreparedStatement checkStatement = conn.prepareStatement(checkSql)) {
@@ -115,6 +125,7 @@ public class UsuarioDAO {
         insertStatement.executeUpdate();
     }
 }
+    //dao para pegar id da pessoa no extrato no banco de dados e relacionar com as operações realizadas especificamente por ela
     public ResultSet obterExtrato(Investidor investidor, int Id) throws SQLException {
         String sql = "SELECT * FROM extrato WHERE id_pessoa = ?";
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -123,7 +134,8 @@ public class UsuarioDAO {
         ResultSet res = statement.getResultSet();
         return res;
     }
-    
+    //dao para pegar o nome e cpf na tabela aa (onde tem os dados primários como nome, cpf, senha, quantidade de reais e bitcoins)
+    //e printar na view do extrato
     public Usuario consultarNomeCpf(Usuario usuario) throws SQLException {
     String sql = "SELECT nome, cpf FROM aa WHERE cpf = ? AND senha = ?";
     PreparedStatement statement = conn.prepareStatement(sql);
