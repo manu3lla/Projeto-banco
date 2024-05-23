@@ -16,9 +16,6 @@ import javax.swing.JViewport;
 import model.Usuario;
 import view.Extrato;
 
-/**
- * Autor: Manuella
- */
 public class ControllerExtrato {
     private Reais reais;
     private Investidor investidor;

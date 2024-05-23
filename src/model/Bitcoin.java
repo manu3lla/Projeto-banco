@@ -10,11 +10,11 @@ package model;
  */
 
 public class Bitcoin extends Moedas implements Tarifacao {
-
+    //pega informações do model das moedas
     public Bitcoin(double valor, double taxavenda, double taxacompra, double cotacao, String nomemoeda) {
         super(valor, taxavenda, taxacompra, cotacao, nomemoeda);
     }
-
+    //pega as taxas de compra e venda das bitcoins e cotação pela tarifação
     @Override
     public double taxaCompraBitcoin() {
         return Tarifacao.super.taxaCompraBitcoin();

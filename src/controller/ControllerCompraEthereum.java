@@ -13,9 +13,6 @@ import model.Reais;
 import model.Tarifacao;
 import view.CompraEthereum;
 
-/**
- * Autor: Manuella
- */
 public class ControllerCompraEthereum implements Tarifacao {
     private Reais reais;
     private Investidor investidor;

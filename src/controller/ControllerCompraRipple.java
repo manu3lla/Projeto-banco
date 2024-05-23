@@ -13,10 +13,6 @@ import model.Reais;
 import model.Tarifacao;
 import view.CompraRipple;
 
-/**
- * Controlador para a compra de Ripple
- * Autor: Manuella
- */
 public class ControllerCompraRipple implements Tarifacao {
     private Reais reais;
     private Investidor investidor;

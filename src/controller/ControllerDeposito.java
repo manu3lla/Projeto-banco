@@ -14,8 +14,7 @@ import view.DepositoReal;
 import view.Opcoes;
 
 /**
- * Controlador para realizar depósitos em Reais
- * Autor: Manuella
+ * @author: Manuella
  */
 public class ControllerDeposito {
     private Reais reais;

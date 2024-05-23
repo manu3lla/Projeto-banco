@@ -13,9 +13,6 @@ import model.Reais;
 import model.Tarifacao;
 import view.CompraBit;
 
-/**
- * Autor: Manuella
- */
 public class ControllerCompraBit implements Tarifacao {
     private Reais reais;
     private Investidor investidor;

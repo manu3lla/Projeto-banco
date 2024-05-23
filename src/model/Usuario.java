@@ -9,6 +9,7 @@ package model;
  * @author Manuella
  */
 public class Usuario {
+    //declaração do nome, cpf e senha que serão utilizados em outros models futuramente, como o investidor
     private String nome, cpf, senha;
 
     public String getNome() {

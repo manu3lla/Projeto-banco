@@ -1,15 +1,12 @@
 package model;
 
-/**
- * Classe base para todas as moedas.
- */
 public abstract class Moedas {
     private double valor;
     private double taxaVenda;
     private double taxaCompra;
     private double cotacao;
     private String nomeMoeda;
-
+    // construtor instanciando as variáveis acima dentro do model moedas
     public Moedas(double valor, double taxaVenda, double taxaCompra, double cotacao, String nomeMoeda) {
         this.valor = valor;
         this.taxaVenda = taxaVenda;

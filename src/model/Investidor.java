@@ -6,12 +6,11 @@ package model;
  */
 public class Investidor extends Usuario {
     private Carteira c1;
-
+    //pega informações do usuário por meio do extends e cria nova carteira para o investidor
     public Investidor(String nome, String cpf, String senha) {
         super(nome, cpf, senha);
         this.c1 = new Carteira();
     }
-
     public Investidor() {
         super();
         this.c1 = new Carteira();
